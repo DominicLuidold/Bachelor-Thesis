@@ -128,12 +128,38 @@ Um die Lesbarkeit zu gewährleisten und zugunsten der Textökonomie werden die v
 \addcontentsline{toc}{chapter}{Abkürzungsverzeichnis}
 \chapter*{Abkürzungsverzeichnis}
 \begin{acronym}
-  \acro{TODO}{TODO}
+  \acro{MPA}{Multi-page Application}
+  \acro{SPA}{Single-page Application}
 \end{acronym}
 
 \chapter{Einleitung}
 \label{chap:einleitung}
-TODO
+Diese Bachelorarbeit verfolgt das Ziel, einen Einblick in die \ac{SPA} Frameworks \textit{Angular}\footnote{\href{https://angular.io/}{Angular (https://angular.io)}} und \textit{Vaadin}\footnote{\href{https://vaadin.com/}{Vaadin (https://vaadin.com)}} zu geben und deren Gemeinsamkeiten, Unterschiede sowie Vor- und Nachteile zu beleuchten.
+
+\medskip
+
+Um ein grundlegendes Verständnis über die Thematik von \aclp{SPA} zu erlangen, wird zu Beginn der Arbeit auf das Konzept einer \ac{SPA} eingegangen und die zugrundeliegende Herangehensweise mit der einer klassischen \ac{MPA} beziehungsweise eines Rich Clients verglichen. Im weiteren Verlauf werden die unterschiedlichen Ansätze von Angular und Vaadin genauer betrachtet und eine tatsächliche Umsetzung der zuvor erläuterten Technologien mittels zweier Demo-Applikationen getestet. Am Ende dieser Arbeit wir darauf eingegangen, ob sich - anhand unterschiedlicher Kriterien und Anwendungsfälle - eine Empfehlung für eines der beiden \acs{SPA} Frameworks aussprechen lässt.
+
+\section{Motivation}
+\label{sec:motivation}
+In den letzten Jahren lässt sich beobachten, dass Webapplikationen, Apps und Anwendungen allgemein verstärkt mittels des \acs{SPA}-Ansatzes umgesetzt werden und somit auf einen Thin Client - im Gegensatz zu klassischeren Rich Clients und \aclp{MPA} - setzen. Für die Umsetzung einer solchen Applikation stehen eine Vielzahl von Frameworks zur Verfügung, die darüber hinaus weitere Features bieten und Entwickler:innen bei der Umsetzung unterstützen.
+
+\newpage
+
+Die richtige Wahl des Frameworks, der jeweiligen Technologien und der im Hintergrund agierenden Strukturen spielen eine wesentliche Rolle bei der Planung und Umsetzung eines neuen Projektes. Welches Framework sich besser eignet, lässt sich oftmals nicht auf den ersten (oder sogar zweiten) Blick feststellen. Diese Arbeit befasst sich daher genauer mit dem Konzept von \aclp{SPA} und vergleicht zwei darauf aufbauende Frameworks, die mit deutlich unterschiedlichen Technologie-Stacks arbeiten und zu vergleichbaren Lösungen führen.
+
+\section{Problemstellung}
+\label{sec:problemstellung}
+Die in Abschnitt \ref{sec:motivation} auf Seite \pageref{sec:motivation} angesprochene Vielzahl an \acs{SPA}-Frameworks bietet grundlegend den Vorteil, dass eine große Auswahlmöglichkeit und eine gewisse Konkurrenz untereinander zu einem hohen Qualitätsstandard führt. Zudem wird dadurch sichergestellt, dass es für jedes Projekt - unabhängig von den jeweiligen Anforderungen und etwaigen Eigenheiten - eine Möglichkeit gibt, dieses mit einem der verfügbaren Frameworks umzusetzen. Auf der anderen Seite führt die stetig wachsende Anzahl an Möglichkeiten jedoch dazu, dass sich meist nur schwer beurteilen lässt, welches Framework sich für die Umsetzung einer Applikation bestmöglich eignet.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[scale=0.5]{images/js-frameworks.png}
+    \caption[Liste möglicher JavaScript-Frameworks zur Umsetzung von \aclp{SPA}]{Liste möglicher JavaScript-Frameworks zur Umsetzung von \aclp{SPA}. Quelle: \cite{a_best_2020}}
+    \label{fig:js-frameworks}
+\end{figure}
+
+Neben 
 
 % Literaturverzeichnis:
 \clearpage
