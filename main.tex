@@ -1,0 +1,152 @@
+\documentclass[a4paper,12pt,twoside]{scrreprt}
+% Autor der Vorlage: Klaus Rheinberger, FH Vorarlberg, 2017-02-20
+
+% Pakete:
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc} % Silbentrennung bei Sonderzeichen
+\usepackage{graphicx} % Bilder einbinden
+\usepackage{wrapfig} % Bilder positionieren
+\usepackage[ngerman]{babel} % Deutsche Sprachanpassungen
+\usepackage{minted} % Code Highlighting/Import
+\usepackage{csquotes} % Anführungszeichen und Zitieren
+\usepackage[bindingoffset=8mm]{geometry} % Bindeverlust von 8mm einbeziehen
+\usepackage{caption} % Abbildungslegenden
+\usepackage{xcolor} % Farbige Hervorhebungen
+\usepackage{setspace} % Zeilenabstand
+\usepackage[style=authoryear,citestyle=authoryear,backend=biber]{biblatex} % Literaturverweise
+\usepackage[
+    linktocpage=true,
+    pdfauthor={Dominic Luidold},
+    pdftitle={TODO}
+]{hyperref} % Links -> \href{https://www.wikibooks.org}{Wikibooks home}
+\usepackage{acronym} % Abkürzungsverzeichnis
+
+% Einstellungen:
+\captionsetup{format=hang, justification=raggedright}
+\addbibresource{Zotero.bib}
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{4} % Tiefe der Gliederung im Inhaltsverzeichnis
+
+% Custom Commands
+\renewcommand{\listingscaption}{Quellcode}
+\renewcommand\listoflistingscaption{Quellcodeverzeichnis}
+
+% Dokumentenbeginn
+\begin{document}
+\onehalfspacing % Zeilenabstand 1,5
+
+% Titelblatt:
+% \newpage\mbox{}\newpage
+\cleardoublepage % force output to a right page
+\thispagestyle{empty}
+\begin{titlepage}
+    \begin{flushright}
+    \includegraphics[width=0.4\linewidth]{images/Logo_FHV.jpg}
+    \end{flushright}
+    \begin{flushleft}
+    \section*{TBD}
+    \vspace{1cm}
+
+    Bachelorarbeit II\\
+    zur Erlangung des akademischen Grades
+    \vspace{0.5cm}
+
+    \textbf{Bachelor of Science in Engineering (BSc)}
+
+    \vspace{1cm}
+    Fachhochschule Vorarlberg\newline
+    Informatik – Software and Information Engineering
+
+    \vspace{0.5cm}
+
+    Betreut von\newline
+    Prof. (FH) Dipl. Inform. Thomas Feilhauer
+
+    \vspace{0.5cm}
+
+    Vorgelegt von\newline
+    Dominic Luidold\newline
+    Dornbirn, 20. Mai 2021
+    \end{flushleft}
+\end{titlepage}
+
+% Widmung:
+\newpage
+\section*{Widmung}
+\label{sec:widmung}
+TODO
+
+\bigskip
+
+\begin{quote}
+    \begin{flushright}
+        \textit{\enquote{TODO}}\\
+        TODO
+    \end{flushright}
+\end{quote}
+
+% Kurzreferat:
+\newpage
+\section*{Kurzreferat}
+\label{sec:kurzreferat}
+
+\subsection*{TODO}
+
+TODO
+
+% Abstract:
+\newpage
+\section*{Abstract}
+\label{sec:abstract}
+
+\subsection*{TODO}
+
+TODO
+
+% Geschlechtergerechte Sprache:
+\newpage
+\section*{Geschlechtergerechte Sprache}
+\label{sec:gendern}
+
+Der Verfasser der vorliegenden Arbeit bekennt sich zu einer geschlechtergerechten Sprachverwendung.
+
+Um die Lesbarkeit zu gewährleisten und zugunsten der Textökonomie werden die verwendeten Personen beziehungsweise Personengruppen fix männlich oder weiblich zugeordnet. Zum Beispiel wird immer \enquote{die Entwicklerin} und \enquote{der Benutzer} verwendet. Es wurde besonders darauf geachtet, stereotype Rollenbeschreibungen zu vermeiden. Die insgesamt eventuell dadurch hervorgerufene Irritation bei den Lesenden ist gewünscht und soll dazu beitragen, eine Bewusstheit für die bestehende, Frauen diskriminierende Sprachgewohnheit (generelle Verwendung der männlichen Begriffe für beide Geschlechter) zu wecken beziehungsweise zu stärken.
+
+% Inhaltsverzeichnis:
+\cleardoublepage % force output to a right page
+\setcounter{tocdepth}{2}
+\tableofcontents
+
+\clearpage
+\phantomsection
+\addcontentsline{toc}{chapter}{Abbildungsverzeichnis}
+\listoffigures
+
+% Abkürzungsverzeichnis:
+\clearpage
+\phantomsection
+\addcontentsline{toc}{chapter}{Abkürzungsverzeichnis}
+\chapter*{Abkürzungsverzeichnis}
+\begin{acronym}
+  \acro{TODO}{TODO}
+\end{acronym}
+
+\chapter{Einleitung}
+\label{chap:einleitung}
+TODO
+
+% Literaturverzeichnis:
+\clearpage
+\phantomsection
+\addcontentsline{toc}{chapter}{Literaturverzeichnis}
+\printbibliography
+
+\chapter*{Eidesstattliche Erklärung}
+\addcontentsline{toc}{chapter}{Eidesstattliche Erklärung}
+Ich erkläre hiermit an Eides statt, dass ich die vorliegende Bachelorarbeit I selbstständig und ohne Benutzung anderer als der angegebenen Hilfsmittel angefertigt habe. Die aus fremden Quellen direkt oder indirekt übernommenen Stellen sind als solche kenntlich gemacht. Die Arbeit wurde bisher weder in gleicher noch in ähnlicher Form einer anderen Prüfungsbehörde vorgelegt und auch noch nicht veröffentlicht.
+
+\vspace{5cm}
+\noindent
+Dornbirn, am 20. Mai 2021\hfill Dominic Luidold
+
+\end{document}
