@@ -129,7 +129,9 @@ Um die Lesbarkeit zu gewährleisten und zugunsten der Textökonomie werden die v
 \chapter*{Abkürzungsverzeichnis}
 \begin{acronym}
   \acro{MPA}{Multi-page Application}
+  \acro{PWA}{Progressive Web Application}
   \acro{SPA}{Single-page Application}
+  \acro{UI}{User Interface}
 \end{acronym}
 
 \chapter{Einleitung}
@@ -155,11 +157,38 @@ Die in Abschnitt \ref{sec:motivation} auf Seite \pageref{sec:motivation} angespr
 \begin{figure}[ht]
     \centering
     \includegraphics[scale=0.5]{images/js-frameworks.png}
-    \caption[Liste möglicher JavaScript-Frameworks zur Umsetzung von \aclp{SPA}]{Liste möglicher JavaScript-Frameworks zur Umsetzung von \aclp{SPA}. Quelle: \cite{a_best_2020}}
+    \caption[Liste möglicher JavaScript-Frameworks zur Umsetzung von \aclp{SPA}]{Liste möglicher JavaScript-Frameworks zur Umsetzung von \aclp{SPA} (Quelle: \cite{a_best_2020})}
     \label{fig:js-frameworks}
 \end{figure}
 
-Neben 
+Um eine geeignete Wahl eines Frameworks treffen zu können, sollten vorab Kriterien und Anforderungen definiert werden, die schlussendlich erfüllt werden müssen. Neben den projektspezifischen Eigenheiten, die in den meisten Fällen von einer Vielzahl der Frameworks abgedeckt werden können, stellt sich die Auswahl der zugrundeliegenden Technologien als eine der größten Herausforderungen dar. Diese Entscheidung muss gut überlegt und abgewogen werden, da diese im weiteren Verlauf weitreichende Folgen bei der Umsetzung einer (Web-) Applikation zur Folge hat und ein Umstieg nach begonnener Entwicklung nur unter großem Aufwand umsetzen lässt.
+
+Die in Abbildung \ref{fig:js-frameworks} auf Seite \pageref{fig:js-frameworks} dargestellten Frameworks zeigen eine Auswahl an Frameworks auf, die auf \textit{JavaScript} aufbauen beziehungsweise basieren und somit primär im Frontend - dem Browser -  eingesetzt werden können. \aclp{SPA} lassen sich jedoch nicht nur Frontend-seitig entwickeln (bei denen ein Großteil der Logik auf einem externen Server läuft), sondern können ebenfalls mittels auf \textit{Java} basierenden Frameworks umgesetzt werden, die sowohl die Logik als auch das \ac{UI} kombinieren, zu denen unter anderem Vaadin gehört.
+
+\medskip
+
+Da die unterschiedlichen Ansätze, sowohl hinter Vaadin als auch Angular, gewisse Vor- und Nachteile sowie Tücken mit sich bringen, fällt die Wahl auf eines der beiden \acs{SPA}-fähigen Frameworks auf den ersten Blick nicht leicht. Hinzu kommt die Frage, welches der Frameworks weiterführende Funktionalitäten bietet, um mit geringem Aufwand beispielsweise eine \ac{PWA} umzusetzen oder anwendungsspezifische Daten lokal sowie extern persistieren zu können.
+
+\section{Zielsetzung}
+\label{sec:zielsetzung}
+Die in den Abschnitten \ref{sec:motivation} und \ref{sec:problemstellung} angeführten Punkte haben aufgezeigt, dass die große Anzahl an Frameworks, mit denen \aclp{SPA} umgesetzt werden können, zwar sehr positiv einzuschätzen ist, die damit verbundenen Probleme bei der Auswahl des richtigen Frameworks werden dadurch jedoch verstärkt. Aufgrund der unterschiedlichen zugrundeliegenden Technologien und einhergehenden Herangehensweisen ist eine bedachte Wahl wichtig.
+
+\newpage
+
+Diese Arbeit verfolgt daher das Ziel, das JavaScript Framework \textit{Angular} dem auf Java basierenden Framework \textit{Vaadin} gegenüberzustellen und zu vergleichen. Das Ziel ist es, mittels Literatur belegter Vergleiche einen Allgemeinen Überblick über \aclp{SPA} zu geben, diese klassischen Ansätzen gegenüberzustellen und zwei Demo-Applikationen zu entwickeln. Diese Webapplikationen werden dann herangezogen, um anhand von vorab definierten Kriterien feststellen zu können, ob und in wie weit Empfehlungen für eines der beiden Frameworks ausgesprochen werden kann.
+
+\medskip
+
+Um den Fokus dieser Arbeit genau zu definieren und einzuschränken, wird bei der Planung, Umsetzung sowie abschließenden Beurteilung der Applikationen anhand der Kriterien auf folgende Punkte beschränkt:
+\begin{itemize}
+    \item Möglichkeit zur einfachen Umsetzung einer \acf{PWA}
+    \item Möglichkeit der Wiederverwendbarkeit von Komponenten, gegebenenfalls mittels \textit{Web Components}
+    \item Möglichkeit Daten lokal sowie extern (serverseitig) zu persistieren
+\end{itemize}
+
+\chapter{Stand der Technik}
+\label{chap:stand-technik}
+Das folgende Kapitel gibt einen Überblick über den aktuellen Stand des Backends des Better Life System, dessen technischem Aufbau und dem zugrundeliegenden Konzept. Anschließend wird die von Symfony vorgeschlagene Architektur beleuchtet und auf das zukünftig eingesetzte CQRS-Pattern eingegangen. Am Ende des Kapitels werden die gängige Schichtenarchitektur und CQRS gegenübergestellt und Vor- sowie Nachteile aufgezeigt.
 
 % Literaturverzeichnis:
 \clearpage
