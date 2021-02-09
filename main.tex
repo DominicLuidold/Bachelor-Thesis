@@ -66,7 +66,7 @@
 
     Vorgelegt von\newline
     Dominic Luidold\newline
-    Dornbirn, 20. Mai 2021
+    Dornbirn, \colorbox{yellow}{20. Mai 2021}
     \end{flushleft}
 \end{titlepage}
 
@@ -129,7 +129,7 @@ Um die Lesbarkeit zu gewährleisten und zugunsten der Textökonomie werden die v
 \chapter*{Abkürzungsverzeichnis}
 \begin{acronym}
   \acro{MPA}{Multi-page Application}
-  \acro{PWA}{Progressive Web Application}
+  \acro{PWA}{Progressive Web App}
   \acro{SPA}{Single-page Application}
   \acro{UI}{User Interface}
 \end{acronym}
@@ -140,11 +140,11 @@ Diese Bachelorarbeit verfolgt das Ziel, einen Einblick in die \ac{SPA} Framework
 
 \medskip
 
-Um ein grundlegendes Verständnis über die Thematik von \aclp{SPA} zu erlangen, wird zu Beginn der Arbeit auf das Konzept einer \ac{SPA} eingegangen und die zugrundeliegende Herangehensweise mit der einer klassischen \ac{MPA} beziehungsweise eines Rich Clients verglichen. Im weiteren Verlauf werden die unterschiedlichen Ansätze von Angular und Vaadin genauer betrachtet und eine tatsächliche Umsetzung der zuvor erläuterten Technologien mittels zweier Demo-Applikationen getestet. Am Ende dieser Arbeit wir darauf eingegangen, ob sich - anhand unterschiedlicher Kriterien und Anwendungsfälle - eine Empfehlung für eines der beiden \acs{SPA} Frameworks aussprechen lässt.
+Um ein grundlegendes Verständnis über die Thematik von \aclp{SPA} zu erlangen, wird zu Beginn der Arbeit auf das Konzept einer \ac{SPA} eingegangen und die zugrundeliegende Herangehensweise mit der einer klassischen \ac{MPA} verglichen. Im weiteren Verlauf werden die unterschiedlichen Ansätze von Angular und Vaadin genauer betrachtet und eine tatsächliche Umsetzung der zuvor erläuterten Technologien mittels zweier Demo-Applikationen getestet. Am Ende dieser Arbeit wir darauf eingegangen, ob sich - anhand unterschiedlicher Kriterien und Anwendungsfälle - eine Empfehlung für eines der beiden \acs{SPA} Frameworks aussprechen lässt.
 
 \section{Motivation}
 \label{sec:motivation}
-In den letzten Jahren lässt sich beobachten, dass Webapplikationen, Apps und Anwendungen allgemein verstärkt mittels des \acs{SPA}-Ansatzes umgesetzt werden und somit auf einen Thin Client - im Gegensatz zu klassischeren Rich Clients und \aclp{MPA} - setzen. Für die Umsetzung einer solchen Applikation stehen eine Vielzahl von Frameworks zur Verfügung, die darüber hinaus weitere Features bieten und \colorbox{yellow}{Entwickler:innen} bei der Umsetzung unterstützen.
+In den letzten Jahren lässt sich beobachten, dass Webapplikationen, Apps und Anwendungen allgemein verstärkt mittels des \acs{SPA}-Ansatzes umgesetzt werden und somit auf einen Thin Client - im Gegensatz zu klassischeren \aclp{MPA} - setzen. Für die Umsetzung einer solchen Applikation stehen eine Vielzahl von Frameworks zur Verfügung, die darüber hinaus weitere Features bieten und \colorbox{yellow}{Entwickler:innen} bei der Umsetzung unterstützen.
 
 \newpage
 
@@ -161,9 +161,9 @@ Die in Abschnitt \ref{sec:motivation} auf Seite \pageref{sec:motivation} angespr
     \label{fig:js-frameworks}
 \end{figure}
 
-Um eine geeignete Wahl eines Frameworks treffen zu können, sollten vorab Kriterien und Anforderungen definiert werden, die schlussendlich erfüllt werden müssen. Neben den projektspezifischen Eigenheiten, die in den meisten Fällen von einer Vielzahl der Frameworks abgedeckt werden können, stellt sich die Auswahl der zugrundeliegenden Technologien als eine der größten Herausforderungen dar. Diese Entscheidung muss gut überlegt und abgewogen werden, da diese im weiteren Verlauf weitreichende Folgen bei der Umsetzung einer (Web-) Applikation zur Folge hat und sich ein Wechsel nach gestarteter Entwicklung nur unter großem Aufwand umsetzen lässt.
+Um eine geeignete Wahl eines Frameworks treffen zu können, sollten vorab Kriterien und Anforderungen definiert werden, die schlussendlich erfüllt werden müssen. Neben den projektspezifischen Eigenheiten, die in den meisten Fällen von einer Vielzahl der Frameworks abgedeckt werden können, stellt sich die Auswahl der zugrundeliegenden Technologien als eine der wichtigsten Herausforderungen dar. Diese Entscheidung muss gut überlegt und abgewogen werden, da diese im weiteren Verlauf weitreichende Folgen bei der Umsetzung einer (Web-) Applikation zur Folge hat und sich ein Wechsel nach gestarteter Entwicklung nur unter großem Aufwand umsetzen lässt.
 
-Die in Abbildung \ref{fig:js-frameworks} auf Seite \pageref{fig:js-frameworks} dargestellten Frameworks zeigen eine Auswahl an Frameworks auf, die auf \textit{JavaScript} aufbauen beziehungsweise basieren und somit primär im Frontend - dem Browser -  eingesetzt werden können. \aclp{SPA} lassen sich jedoch nicht nur Frontend-seitig entwickeln (bei denen ein Großteil der Logik auf einem externen Server abläuft), sondern können ebenfalls mittels auf \textit{Java} basierenden Frameworks umgesetzt werden. Bei diesen Frameworks - zu denen unter anderem Vaadin gehört - lässt sich sowohl die Logik als auch das \ac{UI}, stellenweise gänzlich, kombinieren.
+Die in Abbildung \ref{fig:js-frameworks} auf Seite \pageref{fig:js-frameworks} dargestellten Frameworks zeigen eine Auswahl an Frameworks auf, die auf \textit{JavaScript} aufbauen beziehungsweise basieren und somit primär auf dem Client - dem Browser -  eingesetzt werden können. \aclp{SPA} lassen sich jedoch nicht nur Frontend-seitig entwickeln (bei denen ein Großteil der Logik auf einem externen Server abläuft), sondern können ebenfalls mittels auf \textit{Java} basierenden Frameworks umgesetzt werden. Bei diesen Frameworks - zu denen unter anderem Vaadin gehört - lässt sich sowohl die Logik als auch das \ac{UI}, stellenweise gänzlich, kombinieren.
 
 \medskip
 
@@ -188,7 +188,11 @@ Um den Fokus dieser Arbeit genauer zu definieren und einzuschränken, wird die P
 
 \chapter{Stand der Technik}
 \label{chap:stand-technik}
-Das folgende Kapitel gibt einen Überblick über den aktuellen Stand des Backends des Better Life System, dessen technischem Aufbau und dem zugrundeliegenden Konzept. Anschließend wird die von Symfony vorgeschlagene Architektur beleuchtet und auf das zukünftig eingesetzte CQRS-Pattern eingegangen. Am Ende des Kapitels werden die gängige Schichtenarchitektur und CQRS gegenübergestellt und Vor- sowie Nachteile aufgezeigt.
+Das folgende Kapitel gibt einen Überblick über die Funktionsweise einer \acl{SPA} und vergleicht das Konzept von \acsp{SPA} mit klassischen \aclp{MPA}. Im Anschluss wird im Detail auf die Funktionsweise von Angular und Vaadin beziehungsweise deren unterschiedlichen Ansatz in Hinblick auf Client und Server eingegangen und die jeweiligen Vor- und Nachteile genauer beleuchtet.
+
+\section{Konzept einer \acl{SPA}}
+\label{sec:konzept-spa}
+
 
 % Literaturverzeichnis:
 \clearpage
@@ -202,6 +206,6 @@ Ich erkläre hiermit an Eides statt, dass ich die vorliegende Bachelorarbeit I s
 
 \vspace{5cm}
 \noindent
-Dornbirn, am 20. Mai 2021\hfill Dominic Luidold
+Dornbirn, am \colorbox{yellow}{20. Mai 2021}\hfill Dominic Luidold
 
 \end{document}
