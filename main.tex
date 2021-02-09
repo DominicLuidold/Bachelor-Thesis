@@ -144,7 +144,7 @@ Um ein grundlegendes Verständnis über die Thematik von \aclp{SPA} zu erlangen,
 
 \section{Motivation}
 \label{sec:motivation}
-In den letzten Jahren lässt sich beobachten, dass Webapplikationen, Apps und Anwendungen allgemein verstärkt mittels des \acs{SPA}-Ansatzes umgesetzt werden und somit auf einen Thin Client - im Gegensatz zu klassischeren Rich Clients und \aclp{MPA} - setzen. Für die Umsetzung einer solchen Applikation stehen eine Vielzahl von Frameworks zur Verfügung, die darüber hinaus weitere Features bieten und Entwickler:innen bei der Umsetzung unterstützen.
+In den letzten Jahren lässt sich beobachten, dass Webapplikationen, Apps und Anwendungen allgemein verstärkt mittels des \acs{SPA}-Ansatzes umgesetzt werden und somit auf einen Thin Client - im Gegensatz zu klassischeren Rich Clients und \aclp{MPA} - setzen. Für die Umsetzung einer solchen Applikation stehen eine Vielzahl von Frameworks zur Verfügung, die darüber hinaus weitere Features bieten und \colorbox{yellow}{Entwickler:innen} bei der Umsetzung unterstützen.
 
 \newpage
 
@@ -161,9 +161,9 @@ Die in Abschnitt \ref{sec:motivation} auf Seite \pageref{sec:motivation} angespr
     \label{fig:js-frameworks}
 \end{figure}
 
-Um eine geeignete Wahl eines Frameworks treffen zu können, sollten vorab Kriterien und Anforderungen definiert werden, die schlussendlich erfüllt werden müssen. Neben den projektspezifischen Eigenheiten, die in den meisten Fällen von einer Vielzahl der Frameworks abgedeckt werden können, stellt sich die Auswahl der zugrundeliegenden Technologien als eine der größten Herausforderungen dar. Diese Entscheidung muss gut überlegt und abgewogen werden, da diese im weiteren Verlauf weitreichende Folgen bei der Umsetzung einer (Web-) Applikation zur Folge hat und ein Umstieg nach begonnener Entwicklung nur unter großem Aufwand umsetzen lässt.
+Um eine geeignete Wahl eines Frameworks treffen zu können, sollten vorab Kriterien und Anforderungen definiert werden, die schlussendlich erfüllt werden müssen. Neben den projektspezifischen Eigenheiten, die in den meisten Fällen von einer Vielzahl der Frameworks abgedeckt werden können, stellt sich die Auswahl der zugrundeliegenden Technologien als eine der größten Herausforderungen dar. Diese Entscheidung muss gut überlegt und abgewogen werden, da diese im weiteren Verlauf weitreichende Folgen bei der Umsetzung einer (Web-) Applikation zur Folge hat und sich ein Wechsel nach gestarteter Entwicklung nur unter großem Aufwand umsetzen lässt.
 
-Die in Abbildung \ref{fig:js-frameworks} auf Seite \pageref{fig:js-frameworks} dargestellten Frameworks zeigen eine Auswahl an Frameworks auf, die auf \textit{JavaScript} aufbauen beziehungsweise basieren und somit primär im Frontend - dem Browser -  eingesetzt werden können. \aclp{SPA} lassen sich jedoch nicht nur Frontend-seitig entwickeln (bei denen ein Großteil der Logik auf einem externen Server läuft), sondern können ebenfalls mittels auf \textit{Java} basierenden Frameworks umgesetzt werden, die sowohl die Logik als auch das \ac{UI} kombinieren, zu denen unter anderem Vaadin gehört.
+Die in Abbildung \ref{fig:js-frameworks} auf Seite \pageref{fig:js-frameworks} dargestellten Frameworks zeigen eine Auswahl an Frameworks auf, die auf \textit{JavaScript} aufbauen beziehungsweise basieren und somit primär im Frontend - dem Browser -  eingesetzt werden können. \aclp{SPA} lassen sich jedoch nicht nur Frontend-seitig entwickeln (bei denen ein Großteil der Logik auf einem externen Server abläuft), sondern können ebenfalls mittels auf \textit{Java} basierenden Frameworks umgesetzt werden. Bei diesen Frameworks - zu denen unter anderem Vaadin gehört - lässt sich sowohl die Logik als auch das \ac{UI}, stellenweise gänzlich, kombinieren.
 
 \medskip
 
@@ -175,15 +175,15 @@ Die in den Abschnitten \ref{sec:motivation} und \ref{sec:problemstellung} angef�
 
 \newpage
 
-Diese Arbeit verfolgt daher das Ziel, das JavaScript Framework \textit{Angular} dem auf Java basierenden Framework \textit{Vaadin} gegenüberzustellen und zu vergleichen. Das Ziel ist es, mittels Literatur belegter Vergleiche einen Allgemeinen Überblick über \aclp{SPA} zu geben, diese klassischen Ansätzen gegenüberzustellen und zwei Demo-Applikationen zu entwickeln. Diese Webapplikationen werden dann herangezogen, um anhand von vorab definierten Kriterien feststellen zu können, ob und in wie weit Empfehlungen für eines der beiden Frameworks ausgesprochen werden kann.
+Diese Arbeit verfolgt daher das Ziel, das JavaScript Framework \textit{Angular} dem auf Java basierenden Framework \textit{Vaadin} gegenüberzustellen und zu vergleichen. Das Ziel ist es, mittels Literatur belegter Vergleiche einen Allgemeinen Überblick über \aclp{SPA} zu geben, diese klassischen Ansätzen gegenüberzustellen und zwei Demo-Applikationen zu entwickeln. Diese Webanwendungen werden dann herangezogen, um anhand von vorab definierten Kriterien feststellen zu können, ob und in wie weit Empfehlungen für eines der beiden Frameworks ausgesprochen werden kann.
 
 \medskip
 
-Um den Fokus dieser Arbeit genau zu definieren und einzuschränken, wird bei der Planung, Umsetzung sowie abschließenden Beurteilung der Applikationen anhand der Kriterien auf folgende Punkte beschränkt:
+Um den Fokus dieser Arbeit genauer zu definieren und einzuschränken, wird die Planung, Umsetzung sowie abschließenden Beurteilung der Applikationen anhand der ausgearbeiteten Kriterien auf folgende Punkte beschränkt:
 \begin{itemize}
     \item Möglichkeit zur einfachen Umsetzung einer \acf{PWA}
     \item Möglichkeit der Wiederverwendbarkeit von Komponenten, gegebenenfalls mittels \textit{Web Components}
-    \item Möglichkeit Daten lokal sowie extern (serverseitig) zu persistieren
+    \item Möglichkeit Daten lokal (Browser) sowie extern (Server) zu persistieren
 \end{itemize}
 
 \chapter{Stand der Technik}
