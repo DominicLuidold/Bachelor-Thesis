@@ -136,6 +136,7 @@ Um die Lesbarkeit zu gewährleisten und zugunsten der Textökonomie werden die v
   \acro{SSR}{Server-side rendering}
   \acro{SPA}{Single-page Application}
   \acro{UI}{User Interface}
+  \acro{UX}{User Experience}
 \end{acronym}
 
 \chapter{Einleitung}
@@ -194,7 +195,7 @@ Das folgende Kapitel gibt einen Überblick über die Funktionsweise einer \acl{S
 \label{sec:konzept-spa}
 Eine klassische \acl{MPA} basiert auf dem Konzept, dass bei jedem Aufruf eines neuen View beziehungsweise einer HTML-Seite eine Anfrage an den Server gestellt wird. Dieser verarbeitet die Anfrage und retourniert das jeweils neu zusammengestellte Resultat der Präsentations- sowie der darunterliegenden Schichten an den Client. Eine \acl{SPA} ist hingegen eine Webanwendung, bei der die Präsentationsschicht und die damit verbundene Logik vom Server entkoppelt und vollständig in den Client, sprich den Browser, ausgelagert wird. \parencite[][Seite 5ff.]{scott_spa_2015}
 
-Die Abbildung \ref{fig:spa-overview} auf Seite \pageref{fig:spa-overview} stellt den Aufbau solch einer \acs{SPA} schematisch dar und verdeutlicht, dass die Darstellung der mittels \acs{AJAX} und XHR angeforderten Daten komplett vom Client übernommen wird. Serverseitig wird lediglich ein \texttt{Controller} benötigt, welcher die übermittelten Daten in entsprechende Objekte umwandeln kann.
+Die Abbildung \ref{fig:spa-overview} auf Seite \pageref{fig:spa-overview} stellt den Aufbau solch einer \acs{SPA} schematisch dar und verdeutlicht, dass die Darstellung der mittels \acs{AJAX} und XHR angeforderten Daten komplett vom Client übernommen wird. Serverseitig wird lediglich ein \textit{Controller} benötigt, welcher die übermittelten Daten in für die Logik entsprechend verständliche Objekte umwandeln kann.
 
 \medskip
 
@@ -207,11 +208,41 @@ Diese Herangehensweise führt dazu, dass beim Aufrufen einer (Unter-)Seite keine
     \label{fig:spa-overview}
 \end{figure}
 
-Neben der reinen Übertragung von Daten mittels \acs{JSON} (oder anderweitigen Datenformaten) kann alternativ beziehungsweise erweiternd auch auf \ac{SSR} gesetzt werden. Bei diesem Ansatz werden Ausschnitte von HTML bereits auf dem Server vorbereitet und zusammen mit weiterführenden Daten an den Client geschickt. Dieser kann somit ein Teil der Antwort ohne weitere Aufbereitung darstellen, während die restlichen Daten mittels \acs{DOM}-Manipulation in die View eingebettet werden. \parencite[][Seite 7]{scott_spa_2015} 
+\subsection{\acl{SSR}}
+\label{subsec:ssr}
+Neben der reinen Übertragung von Daten mittels \acs{JSON} (oder anderweitigen Datenformaten) kann bei \acsp{SPA} alternativ beziehungsweise erweiternd auch auf \textbf{\ac{SSR}} gesetzt werden. Bei diesem Ansatz werden Ausschnitte von HTML bereits auf dem Server vorbereitet und zusammen mit weiterführenden Daten an den Client geschickt. Dieser kann somit ein Teil der Antwort ohne weitere Aufbereitung darstellen, während die restlichen Daten mittels \acs{DOM}-Manipulation in die View eingebettet werden. \parencite[][Seite 7]{scott_spa_2015}
+
+\subsection{Bestandteile einer \acs{SPA}}
+\label{subsec:spa-bestandteile}
+Der zugrundeliegende Aufbau einer \acl{SPA} - und der Bestandteil der Applikation, der lediglich einmal geladen wird - ist die sogenannte \textit{Shell}. Die Shell ist eine einzelne HTML-Datei, welche vom Browser vollständig geladen wird und in den meisten Fällen lediglich minimale Strukturen sowie einen leeren \texttt{DIV} Tag enthält, wie Abbildung \ref{fig:spa-shell} auf Seite \pageref{fig:spa-overview} zeigt. Genutzt wird diese als Ausgangspunkt für alle weiteren Views, die unabhängig von der Shell agieren und dynamisch geladen werden. \parencite[][Seite 8]{scott_spa_2015}
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[scale=0.5]{images/SPA_shell_Scott.png}
+    \caption[\acl{SPA} Shell]{\acl{SPA} Shell\newline(Quelle: \cite[][Seite 8]{scott_spa_2015})}
+    \label{fig:spa-shell}
+\end{figure}
+
+Voneinander getrennt sichtbare Bereiche der Anwendung können im weiteren Verlauf ebenfalls mit \texttt{DIV} Tags abgegrenzt werden und sind dem in der Shell definierten \texttt{DIV} Container untergeordnet. Dies ermöglicht eine logische Gruppierung und das gezielte Austauschen bestimmter Bereiche, sogenannter \textit{Regions}. \parencite[][Seite 9]{scott_spa_2015}
+
+\medskip
+
+Die einzeln dargestellten Views, welche dynamisch ausgetauscht werden können, stellen keine vollständigen HTML-Seiten dar, sondern bilden lediglich gezielt definierte Ausschnitte. Diese Ausschnitte werden bei jedem Navigationsvorgang innerhalb der Website durch das entsprechend eingesetzte Framework ausgetauscht und erfordern kein erneutes Laden der Website. \parencite[][Seite 10f.]{scott_spa_2015}
 
 \section{Vorteile einer \acs{SPA} gegenüber einer \acs{MPA}}
 \label{sec:vorteile-spa-mpa}
-TODO
+Der Einsatz und die Entwicklung einer \acl{SPA} bietet sowohl Vorteile für Entwickler:innen als auch Anwender:innen gegenüber der Nutzung einer klassischen \acl{MPA}.
+
+\medskip
+
+Der bereits mehrfach angesprochene Vorgang, lediglich bestimmte Teile beziehungsweise Views der Webanwendung auszutauschen, erhöht die Benutzbarkeit sowie die \ac{UX} laut Mikowski und Powell deutlich. Da keine komplett neue (Unter-)Seite geladen werden muss, entfällt das Aufscheinen einer - abhängig von der Internet- und Servergeschwindigkeit - kurz sichtbaren, weißen Übergangsseite während des Ladeprozesses. Dem Benutzer kann stattdessen ein dynamisch dargestellter Fortschrittsbalken dargestellt werden, der sich bei vorhandener Ladezeit laufend aktualisiert. \parencite[][Seite 21]{mikowski_single_2013}
+
+Scott hebt hervor, dass die Aufteilung in entkoppelte Präsentationsschichten auf dem Client sowie dem Server dazu führt, dass diese unabhängig voneinander gewartet und aktualisiert werden können. Während bei klassischen \acsp{MPA} stellenweise HTML, JavaScript ect. mit serverseitigem Code (beispielsweise \textit{PHP}, \textit{JavaServer Pages}, ...) vermischt werden, kann bei \acsp{SPA} zudem eine gewisse Differenzierung und Abtrennung von HTML, CSS und JavaScript im Frontend erzielt werden, was die Wartbarkeit ebenfalls erhöht. \parencite[][Seite 13]{scott_spa_2015}
+
+Sowohl Mikowski und Powell als auch Scott gehen des Weiteren darauf ein, dass die Datenübertragung und Verarbeitung bei einer \acl{SPA} effizienter und schneller stattfinden kann, als bei einer \acl{MPA}. Die Programmlogik zur Darstellung und dynamischen Entscheidungsfindung befindet sich beim Client (weshalb dieser Operationen schnell durchführen kann), während der Server lediglich Validierung, Authentifizierung und Datenspeicherung durchführt. \parencite[][Seite 20]{mikowski_single_2013} Zudem sind Transaktionen zwischen Client und Server nach dem Initialen Aufruf der Applikation schneller, da lediglich Daten in einem vorab definierten Datenformat asynchron übertragen und keine komplletten HTML-Seiten samt JavaScript und CSS ausgetauscht werden müssen. \parencite[][Seite 21]{mikowski_single_2013}
+
+\section{Funktionsweise von Angular und Vaadin im Vergleich}
+\label{}
 
 % Literaturverzeichnis:
 \clearpage
