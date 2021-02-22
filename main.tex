@@ -110,7 +110,7 @@ TODO
 
 Der Verfasser der vorliegenden Arbeit bekennt sich zu einer geschlechtergerechten Sprachverwendung.
 
-Um die Lesbarkeit zu gewährleisten und zugunsten der Textökonomie werden die verwendeten Personen beziehungsweise Personengruppen fix männlich oder weiblich zugeordnet. Zum Beispiel wird immer \enquote{die Entwicklerin} und \enquote{der Benutzer} verwendet. Es wurde besonders darauf geachtet, stereotype Rollenbeschreibungen zu vermeiden. Die insgesamt eventuell dadurch hervorgerufene Irritation bei den Lesenden ist gewünscht und soll dazu beitragen, eine Bewusstheit für die bestehende, Frauen diskriminierende Sprachgewohnheit (generelle Verwendung der männlichen Begriffe für beide Geschlechter) zu wecken beziehungsweise zu stärken.
+Um diese Arbeit sowohl geschlechtergerecht als auch -inklusive zu formulieren, werden explizit auf fix männlich oder weiblich zugeordnete Personengruppen, das sogennante Binnen-I oder andere Schreibweisen verzichtet. Stattdessen wird auf die Schreibweise mit einem Doppelpunkt (beispielsweise \enquote{Anwender:innen}, \enquote{Entwickler:innen} etc.) gesetzt, die alle Personengruppen einschließt und dazu beiträgt, eine Bewusstheit für bestehende, diskriminierende Sprachgewohnheiten gegenüber Frauen sowie queeren Mitmenschen zu wecken beziehungsweise zu stärken.
 
 % Inhaltsverzeichnis:
 \cleardoublepage % force output to a right page
@@ -149,7 +149,7 @@ Um ein grundlegendes Verständnis über die Thematik von \aclp{SPA} zu erlangen,
 
 \section{Motivation}
 \label{sec:motivation}
-In den letzten Jahren lässt sich beobachten, dass Webapplikationen, Apps und Anwendungen allgemein verstärkt mittels des \acs{SPA}-Ansatzes umgesetzt werden und somit auf einen Thin Client - im Gegensatz zu klassischeren \aclp{MPA} - setzen. Für die Umsetzung einer solchen Applikation stehen eine Vielzahl von Frameworks zur Verfügung, die darüber hinaus weitere Features bieten und \colorbox{yellow}{Entwickler:innen} bei der Umsetzung unterstützen.
+In den letzten Jahren lässt sich beobachten, dass Webapplikationen, Apps und Anwendungen allgemein verstärkt mittels des \acs{SPA}-Ansatzes umgesetzt werden und somit auf einen Thin Client - im Gegensatz zu klassischeren \aclp{MPA} - setzen. Für die Umsetzung einer solchen Applikation stehen eine Vielzahl von Frameworks zur Verfügung, die darüber hinaus weitere Features bieten und Entwickler:innen bei der Umsetzung unterstützen.
 
 \newpage
 
@@ -186,9 +186,9 @@ Um den Fokus dieser Arbeit genauer zu definieren und einzuschränken, wird die P
     \item Möglichkeit der Wiederverwendbarkeit von Komponenten, gegebenenfalls mittels \textit{Web Components}
     \item Möglichkeit Daten lokal (Browser) sowie extern (Server) zu persistieren
 \end{itemize}
+
 \chapter{Stand der Technik}
-\label{chap:stand-techni
-k}
+\label{chap:stand-technik}
 Das folgende Kapitel gibt einen Überblick über die Funktionsweise einer \acl{SPA} und vergleicht das Konzept von \acsp{SPA} mit klassischen \aclp{MPA}. Im Anschluss wird im Detail auf die Funktionsweise von Angular und Vaadin beziehungsweise deren unterschiedlichen Ansätze in Hinblick auf Entwicklung der \acs{UI} mittels JavaScript und Java eingegangen. Im weiteren Verlauf werden die damit verbundenen Vor- und Nachteile genauer beleuchtet.
 
 \section{Konzept einer \acl{SPA}}
@@ -233,7 +233,7 @@ Die einzeln dargestellten Views, welche dynamisch ausgetauscht werden können, s
 \label{sec:vorteile-spa-mpa}
 Der Einsatz und die Entwicklung einer \acl{SPA} bietet sowohl Vorteile für Entwickler:innen als auch Anwender:innen gegenüber der Nutzung einer klassischen \acl{MPA}.
 
-Der bereits mehrfach angesprochene Vorgang, lediglich bestimmte Teile beziehungsweise Views der Webanwendung auszutauschen, erhöht die Benutzbarkeit sowie die \ac{UX} laut Mikowski und Powell deutlich. Da keine komplett neue (Unter-)Seite geladen werden muss, entfällt das Aufscheinen einer - abhängig von der Internet- und Servergeschwindigkeit - kurz sichtbaren, weißen Übergangsseite während des Ladeprozesses. \colorbox{yellow}{Dem:Der Benutzer:in} kann stattdessen beispielsweise ein dynamisch dargestellter Fortschrittsbalken dargestellt werden, der sich bei vorhandener Ladezeit laufend aktualisiert. \parencite[][Seite 20]{mikowski_single_2013}
+Der bereits mehrfach angesprochene Vorgang, lediglich bestimmte Teile beziehungsweise Views der Webanwendung auszutauschen, erhöht die Benutzbarkeit sowie die \ac{UX} laut Mikowski und Powell deutlich. Da keine komplett neue (Unter-)Seite geladen werden muss, entfällt das Aufscheinen einer - abhängig von der Internet- und Servergeschwindigkeit - kurz sichtbaren, weißen Übergangsseite während des Ladeprozesses. Dem:Der Benutzer:in kann stattdessen beispielsweise ein dynamisch dargestellter Fortschrittsbalken dargestellt werden, der sich bei vorhandener Ladezeit laufend aktualisiert. \parencite[][Seite 20]{mikowski_single_2013}
 
 Scott hebt hervor, dass die Aufteilung in eine entkoppelte Präsentationsschicht auf dem Client dazu führt, dass diese unabhängig von der Logik auf dem Server gewartet und aktualisiert werden kann. Während bei klassischen \acsp{MPA} stellenweise HTML, JavaScript ect. mit serverseitigem Code (beispielsweise \textit{PHP}, \textit{JavaServer Pages}, ...) vermischt werden, kann bei \acsp{SPA} zudem eine gewisse Differenzierung und Abtrennung von HTML, CSS und JavaScript im Frontend erzielt werden, was die Wartbarkeit ebenfalls erhöht. \parencite[][Seite 13]{scott_spa_2015}
 
@@ -241,8 +241,35 @@ Scott hebt hervor, dass die Aufteilung in eine entkoppelte Präsentationsschicht
 
 Sowohl Mikowski und Powell als auch Scott gehen des Weiteren darauf ein, dass die Datenübertragung und Verarbeitung bei einer \acl{SPA} effizienter und schneller stattfinden kann, als bei einer \acl{MPA}. Die Programmlogik zur Darstellung und dynamischen Entscheidungsfindung befindet sich beim Client (weshalb dieser Operationen schnell durchführen kann), während der Server lediglich Validierung, Authentifizierung und Datenspeicherung durchführt. \parencite[][Seite 20]{mikowski_single_2013} Zudem sind Transaktionen zwischen Client und Server nach dem Initialen Aufruf der Applikation schneller, da lediglich Daten in einem vorab definierten Datenformat asynchron übertragen und keine kompletten HTML-Seiten samt JavaScript und CSS ausgetauscht werden müssen. \parencite[][Seite 21]{mikowski_single_2013}
 
-\section{Funktionsweise von Angular und Vaadin im Vergleich}
-\label{}
+\section{Funktionsweise von Vaadin}
+\label{sec:funktionsweise-angular-vaadin}
+Sowohl Angular als auch Vaadin sind beides Frameworks, die das Entwickeln von \aclp{SPA} unterstützen und ermöglichen. Der gewählte Ansatz, die zugrundeliegenden Technologien und die jeweiligen Herangehensweisen unterscheiden sich stellenweise jedoch deutlich voneinander.
+
+Der nachfolgende Abschnitt befasst sich daher im Detail mit der Funktionsweise und den Konzepten von Vaadin sowohl aus dem Blickwinkel von Entwickler:innen als auch Anwender:innen. Wo sinnvoll, wird ein direkter Vergleich zu Angular gezogen und darauf eingegangen, wie die beiden Frameworks Probleme unterschiedlich handhaben und lösen.
+
+\subsection{Ansätze von Vaadin}
+\label{sub-sec:vaadin-ansaetze}
+Vaadin ist ein Framework beziehungsweise eine Plattform, mit der Webapplikationen sowohl komplett in Java, vollständig mit TypeScript und HTML als auch in einer Kombination beider entwickelt und umgesetzt werden können. Die beiden Ansätze sind dabei in zwei verschiedene Frameworks aufgeteilt, um - je nach Einsatzzweck - diese entsprechend einsetzen zu können:
+
+\begin{itemize}
+    \item \textbf{Vaadin Flow} ist ein Framework, mit dem Webapplikationen in Java umgesetzt werden können. Technologien wie beispielsweise HTML oder JavaScript werden bei der Entwicklungen der \acs{UI} nicht benötigt, der gesamte Programmcode basiert auf einer einheitlichen Programmiersprache. Die gesamte Anwendung selbst läuft auf einem Server, während das Framework selbst den Applikationszustand sowie die Client-Server-Kommunikation übernimmt.  \parencite[][]{vaadin_ltd_vaadin_2021}
+    \item \textbf{Vaadin Fusion} ist ein Framework, bei dem TypeScript für das Frontend auf dem Client und Java für das Backend auf dem Server eingesetzt wird. Mit Fusion können clientseitig reaktive Webapplikationen entwickelt werden, die typsichere Java Endpunkte aufrufen. Vorgefertigte Komponenten erleichtern hierbei das Entwickeln der \acs{UI}, während eigene Elemente mittels voller Kontrolle über das \acs{DOM} umgesetzt werden können. \parencite[][]{vaadin_ltd_vaadin_2021-1}
+\end{itemize}
+
+Diese Arbeit befasst sich nachfolgend primär mit \textit{Vaadin Flow}, um eine alternative Herangehensweise aufzuzeigen, wie eine \acl{SPA} komplett auf dem Server und mittels Java entwickelt werden kann. Durch diesen Fokus kann im weiteren Verlauf ein tiefergehenderer Vergleich den Funktionalitäten und Konzepten von Vaadin und Angular bewerkstelligt werden, der bei spezifischen Punkten konkret auf die Unterschiede der beiden Technologien eingeht.
+
+\subsection{Frontend und Backend in Java}
+\label{sub-sec:frontend-backend-java}
+Vaadin selbst schreibt, dass sich das Arbeiten mit HTML, CSS und JavaScript für reine Java-Entwickler sowohl als herausfordernd als auch als zeitintensiv darstellt. \parencite[][Framework - Introduction]{vaadin_ltd_documentation_2021}
+
+Vaadin Flow bietet daher die Möglichkeit, mit einer vollständig in Java geschriebenen Applikation - die auf einem Server aufgespielt werden kann - jeweils die Anwendungslogik sowie die \acs{UI} umzusetzen. Die Vielzahl von sogenannten \textit{Components}, welche Vaadin von Haus aus mitliefert und einzelnen Bestandteilen wie einem Button oder ähnlichem entspricht, unterstützen Entwickler:innen dabei, bei Bedarf ohne HTML oder JavaScript auszukommen. Die Components steuern dabei das zugrundeliegende JavaScript im Hintergrund über die Framework-eigene \textit{Java API} beziehungsweise die \textit{Java Component API}. Der Quellcode \ref{code:vaadin-ui-java-sample} auf Seite \pageref{code:vaadin-ui-java-sample} stellt einen stark vereinfachten Ausschnitt von Components dar, die im Client bereits entsprechend dargestellt werden. \parencite[][Framework - Introduction]{vaadin_ltd_documentation_2021}
+
+\begin{listing}[ht]
+    \inputminted[fontsize=\footnotesize,linenos]{java}{code/Sample_Java_ui_Vaadin.java}
+    \caption[Beispiel einer einfachen \acs{UI} mittels der \textit{Java API}]{Beispiel einer einfachen \acs{UI} mittels der \textit{Java API}\newline(Quelle: \cite[][Framework - Introduction]{vaadin_ltd_documentation_2021})}
+    \label{code:vaadin-ui-java-sample}
+\end{listing}
+
 
 % Literaturverzeichnis:
 \clearpage
