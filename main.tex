@@ -250,20 +250,20 @@ Der nachfolgende Abschnitt befasst sich daher im Detail mit der Funktionsweise u
 
 \subsection{Ansätze von Vaadin}
 \label{sub-sec:vaadin-ansaetze}
-Vaadin ist ein Framework beziehungsweise eine Plattform, mit der Webapplikationen sowohl komplett in Java, vollständig mit TypeScript und HTML als auch in einer Kombination beider entwickelt und umgesetzt werden können. Die beiden Ansätze sind dabei in zwei verschiedene Frameworks aufgeteilt, um - je nach Einsatzzweck - diese entsprechend einsetzen zu können:
+Vaadin ist ein Framework beziehungsweise eine Plattform, mit der Webapplikationen sowohl komplett in Java, vollständig mit TypeScript und HTML als auch in einer Kombination beider entwickelt und umgesetzt werden können. Die beiden Ansätze sind dabei in zwei verschiedene Frameworks aufgeteilt, um - je nach Einsatzzweck - diese entsprechend einzusetzen:
 
 \begin{itemize}
-    \item \textbf{Vaadin Flow} ist ein Framework, mit dem Webapplikationen in Java umgesetzt werden können. Technologien wie beispielsweise HTML oder JavaScript werden bei der Entwicklungen der \acs{UI} nicht benötigt, der gesamte Programmcode basiert auf einer einheitlichen Programmiersprache. Die gesamte Anwendung selbst läuft auf einem Server, während das Framework selbst den Applikationszustand sowie die Client-Server-Kommunikation übernimmt.  \parencite[][]{vaadin_ltd_vaadin_nodate-1}
+    \item \textbf{Vaadin Flow} ist ein Framework, mit dem Webapplikationen in Java umgesetzt werden können. Technologien wie beispielsweise HTML oder JavaScript werden bei der Entwicklungen der \acs{UI} nicht benötigt, der gesamte Programmcode basiert auf einer einheitlichen Programmiersprache. Die gesamte Anwendung selbst läuft auf einem Server, während das Framework den Applikationszustand sowie die Client-Server-Kommunikation übernimmt.  \parencite[][]{vaadin_ltd_vaadin_nodate-1}
     \item \textbf{Vaadin Fusion} ist ein Framework, bei dem TypeScript für das Frontend auf dem Client und Java für das Backend auf dem Server eingesetzt wird. Mit Fusion können clientseitig reaktive Webapplikationen entwickelt werden, die typsichere Java Endpunkte aufrufen. Vorgefertigte Komponenten erleichtern hierbei das Entwickeln der \acs{UI}, während eigene Elemente mittels voller Kontrolle über das \acs{DOM} umgesetzt werden können. \parencite[][]{vaadin_ltd_vaadin_nodate}
 \end{itemize}
 
-Diese Arbeit befasst sich nachfolgend primär mit \textit{Vaadin Flow}, um eine alternative Herangehensweise aufzuzeigen, wie eine \acl{SPA} komplett auf dem Server und mittels Java entwickelt werden kann. Durch diesen Fokus kann im weiteren Verlauf ein tiefergehenderer Vergleich den Funktionalitäten und Konzepten von Vaadin und Angular bewerkstelligt werden, der bei spezifischen Punkten konkret auf die Unterschiede der beiden Technologien eingeht.
+Diese Arbeit befasst sich nachfolgend primär mit \textit{Vaadin Flow}, um eine alternative Herangehensweise aufzuzeigen, wie eine \acl{SPA} komplett auf dem Server und mittels Java entwickelt werden kann. Durch diesen Fokus kann im weiteren Verlauf ein tiefergehenderer Vergleich der Funktionalitäten und Konzepte von Vaadin und Angular bewerkstelligt werden, der bei spezifischen Punkten konkret auf die Unterschiede der beiden Technologien eingeht.
 
 \subsection{Frontend und Backend in Java}
 \label{sub-sec:frontend-backend-java}
 Vaadin selbst schreibt, dass sich das Arbeiten mit HTML, CSS und JavaScript für reine Java-Entwickler sowohl als herausfordernd als auch als zeitintensiv darstellt. \parencite[][Framework - Introduction - Overview]{vaadin_ltd_documentation_nodate}
 
-Vaadin Flow bietet daher die Möglichkeit, mit einer vollständig in Java geschriebenen Applikation - die auf einem Server ausfgeführt werden kann - jeweils die Anwendungslogik sowie das \acl{UI} umzusetzen. Die Vielzahl von sogenannten \textit{Components}, welche Vaadin von Haus aus mitliefert und einzelnen Bestandteilen wie beispielsweise einem Button oder ähnlichem entspricht, unterstützen Entwickler:innen dabei, bei Bedarf ohne HTML oder JavaScript auszukommen. Die Components steuern dabei das zugrundeliegende JavaScript im Hintergrund über die Framework-eigene \textit{Java API} beziehungsweise die \textit{Java Component API}. Der Quellcode \ref{code:vaadin-ui-java-sample} auf Seite \pageref{code:vaadin-ui-java-sample} stellt einen stark vereinfachten Ausschnitt von Components dar, die so im Client bereits entsprechend dargestellt werden können. \parencite[][Framework - Introduction - Overview]{vaadin_ltd_documentation_nodate}
+Vaadin Flow bietet daher die Möglichkeit, mit einer vollständig in Java geschriebenen Applikation - die auf einem Server ausfgeführt wird - jeweils die Anwendungslogik sowie das \acl{UI} umzusetzen. Die Vielzahl von sogenannten \textit{Components}, welche Vaadin von Haus aus mitliefert und einzelnen Bestandteilen wie beispielsweise einem Button oder ähnlichem entspricht, unterstützen Entwickler:innen dabei, bei Bedarf ohne HTML oder JavaScript auszukommen. Die Components steuern dabei das zugrundeliegende JavaScript im Hintergrund über die Framework-eigene \textit{Java API} beziehungsweise die \textit{Java Component API}. Der Quellcode \ref{code:vaadin-ui-java-sample} auf Seite \pageref{code:vaadin-ui-java-sample} stellt einen stark vereinfachten Ausschnitt von Components dar, die so im Client bereits entsprechend dargestellt werden. \parencite[][Framework - Introduction - Overview]{vaadin_ltd_documentation_nodate}
 
 \begin{listing}[ht]
     \inputminted[fontsize=\footnotesize,linenos]{java}{code/Sample_Java_ui_Vaadin.java}
@@ -271,9 +271,9 @@ Vaadin Flow bietet daher die Möglichkeit, mit einer vollständig in Java geschr
     \label{code:vaadin-ui-java-sample}
 \end{listing}
 
-Während mit Vaadin Flow hauptsächlich in Java, und somit auf dem Server, entwickelt wird, bietet das Framework dennoch die Möglichkeit, auf Browser \acsp{API}, spezifische Web Components sowie das \acs{DOM} zuzugreifen.
+Während mit Vaadin Flow hauptsächlich in Java, und somit auf dem Server, entwickelt wird, bietet das Framework dennoch die Möglichkeit, auf Browser \acsp{API}, spezifische Web Components sowie auf das \acs{DOM} zuzugreifen.
 
-Als Vorteil stellt sich zudem heraus, dass die Anbindung des Frontends an ein Backend in den meisten Fällen mit Vaadin Flow bereits komplett vorhanden ist und nicht separat mit auf REST basierender Kommunikation umgesetzt werden muss. Dadurch kann die \acs{UI} und die dafür benötigten Daten direkt über Java verknüpft und auch aktualisiert werde. Hierbei unterstützt das mitgelieferte \textit{Two-way data binding} die Entwicklung und Benutzbarkeit, indem Änderungen auf dem Client automatisch auch auf dem Server - und umgekehrt - abgebildet werden. \parencite[][Framework - Introduction - Overview]{vaadin_ltd_documentation_nodate}
+Als Vorteil stellt sich zudem heraus, dass die Anbindung des Frontends an ein Backend in den meisten Fällen mit Vaadin Flow bereits komplett vorhanden ist und nicht separat mit auf REST basierender Kommunikation umgesetzt werden muss. Dadurch kann die \acs{UI} und die dafür benötigten Daten direkt über Java verknüpft und auch aktualisiert werden. Hierbei unterstützt das mitgelieferte \textit{Two-way data binding} die Entwicklung und Benutzbarkeit, indem Änderungen auf dem Client automatisch auch auf dem Server - und umgekehrt - abgebildet werden. \parencite[][Framework - Introduction - Overview]{vaadin_ltd_documentation_nodate}
 
 \subsection{Kommunikation zwischen Client und Server}
 \label{sub-sec:kommunikation-client-server}
@@ -281,15 +281,15 @@ Bei einer \acl{SPA} spielt die Kommunikation des Clients (dem JavaScript/TypeScr
 
 \subsubsection{Herangehensweise von Vaadin}
 \label{sub-sub-sec:kommunikation-herangehensweise-vaadin}
-Da sowohl die Persitenzschicht, die Applikationslogik als auch das \acl{UI} bei Vaadin Flow mittels Java umgesetzt werden können, ergibt sich der Vorteil, dass die Kommunikation zwischen Client und Server vom Framework selbst übernommen wird und hierbei auf das bereits angesprochene \textit{Two-way data binding} setzt. Die Nutzung von Vaadin-eigenen Components bietet des Weiteren die Möglichkeit, das \acl{DOM} im Webbrowser selbst zu steuern, während eine Repräsentation desselben \acs{DOM} serverseitig in Java gehalten wird. Änderungen, die auf dem Client durchgeführt werden, werden automatisch synchronisiert. \parencite[][Framework - Introduction - Core Concepts]{vaadin_ltd_documentation_nodate}
+Da sowohl die Persitenzschicht, die Applikationslogik als auch das \acl{UI} bei Vaadin Flow mittels Java umgesetzt werden können, ergibt sich der Vorteil, dass die Kommunikation zwischen Client und Server vom Framework selbst übernommen wird und hierbei unter anderem auf das bereits angesprochene \textit{Two-way data binding} setzt. Die Nutzung von Vaadin-eigenen Components bietet des Weiteren die Möglichkeit, das \acl{DOM} im Webbrowser selbst zu steuern, während eine Repräsentation desselben \acs{DOM} serverseitig in Java gehalten wird. Änderungen, die auf dem Client durchgeführt werden, werden automatisch synchronisiert. \parencite[][Framework - Introduction - Core Concepts]{vaadin_ltd_documentation_nodate}
 
 \medskip
 
-Artur Signell, CTO der Vaadin Ltd., erklärt in einem Foren-Beitrag vom Juni 2018, dass genauere Informationen zur tatsächlich Umsetzung der automatisch vorgenommen Kommunikation nicht vorhanden ist, da die Umsetzung davon als rein internes Implementierungsdetail gehandhabt wird. \parencite[][]{signell_explanation_2018}
+Artur Signell, CTO der Vaadin Ltd., erklärt währenddessen in einem Foren-Beitrag vom Juni 2018, dass genauere Informationen zur tatsächlich Umsetzung der automatisch vorgenommen Kommunikation nicht vorhanden ist, da die Umsetzung davon als rein internes Implementierungsdetail gehandhabt wird. \parencite[][]{signell_explanation_2018}
 
 \medskip
 
-Mittels den Entwicklertools, die in gängigen Webbrowsern zur Verfügung stehen, kann sich - abseits der nicht vorhandenen Dokumentation - jedoch ein kurzes Bild davon gemacht werden, wie die Kommunikation grundsätzlich funktioniert. Die Abbildung \ref{fig:vaadin-json-communication} auf Seite \pageref{fig:vaadin-json-communication} zeigt die vom Client an den Server geschickte Anfrage, die durch das Befüllen eines Vaadin \texttt{TextField} (einem HTML -  \texttt{INPUT} Element) ausgelöst wird. Für die Kommunikation wird \acs{JSON} eingesetzt, welches die in das \texttt{INPUT} Element eingefüllten Daten an den Server schickt, auf die schlussendlich mittels Java-typischer Notation zugegriffen werden kann.
+Mittels den Entwicklertools, die in gängigen Webbrowsern zur Verfügung stehen, kann sich - abseits der nicht vorhandenen Dokumentation - jedoch ein kurzes Bild davon gemacht werden, wie die Kommunikation grundsätzlich funktioniert. Die Abbildung \ref{fig:vaadin-json-communication} auf Seite \pageref{fig:vaadin-json-communication} zeigt die vom Client an den Server geschickte Anfrage, die durch das Befüllen eines Vaadin \texttt{TextField} (einem HTML - \texttt{INPUT} Element) ausgelöst wird. Für die Kommunikation wird \acs{JSON} eingesetzt, welches die in das \texttt{INPUT} Element eingefüllten Daten an den Server schickt, auf die schlussendlich mittels Java-typischer Notation zugegriffen werden kann.
 
 \begin{figure}[ht]
     \centering
@@ -306,15 +306,15 @@ Im Vergleich zur automatischen Kommunikation, die Vaadin Flow von Haus aus biete
 
 \medskip
 
-Der von Angular entwickelte \texttt{HttpClient} Service - der über das \path{@angular/common/http} Package bezogen werden kann - stellt entsprechend eine API zur Verfügung, mit der typisierte \texttt{Response} Objekte angefordert werden können, eine vereinheitlichte Fehlerbehandlung ermöglicht wird sowie das Abfangen und bearbeiten von \texttt{Requests} und \texttt{Responses} erlaubt. \parencite[][]{google_llc_communicating_nodate}
+Der von Angular entwickelte \texttt{HttpClient} Service - der über das \path{@angular/common/http} Package bezogen werden kann - stellt entsprechend eine API zur Verfügung, mit der typisierte \texttt{Response} Objekte angefordert werden können, eine vereinheitlichte Fehlerbehandlung ermöglicht sowie das Abfangen und Bearbeiten von \texttt{Request} und \texttt{Response} Objekten erlaubt. \parencite[][]{google_llc_communicating_nodate}
 
 \medskip
 
-Der Einsatz der angesprochenen API kann bei Angular grundsätzlich im gesamten Projekt erfolgen, Wilken empfiehlt jedoch, die Nutzung von der tatsächlichen Logik zu abstrahieren und dafür einen eigenständigen Service zu erstellen. Der \texttt{HttpClient}, welcher zur Kommunikation mit einem Server verwendet wird, unterstützt dabei HTTP Request-Methoden wie \texttt{GET}, \texttt{POST}, \texttt{PUT} und \texttt{DELETE}, die bei einem entsprechenden Aufruf ein \texttt{Observable} als Antwort liefern. Mit diesem kann in weiterer Folge in der Applikation gearbeitet und gegebenenfalls auf die Daten zugegriffen werden. \parencite[][Seite 142-144.]{wilken_angular_2018}
+Der Einsatz der angesprochenen API kann bei Angular grundsätzlich im gesamten Projekt erfolgen, Wilken empfiehlt jedoch, die Nutzung von der tatsächlichen Logik zu abstrahieren und dafür einen eigenständigen Service zu erstellen. Der \texttt{HttpClient}, welcher zur Kommunikation mit einem Server (und gegebenenfalls in einem eigenständigen Service) verwendet wird, unterstützt HTTP Request-Methoden wie beispielsweise \texttt{GET}, \texttt{POST}, \texttt{PUT} und \texttt{DELETE}, die bei einem entsprechenden Aufruf ein \texttt{Observable} als Antwort liefern. Mit diesem kann in weiterer Folge in der Applikation gearbeitet und auf die Daten zugegriffen werden. \parencite[][Seite 142-144.]{wilken_angular_2018}
 
 \medskip
 
-Der Quellcode \ref{code:angular-sample-httpclient-service} auf Seite \pageref{code:angular-sample-httpclient-service} zeigt einen exemplarischen Service, der mittels \texttt{HTTP GET} eine Anfrage an den Server beziehungsweise einen API Endpunkt stellt und ein Array von \texttt{Sample} als Antwort zurückliefert.
+Der Quellcode \ref{code:angular-sample-httpclient-service} auf Seite \pageref{code:angular-sample-httpclient-service} zeigt einen exemplarischen Service, der mittels \texttt{HTTP GET} eine Anfrage an den Server beziehungsweise einen API Endpunkt stellt und ein Array des Typs \texttt{Sample} als Antwort zurückliefert.
 
 \begin{listing}[ht]
     \renewcommand{\fcolorbox}[4][]{#4}
@@ -342,7 +342,7 @@ Verglichen mit der im Abschnitt \ref{sub-sub-sec:kommunikation-herangehensweise-
 
 \chapter*{Eidesstattliche Erklärung}
 \addcontentsline{toc}{chapter}{Eidesstattliche Erklärung}
-Ich erkläre hiermit an Eides statt, dass ich die vorliegende Bachelorarbeit I selbstständig und ohne Benutzung anderer als der angegebenen Hilfsmittel angefertigt habe. Die aus fremden Quellen direkt oder indirekt übernommenen Stellen sind als solche kenntlich gemacht. Die Arbeit wurde bisher weder in gleicher noch in ähnlicher Form einer anderen Prüfungsbehörde vorgelegt und auch noch nicht veröffentlicht.
+Ich erkläre hiermit an Eides statt, dass ich die vorliegende Bachelorarbeit II selbstständig und ohne Benutzung anderer als der angegebenen Hilfsmittel angefertigt habe. Die aus fremden Quellen direkt oder indirekt übernommenen Stellen sind als solche kenntlich gemacht. Die Arbeit wurde bisher weder in gleicher noch in ähnlicher Form einer anderen Prüfungsbehörde vorgelegt und auch noch nicht veröffentlicht.
 
 \vspace{5cm}
 \noindent
