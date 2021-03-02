@@ -289,7 +289,7 @@ Artur Signell, CTO der Vaadin Ltd., erklärt währenddessen in einem Foren-Beitr
 
 \medskip
 
-Mittels den Entwicklertools, die in gängigen Webbrowsern zur Verfügung stehen, kann sich - abseits der nicht vorhandenen Dokumentation - jedoch ein kurzes Bild davon gemacht werden, wie die Kommunikation grundsätzlich funktioniert. Die Abbildung \ref{fig:vaadin-json-communication} auf Seite \pageref{fig:vaadin-json-communication} zeigt die vom Client an den Server geschickte Anfrage, die durch das Befüllen eines Vaadin \texttt{TextField} (einem HTML - \texttt{INPUT} Element) ausgelöst wird. Für die Kommunikation wird \acs{JSON} eingesetzt, welches die in das \texttt{INPUT} Element eingefüllten Daten an den Server schickt, auf die schlussendlich mittels Java-typischer Notation zugegriffen werden kann.
+Mittels den Entwicklertools, die in gängigen Webbrowsern zur Verfügung stehen, kann sich - abseits der nicht vorhandenen Dokumentation - jedoch ein kurzes Bild davon gemacht werden, wie die Kommunikation grundsätzlich funktioniert. Die Abbildung \ref{fig:vaadin-json-communication} auf Seite \pageref{fig:vaadin-json-communication} zeigt die vom Client an den Server geschickte Anfrage, die durch das Befüllen eines Vaadin \texttt{TextField} (einem HTML - \texttt{INPUT} Element) ausgelöst wird. Für die Kommunikation wird \acs{JSON} eingesetzt, welches die in das \texttt{INPUT} Element eingefüllten Daten mit gängiger HTTP-Kommunikation an den Server schickt, auf die schlussendlich mittels Java-typischer Notation zugegriffen werden kann.
 
 \begin{figure}[ht]
     \centering
@@ -332,7 +332,32 @@ Der Quellcode \ref{code:angular-sample-data-function} auf Seite \pageref{code:an
     \label{code:angular-sample-data-function}
 \end{listing}
 
-Verglichen mit der im Abschnitt \ref{sub-sub-sec:kommunikation-herangehensweise-vaadin} auf Seite \pageref{sub-sub-sec:kommunikation-herangehensweise-vaadin} beschriebenen Herangehensweise von Vaadin unterscheidet sich Angular deutlich. Wilken merkt an, dass die Nutzung des \texttt{HttpClient} der am häufigsten verwendete Ansatz bei Angular darstellt. Um eine Kommunikation mit einem Server herzustellen, können laut ihm jedoch auch diverse andere Protokolle und Technologien genutzt werden. \parencite[][]{wilken_angular_2018}
+Verglichen mit der im Abschnitt \ref{sub-sub-sec:kommunikation-herangehensweise-vaadin} auf Seite \pageref{sub-sub-sec:kommunikation-herangehensweise-vaadin} beschriebenen Herangehensweise von Vaadin unterscheidet sich Angular deutlich. Wilken merkt an, dass die Nutzung des \texttt{HttpClient} der am häufigsten verwendete Ansatz bei Angular darstellt. Um eine Kommunikation mit einem Server herzustellen, können laut ihm jedoch auch beziehungsweise zusätzlich diverse andere Protokolle und Technologien genutzt werden. \parencite[][]{wilken_angular_2018}
+
+\subsection{Vaadin Components und deren Grundlage}
+\label{sub-sec:vaadin-components}
+\textit{Vaadin Components} sind von Vaadin entwickelte \enquote{\acs{UI}-Module}, die zur einfachen Entwicklung von gängigen \acl{UI} Bestandteilen genutzt werden können. Diese sind bereits im Vaadin Framework enthalten, können im Zuge der Nutzung der Web Components Technologien jedoch unabhängig von Vaadin selbst und in allen gängigen Webbrowsern genutzt werden. \parencite[][Seite 2ff.]{vaadin_ltd_vaadin_nodate-2}
+
+Die Abbildung \ref{fig:vaadin-components-overview} auf Seite \pageref{fig:vaadin-components-overview} zeigt hierbei eine Auswahl von Vaadin Components, die so häufig in Webapplikationen genutzt werden und entsprechend für das Framework umgesetzt wurden.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[scale=0.38]{images/Vaadin_Compoments_overview_Vaadin.png}
+    \caption[Auswahl von Open Source Vaadin Compoments]{Auswahl von Open Source Vaadin Compoments\newline(Quelle: \cite[][]{vaadin_ltd_mobile_nodate})}
+    \label{fig:vaadin-components-overview}
+\end{figure}
+
+Die Technologien, auf die sich Vaadin bei der Implementierung und Umsetzung der Components stützt, bauen auf diversen Konzepten auf, zu denen unter anderem \textit{Custom elements}, \textit{Shadow DOM} sowie \textit{HTML templates} gehören. Diese werden dazu genutzt, um mittels JavaScript spezifische Klassen für die gewünschten, neuen Web Components zu erstellen, diese entsprechend zu registrieren und mittels Template-Funktionalität die gewünschten Objekte schlussendlich zu definieren. \parencite[][]{mozilla_contributors_web_2021}
+
+\medskip
+
+Der Quellcode \ref{code:mozilla-sample-web-component} auf Seite \pageref{code:mozilla-sample-web-component} zeigt beispielhaft den sehr grundlegenden Aufbau, wie ein Web Component selbst umgesetzt werden kann. Vaadin nutzt ebenfalls diesen Aufbau sowie diese Herangehensweise für die Umsetzung der oben aufgezeigten \textit{Vaadin Components}. \parencite[vgl.][]{vaadin_ltd_vaadin-text-fieldjs_2021} Aufgrund des Fokus dieser Arbeit wird im weiteren Verlauf jedoch nicht näher auf die zugrundeliegende Struktur von Web Components eingegangen.
+
+\begin{listing}[ht]
+    \inputminted[fontsize=\footnotesize,linenos]{js}{code/web_components_mozilla.js}
+    \caption[Beispiel für den grundlegenden Aufbau eines eigenen Web Component]{Beispiel für den grundlegenden Aufbau eines eigenen Web Component (Quelle: \cite{mozilla_contributors_using_2021})}
+    \label{code:mozilla-sample-web-component}
+\end{listing}
 
 % Literaturverzeichnis:
 \clearpage
