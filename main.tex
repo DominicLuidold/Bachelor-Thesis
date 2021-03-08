@@ -150,7 +150,7 @@ Um ein grundlegendes Verständnis über die Thematik von \aclp{SPA} zu erlangen,
 
 \section{Motivation}
 \label{sec:motivation}
-In den letzten Jahren lässt sich beobachten, dass Webapplikationen, Apps und Anwendungen allgemein verstärkt mittels des \acs{SPA}-Ansatzes umgesetzt werden und somit auf einen Thin Client - im Gegensatz zu klassischeren \aclp{MPA} - setzen. Für die Umsetzung einer solchen Applikation stehen eine Vielzahl von Frameworks zur Verfügung, die darüber hinaus weitere Features bieten und Entwickler:innen bei der Umsetzung unterstützen.
+In den letzten Jahren lässt sich beobachten, dass Webapplikationen, Apps und Anwendungen allgemein verstärkt mittels des \acs{SPA}-Ansatzes umgesetzt werden und somit auf eine deutlich unterschiedlichere Herangehensweise - im Gegensatz zu klassischeren \aclp{MPA} - setzen. Für die Umsetzung einer solchen Applikation stehen eine Vielzahl von Frameworks zur Verfügung, die darüber hinaus weitere Features bieten und Entwickler:innen bei der Umsetzung unterstützen.
 
 \newpage
 
@@ -163,7 +163,7 @@ Die in Abschnitt \ref{sec:motivation} auf Seite \pageref{sec:motivation} angespr
 \begin{figure}[ht]
     \centering
     \includegraphics[scale=0.5]{images/js-frameworks.png}
-    \caption[Liste möglicher JavaScript-Frameworks zur Umsetzung von \aclp{SPA}]{Liste möglicher JavaScript-Frameworks zur Umsetzung von \aclp{SPA} (Quelle: \cite{a_best_2020})}
+    \caption[Liste möglicher JavaScript-Frameworks zur Umsetzung von \aclp{SPA}]{Liste möglicher JavaScript-Frameworks zur Umsetzung von \aclp{SPA} (Quelle: \cite[][]{a_best_2020})}
     \label{fig:js-frameworks}
 \end{figure}
 
@@ -177,7 +177,7 @@ Da die unterschiedlichen Ansätze, sowohl hinter Vaadin als auch Angular, gewiss
 \label{sec:zielsetzung}
 Die in den Abschnitten \ref{sec:motivation} und \ref{sec:problemstellung} angeführten Punkte haben aufgezeigt, dass die große Anzahl an Frameworks, mit denen \aclp{SPA} umgesetzt werden können, zwar sehr positiv einzuschätzen ist, die damit verbundenen Probleme bei der Auswahl des richtigen Frameworks werden dadurch jedoch verstärkt. Aufgrund der unterschiedlichen zugrundeliegenden Technologien und einhergehenden Herangehensweisen ist eine bedachte Wahl wichtig.
 
-Diese Arbeit verfolgt daher das Ziel, das JavaScript Framework \textit{Angular} dem auf Java basierenden Framework \textit{Vaadin} gegenüberzustellen und zu vergleichen. Das Ziel ist es, mittels Literatur belegter Vergleiche einen Allgemeinen Überblick über \aclp{SPA} zu geben, diese klassischen Ansätzen gegenüberzustellen und zwei Demo-Applikationen zu entwickeln. Diese Webanwendungen werden dann herangezogen, um anhand von vorab definierten Kriterien feststellen zu können, ob und in wie weit Empfehlungen für eines der beiden Frameworks ausgesprochen werden kann.
+Diese Arbeit verfolgt daher das Ziel, das JavaScript Framework \textit{Angular} dem auf Java basierenden Framework \textit{Vaadin} gegenüberzustellen und zu vergleichen. Das Ziel ist es, mittels Literatur belegter Vergleiche einen allgemeinen Überblick über \aclp{SPA} zu geben, diese klassischen Ansätzen gegenüberzustellen und zwei Demo-Applikationen zu entwickeln. Diese Webanwendungen werden dann herangezogen, um anhand von vorab definierten Kriterien feststellen zu können, ob und in wie weit Empfehlungen für eines der beiden Frameworks ausgesprochen werden kann.
 
 \medskip
 
@@ -190,13 +190,13 @@ Um den Fokus dieser Arbeit genauer zu definieren und einzuschränken, wird die P
 
 \chapter{Stand der Technik}
 \label{chap:stand-technik}
-Das folgende Kapitel gibt einen Überblick über die Funktionsweise einer \acl{SPA} und vergleicht das Konzept von \acsp{SPA} mit klassischen \aclp{MPA}. Im Anschluss wird im Detail auf die Funktionsweise von Angular und Vaadin beziehungsweise deren unterschiedlichen Ansätze in Hinblick auf Entwicklung der \acs{UI} mittels JavaScript und Java eingegangen. Im weiteren Verlauf werden die damit verbundenen Vor- und Nachteile genauer beleuchtet.
+Das folgende Kapitel gibt einen Überblick über die Funktionsweise einer \acl{SPA} und vergleicht das Konzept von \acsp{SPA} mit klassischen \aclp{MPA}. Im Anschluss wird im Detail auf die Funktionsweise von Vaadin und Angular beziehungsweise deren unterschiedlichen Ansätze in Hinblick auf Entwicklung der \acs{UI} mittels JavaScript und Java eingegangen. Im weiteren Verlauf werden die damit verbundenen Vor- und Nachteile genauer beleuchtet.
 
 \section{Konzept einer \acl{SPA}}
 \label{sec:konzept-spa}
 Eine klassische \acl{MPA} basiert auf dem Konzept, dass bei jedem Aufruf eines neuen View beziehungsweise einer HTML-Seite eine Anfrage an den Server gestellt wird. Dieser verarbeitet die Anfrage und retourniert das jeweils neu zusammengestellte Resultat der Präsentations- sowie der darunterliegenden Schichten an den Client. Eine \acl{SPA} ist hingegen eine Webanwendung, bei der die Präsentationsschicht und die damit verbundene Logik vom Server entkoppelt und vollständig in den Client, sprich den Browser, ausgelagert wird. \parencite[][Seite 5ff.]{scott_spa_2015}
 
-Die Abbildung \ref{fig:spa-overview} auf Seite \pageref{fig:spa-overview} stellt den Aufbau solch einer \acs{SPA} schematisch dar und verdeutlicht, dass die Darstellung der mittels \acs{AJAX} und XHR angeforderten Daten komplett vom Client übernommen wird. Serverseitig wird lediglich ein \textit{Controller} benötigt, welcher die übermittelten Daten in für die Logik entsprechend verständliche Objekte umwandeln kann.
+Die Abbildung \ref{fig:spa-overview} auf Seite \pageref{fig:spa-overview} stellt den Aufbau solch einer \acs{SPA} schematisch dar und verdeutlicht, dass die Darstellung der mittels \acs{AJAX} und XHR angeforderten Daten komplett vom Client übernommen wird. Serverseitig wird lediglich ein \textit{Controller} benötigt, welcher die übermittelten Daten in Objekte umwandeln kann, die für die Logik entsprechend verständlich sind.
 
 \medskip
 
@@ -240,7 +240,7 @@ Scott hebt hervor, dass die Aufteilung in eine entkoppelte Präsentationsschicht
 
 \newpage
 
-Sowohl Mikowski und Powell als auch Scott gehen des Weiteren darauf ein, dass die Datenübertragung und Verarbeitung bei einer \acl{SPA} effizienter und schneller stattfinden kann, als bei einer \acl{MPA}. Die Programmlogik zur Darstellung und dynamischen Entscheidungsfindung befindet sich beim Client (weshalb dieser Operationen schnell durchführen kann), während der Server lediglich Validierung, Authentifizierung und Datenspeicherung durchführt. \parencite[][Seite 20]{mikowski_single_2013} Zudem sind Transaktionen zwischen Client und Server nach dem Initialen Aufruf der Applikation schneller, da lediglich Daten in einem vorab definierten Datenformat asynchron übertragen und keine kompletten HTML-Seiten samt JavaScript und CSS ausgetauscht werden müssen. \parencite[][Seite 21]{mikowski_single_2013}
+Sowohl Mikowski und Powell als auch Scott gehen des Weiteren darauf ein, dass die Datenübertragung und Verarbeitung bei einer \acl{SPA} effizienter und schneller stattfinden kann, als bei einer \acl{MPA}. Die Programmlogik zur Darstellung und dynamischen Entscheidungsfindung befindet sich beim Client (weshalb dieser Operationen schnell durchführen kann), während der Server lediglich Validierung, Authentifizierung und Datenspeicherung durchführt. \parencite[][Seite 20]{mikowski_single_2013} Zudem sind Transaktionen zwischen Client und Server nach dem Initialen Aufruf der Applikation schneller, da lediglich Daten in einem vorab definierten Datenformat asynchron übertragen und keine kompletten HTML-Seiten samt JavaScript und CSS ausgetauscht werden müssen. \parencite[][Seite 13]{scott_spa_2015}
 
 \section{Funktionsweise von Vaadin}
 \label{sec:funktionsweise-angular-vaadin}
@@ -253,7 +253,7 @@ Der nachfolgende Abschnitt befasst sich daher im Detail mit der Funktionsweise u
 Vaadin ist ein Framework beziehungsweise eine Plattform, mit der Webapplikationen sowohl komplett in Java, vollständig mit TypeScript und HTML als auch in einer Kombination beider entwickelt und umgesetzt werden können. Die beiden Ansätze sind dabei in zwei verschiedene Frameworks aufgeteilt, um - je nach Einsatzzweck - diese entsprechend einzusetzen:
 
 \begin{itemize}
-    \item \textbf{Vaadin Flow} ist ein Framework, mit dem Webapplikationen in Java umgesetzt werden können. Technologien wie beispielsweise HTML oder JavaScript werden bei der Entwicklungen der \acs{UI} nicht benötigt, der gesamte Programmcode basiert auf einer einheitlichen Programmiersprache. Die gesamte Anwendung selbst läuft auf einem Server, während das Framework den Applikationszustand sowie die Client-Server-Kommunikation übernimmt.  \parencite[][]{vaadin_ltd_vaadin_nodate-1}
+    \item \textbf{Vaadin Flow} ist ein Framework, mit dem Webapplikationen in Java umgesetzt werden können. Technologien wie beispielsweise HTML oder JavaScript werden bei der Entwicklung der \acs{UI} nicht benötigt, der gesamte Programmcode basiert auf einer einheitlichen Programmiersprache. Die gesamte Anwendung selbst läuft auf einem Server, während das Framework den Applikationszustand sowie die Client-Server-Kommunikation übernimmt.  \parencite[][]{vaadin_ltd_vaadin_nodate-1}
     \item \textbf{Vaadin Fusion} ist ein Framework, bei dem TypeScript für das Frontend auf dem Client und Java für das Backend auf dem Server eingesetzt wird. Mit Fusion können clientseitig reaktive Webapplikationen entwickelt werden, die typsichere Java Endpunkte aufrufen. Vorgefertigte Komponenten erleichtern hierbei das Entwickeln der \acs{UI}, während eigene Elemente mittels voller Kontrolle über das \acs{DOM} umgesetzt werden können. \parencite[][]{vaadin_ltd_vaadin_nodate}
 \end{itemize}
 
@@ -306,7 +306,7 @@ Im Vergleich zur automatischen Kommunikation, die Vaadin Flow von Haus aus biete
 
 \medskip
 
-Der von Angular entwickelte \texttt{HttpClient} Service - der über das \path{@angular/common/http} Package bezogen werden kann - stellt entsprechend eine API zur Verfügung, mit der typisierte \texttt{Response} Objekte angefordert werden können, eine vereinheitlichte Fehlerbehandlung ermöglicht sowie das Abfangen und Bearbeiten von \texttt{Request} und \texttt{Response} Objekten erlaubt. \parencite[][]{google_llc_communicating_nodate}
+Der von Angular entwickelte \texttt{HttpClient} Service - der über das \path{@angular/common/http} Package bezogen werden kann - stellt eine entsprechende API zur Verfügung, mit der typisierte \texttt{Response} Objekte angefordert werden können, eine vereinheitlichte Fehlerbehandlung ermöglicht wird sowie das Abfangen und Bearbeiten von \texttt{Request} und \texttt{Response} Objekten erlaubt. \parencite[][]{google_llc_communicating_nodate}
 
 \medskip
 
@@ -336,9 +336,9 @@ Verglichen mit der im Abschnitt \ref{sub-sub-sec:kommunikation-herangehensweise-
 
 \subsection{Vaadin Components und deren Grundlage}
 \label{sub-sec:vaadin-components}
-\textit{Vaadin Components} sind von Vaadin entwickelte \enquote{\acs{UI}-Module}, die zur einfachen Entwicklung von gängigen \acl{UI} Bestandteilen genutzt werden können. Diese sind bereits im Vaadin Framework enthalten, können im Zuge der Nutzung der Web Components Technologien jedoch unabhängig von Vaadin selbst und in allen gängigen Webbrowsern genutzt werden. \parencite[][Seite 2ff.]{vaadin_ltd_vaadin_nodate-2}
+\textit{Vaadin Components} sind von Vaadin entwickelte \enquote{\acs{UI}-Module}, die zur einfachen Entwicklung von gängigen \acl{UI} Bestandteilen genutzt werden können. Diese sind bereits im Vaadin Framework enthalten, können im Zuge der Nutzung der Web Components Technologien jedoch unabhängig von Vaadin selbst und somit in allen gängigen Applikationen sowie Webbrowsern genutzt werden. \parencite[][Seite 2ff.]{vaadin_ltd_vaadin_nodate-2}
 
-Die Abbildung \ref{fig:vaadin-components-overview} auf Seite \pageref{fig:vaadin-components-overview} zeigt hierbei eine Auswahl von Vaadin Components, die so häufig in Webapplikationen genutzt werden und entsprechend für das Framework umgesetzt wurden.
+Die Abbildung \ref{fig:vaadin-components-overview} auf Seite \pageref{fig:vaadin-components-overview} zeigt hierbei eine Auswahl von Vaadin Components, die häufig in Webapplikationen genutzt werden und entsprechend für das Framework umgesetzt wurden.
 
 \begin{figure}[ht]
     \centering
@@ -347,16 +347,95 @@ Die Abbildung \ref{fig:vaadin-components-overview} auf Seite \pageref{fig:vaadin
     \label{fig:vaadin-components-overview}
 \end{figure}
 
-Die Technologien, auf die sich Vaadin bei der Implementierung und Umsetzung der Components stützt, bauen auf diversen Konzepten auf, zu denen unter anderem \textit{Custom elements}, \textit{Shadow DOM} sowie \textit{HTML templates} gehören. Diese werden dazu genutzt, um mittels JavaScript spezifische Klassen für die gewünschten, neuen Web Components zu erstellen, diese entsprechend zu registrieren und mittels Template-Funktionalität die gewünschten Objekte schlussendlich zu definieren. \parencite[][]{mozilla_contributors_web_2021}
+Die Technologien, auf die sich Vaadin bei der Implementierung und Umsetzung der Components stützt, bauen auf diversen Konzepten auf, zu denen unter anderem \textit{Custom elements}, \textit{Shadow DOM} sowie \textit{HTML templates} gehören. Diese werden dazu genutzt, um mittels JavaScript spezifische Klassen für die gewünschten, neuen Web Components zu erstellen, diese entsprechend zu registrieren und mittels Template-Funktionalität die neu erstellten Objekte schlussendlich zu definieren. \parencite[][]{mozilla_contributors_web_2021}
 
 \medskip
 
-Der Quellcode \ref{code:mozilla-sample-web-component} auf Seite \pageref{code:mozilla-sample-web-component} zeigt beispielhaft den sehr grundlegenden Aufbau, wie ein Web Component selbst umgesetzt werden kann. Vaadin nutzt ebenfalls diesen Aufbau sowie diese Herangehensweise für die Umsetzung der oben aufgezeigten \textit{Vaadin Components}. \parencite[vgl.][]{vaadin_ltd_vaadin-text-fieldjs_2021} Aufgrund des Fokus dieser Arbeit wird im weiteren Verlauf jedoch nicht näher auf die zugrundeliegende Struktur von Web Components eingegangen.
+Der Quellcode \ref{code:mozilla-sample-web-component} auf Seite \pageref{code:mozilla-sample-web-component} zeigt beispielhaft auf, wie der grundlegende Aufbau eines eigens umgesetzten Web Components aussieht. Vaadin nutzt diesen Aufbau sowie die zugrundeliegende Herangehensweise für die Umsetzung der vorhergehend aufgezeigten \textit{Vaadin Components}. \parencite[vgl.][]{vaadin_ltd_vaadin-text-fieldjs_2021} Aufgrund des Fokus dieser Arbeit wird im weiteren Verlauf jedoch nicht näher auf die zugrundeliegende Struktur von Web Components eingegangen.
 
 \begin{listing}[ht]
     \inputminted[fontsize=\footnotesize,linenos]{js}{code/web_components_mozilla.js}
-    \caption[Beispiel für den grundlegenden Aufbau eines eigenen Web Component]{Beispiel für den grundlegenden Aufbau eines eigenen Web Component (Quelle: \cite{mozilla_contributors_using_2021})}
+    \caption[Beispiel für den grundlegenden Aufbau eines eigenen Web Components]{Beispiel für den grundlegenden Aufbau eines eigenen Web Components (Quelle: \cite[][]{mozilla_contributors_using_2021})}
     \label{code:mozilla-sample-web-component}
+\end{listing}
+
+Die Nutzung der Vaadin Components lässt sich, wie bereits angesprochen, sowohl eigenständig mit anderen Frameworks als auch direkt in Vaadin selbst mittels der sogenannten \textit{Java API} umsetzen. Jede Komponente besitzt beim Einsatz von Java entsprechende Objekt-Typen und dazugehörige Attribute, bei der Verwendung von HTML stehen Tags mit ähnlicher Funktionalität zur Verfügung. \parencite[][]{vaadin_ltd_mobile_nodate}
+
+\medskip
+
+Quellcode \ref{code:vaadin-textfield} auf Seite \pageref{code:vaadin-textfield} ermöglicht einen Einblick, wie ein \textit{Text Field} Component mittels Vaadins Java API genutzt werden kann. Die deklarierten und initialisierten \texttt{TextField} Objekte können, in Java typischer Weise, an beliebiger Stelle genutzt werden. Weiterführende beziehungsweise benötigte Funktionalitäten können im Anschluss über das Zuweisen und Setzen von spezifischen Attributen erzielt werden, die das Verhalten des Textfeldes beeinflussen und vorgeben.
+
+\begin{listing}[ht]
+    \inputminted[fontsize=\footnotesize,linenos]{java}{code/Vaadin_text-field_sample.java}
+    \caption[Mögliche Umsetzungen des Vaadin \textit{Text Field}]{Mögliche Umsetzungen des Vaadin \textit{Text Field}\newline(Quelle: \cite[][\enquote{Text Field} - Examples]{vaadin_ltd_mobile_nodate})}
+    \label{code:vaadin-textfield}
+\end{listing}
+
+Abbildung \ref{fig:vaadin-textfield-output} auf Seite \pageref{fig:vaadin-textfield-output} bezieht sich maßgeblich auf Quellcode \ref{code:vaadin-textfield}, da die dargestellten Textfelder jene sind, die mittels der aufgezeiten \texttt{TextField} Objekten erzeugt wurden und mittels gesetzter Attribute unterschiedliche Ausgangspunkte liefern.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[scale=0.7]{images/Vaadin_text-field_output_Vaadin.png}
+    \caption[Erzeugter Output von Quellcode \ref{code:vaadin-textfield}]{Erzeugter Output von Quellcode \ref{code:vaadin-textfield}\newline(Quelle: \cite[][\enquote{Text Field} - Examples]{vaadin_ltd_mobile_nodate})}
+    \label{fig:vaadin-textfield-output}
+\end{figure}
+
+\subsection{Routing und Navigation}
+\label{sub-sec:routing-navigation}
+Wilken schreibt, dass die meisten Webapplikationen die Funktionalität benötigen, während der Nutzung zwischen verschiedenen Seiten und Unterseiten navigieren zu können. \aclp{MPA} laden beim Aufruf einer Seite die hinterlegten HTML, CSS und JavaScript Dateien von einem Webserver und nutzen dafür die angegebene URL. \aclp{SPA} hingegen laden Daten asynchron und bei Bedarf und wechseln lediglich sogenannte Views und keine kompletten Seiten. Die Navigation innerhalb einer \acs{SPA} muss entsprechend anderweitig vorgenommen werden, wobei hier sowohl JavaScript an sich als auch das verwendete Framework eine wichtige Rolle spielt. \parencite[][Seite 159f.]{wilken_angular_2018}
+
+\subsubsection{Routing bei Vaadin}
+\label{sub-sub-sec:routing-herangehensweise-vaadin}
+Vaadin bietet die Möglichkeit, mittels der \texttt{@Route} Annotation alle Components (sowohl Vaadin Components als auch eigene) über eine spezifische URL ansprechbar zu machen und diese somit aufrufen zu können. Quellcode \ref{code:route-annotation-vaadin} auf Seite    \pageref{code:route-annotation-vaadin} stellt beispielhaft dar, wie eine selbst entwickelte Komponente im Browser über die URL \path{http://example.com/some/path} angesteuert werden kann. \parencite[][Framework - Routing and Navigation - Defining Routes with @Route]{vaadin_ltd_documentation_nodate}
+
+\begin{listing}[ht]
+    \inputminted[fontsize=\footnotesize,linenos]{java}{code/route_annotation_vaadin.java}
+    \caption[Beispielhafte Nutzung der \texttt{@Route} Annotation]{Beispielhafte Nutzung der \texttt{@Route} Annotation\newline(Quelle: \cite[][Framework - Routing and Navigation - Defining Routes with @Route]{vaadin_ltd_documentation_nodate})}
+    \label{code:route-annotation-vaadin}
+\end{listing}
+
+Mittels verschiedener Events, die während der Nutzung der Webapplikation und der darin auftretenden Navigation ausgelöst werden, entsteht ein sogenannter \textit{Navigation Lifecycle}. Dieser kann dafür genutzt werden, um zusätzliche Funktionalitäten anzubieten. UI Komponenten implementieren dafür entsprechende \texttt{Listener}, welche auf zugehörigen \texttt{Observer} Interfaces aufbauen. Mit dem Navigation Lifecycle und einem \texttt{BeforeLeaveEvent} kann beispielsweise eine Abfrage im \acl{UI} erstellt werden, die Nutzer:innen bestätigen lässt, dass das Verlassen der Website womöglich zum Verlust von Daten führt. \parencite[][Framework - Routing and Navigation - Navigation Lifecycle]{vaadin_ltd_documentation_nodate}
+
+\newpage
+
+URL Parameter (sowohl solche, die Teil der URL selbst sind als auch Query Parameter) können mittels dem \texttt{HasUrlParameter} Interface abgefragt und im weiteren Verlauf genutzt werden. Wie Quellcode \ref{code:url-params-vaadin} auf Seite \pageref{code:url-params-vaadin} zeigt, kann über die \texttt{setParameter} Methode auf Teile der URL zugegriffen werden, die mittels Generics direkt in der Methode verankert sind. Query Parameter lassen sich währenddessen mit dem \texttt{BeforeEvent} ebenfalls in der selben Methode abfragen. \parencite[][Framework - Routing and Navigation - Routing and URL Parameters]{vaadin_ltd_documentation_nodate}
+
+\begin{listing}[ht]
+    \inputminted[fontsize=\footnotesize,linenos]{java}{code/url_params_vaadin.java}
+    \caption[Zugriff auf URL Parameter bei Vaadin]{Zugriff auf URL Parameter bei Vaadin}
+    \label{code:url-params-vaadin}
+\end{listing}
+
+\smallskip
+
+Um die Navigation zwischen verschiedenen Routen zu ermöglichen, bietet Vaadin - neben dem händischen Abändern der URL im Browser - verschiedene Ansätze:
+
+\begin{itemize}
+    \item Mittels der \texttt{RouterLink} Komponente können Links erstellt werden, welche die angegebene Route als Ziel haben (\texttt{menu.add(new RouterLink("Home", HomeView.class));}). \parencite[][Framework - Routing and Navigation - Navigating Between Routes]{vaadin_ltd_documentation_nodate}
+    \item Gewöhnliche HTML Anker Tags können genutzt werden, um zwischen verschiedenen Routen zu navigieren (\texttt{<a href="company" [...]}). Diese verursachen jedoch ein Neuladen der gesamten Seite. Wenn der zusätzliche Ladeprozess der Seite verhindert werden soll, kann das Vaadin-eigene \texttt{router-link} Attribut zusätzlich angehängt werden. \parencite[][Framework - Routing and Navigation - Navigating Between Routes]{vaadin_ltd_documentation_nodate}
+    \item Serverseitig kann mittels \texttt{UI.navigate(/* Route name */)} der Wechsel zu einer neuen Route ausgelöst werden. \parencite[][Framework - Routing and Navigation - Navigating Between Routes]{vaadin_ltd_documentation_nodate}
+\end{itemize}
+
+\subsubsection{Routing bei Angular}
+\label{sub-sub-sec:routing-herangehensweise-angular}
+Um bei Angular eine vergleichbare Routing und Navigation Funktionalität zu erzielen, wird das \path{@angular/router} Package benötigt, welches in das Projekt eingebunden werden muss. Anders als bei Vaadin können bei Angular Routen an zentraler Stelle definiert werden, bei denen angegeben wird, welche TypeScript Komponente für die Abhandlung zuständig ist, wie Quellcode \ref{code:angular-route-definition} auf Seite \pageref{code:angular-route-definition} zeigt. \parencite[][]{google_llc_angular_nodate}
+
+\begin{listing}[ht]
+    \inputminted[fontsize=\footnotesize,linenos]{js}{code/Angular_routes_definition.js}
+    \caption[Definition von Routen bei Angular]{Definition von Routen bei Angular\newline(Quelle: \cite[][]{google_llc_angular_nodate})}
+    \label{code:angular-route-definition}
+\end{listing}
+
+Vom Prinzip her ähnlich bietet Angular ebenfalls die Möglichkeit, auf die in der URL enthaltenen Parameter zuzugreifen und in der Präsentations- sowie Applikationslogik zu verwenden. Hierfür wird das \texttt{ActivatedRoute} Objekt dem Konstruktor einer Komponente übergeben, welches sowohl den Zugriff auf die Query Parameter (\texttt{ActivatedRoute\#queryParams}) als auch Parameter, die Bestandteil der URL sind (\texttt{ActivatedRoute\#paramMap}), ermöglicht. Zudem stehen allgemeine Informationen zur Route selbst zur Verfügung. \pageref{code:angular-route-definition} zeigt. \parencite[][]{google_llc_angular_nodate}
+
+\medskip
+
+Links innerhalb der \acs{UI} werden - vergleichbar mit Vaadin - ebenso mit HTML Anker Tags und einem eigens dafür vorgesehenen Attribut erzeugt, beinhalten im Zuge der entsprechenden Darstellungsoptionen jedoch noch weitere Funktionalitäten. Quellcode \ref{code:angular-route-linking} auf Seite \pageref{code:angular-route-linking} stellt diesen Ansatz dar und beinhaltet zudem in Zeile 19 das benötigte \textit{router-outlet} Element, welches die ausgewählten und geladenen Routen im Browser darstellt. \parencite[][]{google_llc_angular_nodate}
+
+\begin{listing}[ht]
+    \inputminted[fontsize=\footnotesize,linenos]{html}{code/Angular_anker_tags_routing.html}
+    \caption[Verlinken von Routen innerhalb Angulars]{Verlinken von Routen innerhalb Angulars\newline(Quelle: \cite[][]{google_llc_angular_nodate})}
+    \label{code:angular-route-linking}
 \end{listing}
 
 % Literaturverzeichnis:
