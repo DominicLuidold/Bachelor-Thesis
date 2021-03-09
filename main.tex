@@ -25,7 +25,6 @@
 \captionsetup{format=hang, justification=raggedright}
 \addbibresource{Zotero.bib}
 \setcounter{secnumdepth}{4}
-\setcounter{tocdepth}{4} % Tiefe der Gliederung im Inhaltsverzeichnis
 
 % Custom Commands
 \renewcommand{\listingscaption}{Quellcode}
@@ -37,6 +36,7 @@
 
 % Titelblatt:
 % \newpage\mbox{}\newpage
+\pagenumbering{roman}
 \cleardoublepage % force output to a right page
 \thispagestyle{empty}
 \begin{titlepage}
@@ -115,6 +115,7 @@ Um diese Arbeit sowohl geschlechtergerecht als auch -inklusive zu formulieren, w
 % Inhaltsverzeichnis:
 \cleardoublepage % force output to a right page
 \setcounter{tocdepth}{2}
+\pdfbookmark{\contentsname}{toc}
 \tableofcontents
 
 \clearpage
@@ -140,7 +141,9 @@ Um diese Arbeit sowohl geschlechtergerecht als auch -inklusive zu formulieren, w
   \acro{UX}{User Experience}
 \end{acronym}
 
+\cleardoublepage
 \chapter{Einleitung}
+\pagenumbering{arabic}
 \label{chap:einleitung}
 Diese Bachelorarbeit verfolgt das Ziel, einen Einblick in die \ac{SPA} Frameworks \textit{Angular}\footnote{\href{https://angular.io/}{Angular (https://angular.io)}} und \textit{Vaadin}\footnote{\href{https://vaadin.com/}{Vaadin (https://vaadin.com)}} zu geben und deren Gemeinsamkeiten, Unterschiede sowie Vor- und Nachteile zu beleuchten.
 
