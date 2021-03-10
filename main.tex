@@ -36,7 +36,6 @@
 
 % Titelblatt:
 % \newpage\mbox{}\newpage
-\pagenumbering{roman}
 \cleardoublepage % force output to a right page
 \thispagestyle{empty}
 \begin{titlepage}
@@ -143,7 +142,6 @@ Um diese Arbeit sowohl geschlechtergerecht als auch -inklusive zu formulieren, w
 
 \cleardoublepage
 \chapter{Einleitung}
-\pagenumbering{arabic}
 \label{chap:einleitung}
 Diese Bachelorarbeit verfolgt das Ziel, einen Einblick in die \ac{SPA} Frameworks \textit{Angular}\footnote{\href{https://angular.io/}{Angular (https://angular.io)}} und \textit{Vaadin}\footnote{\href{https://vaadin.com/}{Vaadin (https://vaadin.com)}} zu geben und deren Gemeinsamkeiten, Unterschiede sowie Vor- und Nachteile zu beleuchten.
 
@@ -437,9 +435,45 @@ Links innerhalb der \acs{UI} werden - vergleichbar mit Vaadin - ebenso mit HTML 
 
 \begin{listing}[ht]
     \inputminted[fontsize=\footnotesize,linenos]{html}{code/Angular_anker_tags_routing.html}
-    \caption[Verlinken von Routen innerhalb Angulars]{Verlinken von Routen innerhalb Angulars\newline(Quelle: \cite[][]{google_llc_angular_nodate})}
+    \caption[Verlinken von Routen innerhalb von Angular]{Verlinken von Routen innerhalb von Angular\newline(Quelle: \cite[][]{google_llc_angular_nodate})}
     \label{code:angular-route-linking}
 \end{listing}
+
+\chapter{Methodik und Vorgehensweise}
+\label{chap:methodik-Vorgehensweise}
+Die in Kapitel \ref{chap:stand-technik} ab Seite \pageref{chap:stand-technik} behandelten Punkte befassen sich mit den grundlegenden Konzepten einer \acl{SPA} und spezifischen Funktionalitäten sowie Herangehensweisen, auf denen Vaadin basiert. Wo sinnvoll, wurde zudem ein Vergleich zu Angular gezogen.
+
+In den folgenden Kapiteln fokussiert sich diese Arbeit nun auf die Planung, Umsetzung und Beurteilung von zwei Demo-Applikationen, die auf denselben User Stories basieren, jedoch sowohl mit Vaadin als auch Angular umgesetzt werden. Ziel ist es, diese Webapplikationen entlang vorab definierter Kriterien zu entwickeln, um schlussendlich eine Bewertung durchführen zu können.
+
+\section{Kriterien}
+\label{sec:kriterien}
+Die Kriterien, anhand derer sich die Umsetzung und Beurteilung richten werden, wurden bereits in der Einleitung im Abschnitt \ref{sec:zielsetzung} ab Seite \pageref{sec:zielsetzung} kurz aufgegriffen. Da diese jedoch noch nicht im Detail behandelt wurden, folgt in den nächsten Absätzen eine entsprechend genauere Darstellung.
+
+\subsubsection*{Umsetzung als \acl{PWA}}
+\label{sub-sec:kriterien-pwa}
+Die Demo-Applikationen sollen in mehrerer Hinsicht als moderne Webapplikation genutzt werden können. Dazu gehört, neben der standardmäßigen Nutzung mittels gängiger Webbrowser auf dem Desktop, die Nutzung als \acl{PWA}, die vor allem für Smartphones optimiert und ausgelegt ist und sich ähnlich wie eine App verhält.
+
+Bei der Umsetzung und Bewertung wird daher darauf eingegangen, in wie weit sich die Webanwendungen mit den von Vaadin und Angular zur Verfügung gestellten Mitteln als \aclp{PWA} umsetzen lassen und welche Funktionalitäten schlussendlich zur Verfügung stehen.
+
+\subsubsection*{Einsatz und Entwicklung eigener Web Components}
+\label{sub-sec:kriterien-web-components}
+In Abschnitt \ref{sub-sec:vaadin-components} wurde bereits auf die Vaadin eigenen \textit{Vaadin Components} eingegangen. Da die Wiederverwendbarkeit in der Entwicklung eine große Rolle spielt, und auch auf \acs{UI}-Komponenten zutrifft, sollen mehrfach verwendete Bestandteile der Demo-Applikationen mittels Web Components umgesetzt werden.
+
+Bei der Umsetzung und Bewertung wird daher darauf eingegangen, in welchem Ausmaß die Frameworks die Umsetzung von Web Components - zusätzlich zu den gegebenen Browserstandards - unterstützen und ob sie den Entwicklungsprozess dabei erleichtern.
+
+\subsubsection*{Lokale und serverseitige Datenanbindung/-haltung}
+\label{sub-sec:kriterien-datenanbindung}
+Eine \acl{SPA}, beziehungsweise Anwendungen allgemein, leben von den Daten, die sie verarbeiten und mit denen Nutzer:innen interagieren können. Gerade im Zuge der Umsetzung der Demo-Applikationen als \acs{PWA} stellt sich die Frage, wie Angular und Vaadin eine Datenanbindung sowie Datenhaltung lokal (sprich auf dem jeweiligen Endgerät) sowie auf einem Server ermöglichen.
+
+Bei der Umsetzung und Bewertung wird daher darauf eingegangen, welche Möglichkeiten sich bieten, bei den entwickelten Anwendungen Daten sowohl lokal zu speichern (um beispielsweise eine Offline-Fähigkeit zu ermöglichen) und wie man diese an eine externe Datenbank auf einem Server anbinden kann.
+
+\section{Vorgehensweise}
+\label{sec:vorgehensweise}
+TODO
+
+\subsection{User Stories}
+\label{sub-sec:user-stories}
+TODO
 
 % Literaturverzeichnis:
 \clearpage
