@@ -220,11 +220,11 @@ Neben der reinen Übertragung von Daten mittels \acs{JSON} (oder anderweitigen D
 
 \subsection{Bestandteile einer \acs{SPA}}
 \label{subsec:spa-bestandteile}
-Der zugrundeliegende Aufbau einer \ac{SPA} - und der Bestandteil der Applikation, der lediglich einmal geladen wird - ist die sogenannte \textit{Shell}. Die Shell ist eine einzelne HTML-Datei, welche vom Browser vollständig geladen wird und in den meisten Fällen lediglich minimale Strukturen (beispielsweise ein Navigationsmenü) sowie einen leeren \texttt{DIV} Tag enthält, wie Abbildung \ref{fig:spa-shell} auf Seite \pageref{fig:spa-overview} zeigt. Genutzt wird diese als Ausgangspunkt für alle weiteren Views, die unabhängig von der Shell agieren und dynamisch geladen werden. \parencite[][Seite 8]{scott_spa_2015}
+Der zugrundeliegende Aufbau einer \ac{SPA} - und der Bestandteil der Applikation, der lediglich einmal geladen wird - ist die sogenannte \textit{Shell}. Die Shell ist eine einzelne HTML-Datei, welche vom Browser vollständig geladen wird und in den meisten Fällen lediglich minimale Strukturen (ein Navigationsmenü, statische Inhalte etc.) sowie einen leeren \texttt{DIV} Tag enthält, wie Abbildung \ref{fig:spa-shell} auf Seite \pageref{fig:spa-overview} zeigt. Genutzt wird diese als Ausgangspunkt für alle weiteren Views, die unabhängig von der Shell agieren und dynamisch geladen werden. \parencite[][Seite 8]{scott_spa_2015}
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[scale=0.5]{images/SPA_shell_Scott.png}
+    \includegraphics[scale=0.45]{images/SPA_shell_Scott.png}
     \caption[\acs{SPA} Shell]{\acs{SPA} Shell\newline(Quelle: \cite[][Seite 8]{scott_spa_2015})}
     \label{fig:spa-shell}
 \end{figure}
@@ -271,7 +271,7 @@ Vaadin selbst schreibt, dass sich das Arbeiten mit HTML, CSS und JavaScript für
 Vaadin Flow bietet daher die Möglichkeit, mit einer vollständig in Java geschriebenen Applikation - die auf einem Server ausfgeführt wird - jeweils die Anwendungslogik sowie das \acl{UI} umzusetzen. Die Vielzahl von sogenannten \textit{Components}, welche Vaadin von Haus aus mitliefert und einzelnen Bestandteilen wie beispielsweise einem Button oder ähnlichem entspricht, unterstützen Entwickler:innen dabei, bei Bedarf ohne HTML oder JavaScript auszukommen. Die Components steuern dabei das zugrundeliegende JavaScript im Hintergrund über die Framework-eigene \textit{Java API} beziehungsweise die \textit{Java Component API}. Der Quellcode \ref{code:vaadin-ui-java-sample} auf Seite \pageref{code:vaadin-ui-java-sample} stellt einen stark vereinfachten Ausschnitt von Components dar, die so im Client bereits entsprechend dargestellt werden. \parencite[][Framework - Introduction - Overview]{vaadin_ltd_documentation_nodate}
 
 \begin{listing}[ht]
-    \inputminted[fontsize=\footnotesize,linenos]{java}{code/Sample_Java_ui_Vaadin.java}
+    \inputminted[fontsize=\footnotesize,linenos]{java}{code/Vaadin_Java-UI-sample.java}
     \caption[Beispiel einer einfachen \acs{UI} mittels der \textit{Java API}]{Beispiel einer einfachen \acs{UI} mittels der \textit{Java API}\newline(Quelle: \cite[][Framework - Introduction - Overview]{vaadin_ltd_documentation_nodate})}
     \label{code:vaadin-ui-java-sample}
 \end{listing}
@@ -323,7 +323,7 @@ Der Quellcode \ref{code:angular-sample-httpclient-service} auf Seite \pageref{co
 
 \begin{listing}[ht]
     \renewcommand{\fcolorbox}[4][]{#4}
-    \inputminted[fontsize=\footnotesize,linenos]{js}{code/sample.service.ts}
+    \inputminted[fontsize=\footnotesize,linenos]{js}{code/Luidold_HttpClient-Service.ts}
     \caption[Exemplarische Nutzung des \texttt{HttpClient} in einem Service]{Exemplarische Nutzung des \texttt{HttpClient} in einem Service}
     \label{code:angular-sample-httpclient-service}
 \end{listing}
@@ -332,7 +332,7 @@ Der Quellcode \ref{code:angular-sample-data-function} auf Seite \pageref{code:an
 
 \begin{listing}[ht]
     \renewcommand{\fcolorbox}[4][]{#4}
-    \inputminted[fontsize=\footnotesize,linenos]{js}{code/loadSampleData.ts}
+    \inputminted[fontsize=\footnotesize,linenos]{js}{code/Luidold_Load-function.ts}
     \caption[Beispielhafte Nutzung der \texttt{getSampleData} Funktion]{Beispielhafte Nutzung der \texttt{getSampleData} Funktion}
     \label{code:angular-sample-data-function}
 \end{listing}
@@ -359,7 +359,7 @@ Die Technologien, auf die sich Vaadin bei der Implementierung und Umsetzung der 
 Der Quellcode \ref{code:mozilla-sample-web-component} auf Seite \pageref{code:mozilla-sample-web-component} zeigt beispielhaft auf, wie der grundlegende Aufbau eines eigens umgesetzten Web Components aussieht. Vaadin nutzt diesen Aufbau sowie die zugrundeliegende Herangehensweise für die Umsetzung der vorhergehend aufgezeigten \textit{Vaadin Components}. \parencite[vgl.][]{vaadin_ltd_vaadin-text-fieldjs_2021} Aufgrund des Fokus dieser Arbeit wird im weiteren Verlauf jedoch nicht näher auf die zugrundeliegende Struktur von Web Components eingegangen.
 
 \begin{listing}[ht]
-    \inputminted[fontsize=\footnotesize,linenos]{js}{code/web_components_mozilla.js}
+    \inputminted[fontsize=\footnotesize,linenos]{js}{code/Mozilla_Web-Component-sample.js}
     \caption[Beispiel für den grundlegenden Aufbau eines eigenen Web Components]{Beispiel für den grundlegenden Aufbau eines eigenen Web Components (Quelle: \cite[][]{mozilla_contributors_using_2021})}
     \label{code:mozilla-sample-web-component}
 \end{listing}
@@ -371,7 +371,7 @@ Die Nutzung der Vaadin Components lässt sich sowohl eigenständig mit anderen F
 Quellcode \ref{code:vaadin-textfield} auf Seite \pageref{code:vaadin-textfield} ermöglicht einen Einblick, wie ein \textit{Text Field} Component mittels Vaadins Java API genutzt werden kann. Die deklarierten und initialisierten \texttt{TextField} Objekte können, in Java typischer Weise, an beliebiger Stelle genutzt werden. Weiterführende beziehungsweise benötigte Funktionalitäten können im Anschluss über das Zuweisen und Setzen von spezifischen Attributen erzielt werden, die das Verhalten des Textfeldes beeinflussen und vorgeben.
 
 \begin{listing}[ht]
-    \inputminted[fontsize=\footnotesize,linenos]{java}{code/Vaadin_text-field_sample.java}
+    \inputminted[fontsize=\footnotesize,linenos]{java}{code/Vaadin_Text-Field_sample.java}
     \caption[Mögliche Umsetzungen des Vaadin \textit{Text Field}]{Mögliche Umsetzungen des Vaadin \textit{Text Field}\newline(Quelle: \cite[][\enquote{Text Field} - Examples]{vaadin_ltd_mobile_nodate})}
     \label{code:vaadin-textfield}
 \end{listing}
@@ -394,7 +394,7 @@ Wilken schreibt, dass die meisten Webapplikationen die Funktionalität benötige
 Vaadin bietet die Möglichkeit, mittels der \texttt{@Route} Annotation alle Components (sowohl Vaadin Components als auch eigene) über eine spezifische URL ansprechbar zu machen und diese somit aufrufen zu können. Quellcode \ref{code:route-annotation-vaadin} auf Seite    \pageref{code:route-annotation-vaadin} stellt beispielhaft dar, wie eine selbst entwickelte Komponente im Browser über die URL \path{http://example.com/some/path} angesteuert werden kann. \parencite[][Framework - Routing and Navigation - Defining Routes with @Route]{vaadin_ltd_documentation_nodate}
 
 \begin{listing}[ht]
-    \inputminted[fontsize=\footnotesize,linenos]{java}{code/route_annotation_vaadin.java}
+    \inputminted[fontsize=\footnotesize,linenos]{java}{code/Vaadin_Route-annotation.java}
     \caption[Beispielhafte Nutzung der \texttt{@Route} Annotation]{Beispielhafte Nutzung der \texttt{@Route} Annotation\newline(Quelle: \cite[][Framework - Routing and Navigation - Defining Routes with @Route]{vaadin_ltd_documentation_nodate})}
     \label{code:route-annotation-vaadin}
 \end{listing}
@@ -406,7 +406,7 @@ Mittels verschiedener Events, die während der Nutzung der Webapplikation und de
 URL Parameter (sowohl solche, die Teil der URL selbst sind als auch Query Parameter) können mittels dem \texttt{HasUrlParameter} Interface abgefragt und im weiteren Verlauf genutzt werden. Wie Quellcode \ref{code:url-params-vaadin} auf Seite \pageref{code:url-params-vaadin} zeigt, kann über die \texttt{setParameter} Methode auf Teile der URL zugegriffen werden, die mittels Generics direkt in der Methode verankert sind. Query Parameter lassen sich währenddessen mit dem \texttt{BeforeEvent} ebenfalls in der selben Methode abfragen. \parencite[][Framework - Routing and Navigation - Routing and URL Parameters]{vaadin_ltd_documentation_nodate}
 
 \begin{listing}[ht]
-    \inputminted[fontsize=\footnotesize,linenos]{java}{code/url_params_vaadin.java}
+    \inputminted[fontsize=\footnotesize,linenos]{java}{code/Luidold_Vaadin-URL-params.java}
     \caption[Zugriff auf URL Parameter bei Vaadin]{Zugriff auf URL Parameter bei Vaadin}
     \label{code:url-params-vaadin}
 \end{listing}
@@ -426,7 +426,7 @@ Um die Navigation zwischen verschiedenen Routen zu ermöglichen, bietet Vaadin -
 Um bei Angular eine vergleichbare Routing und Navigation Funktionalität zu erzielen, wird das \path{@angular/router} Package benötigt, welches in das Projekt eingebunden werden muss. Anders als bei Vaadin können bei Angular Routen an zentraler Stelle definiert werden, bei denen angegeben wird, welche TypeScript Komponente für die Abhandlung zuständig ist, wie Quellcode \ref{code:angular-route-definition} auf Seite \pageref{code:angular-route-definition} zeigt. \parencite[][]{google_llc_angular_nodate}
 
 \begin{listing}[ht]
-    \inputminted[fontsize=\footnotesize,linenos]{js}{code/Angular_routes_definition.js}
+    \inputminted[fontsize=\footnotesize,linenos]{js}{code/Angular_Routes-definition.js}
     \caption[Definition von Routen bei Angular]{Definition von Routen bei Angular\newline(Quelle: \cite[][]{google_llc_angular_nodate})}
     \label{code:angular-route-definition}
 \end{listing}
@@ -438,7 +438,7 @@ Vom Prinzip her ähnlich bietet Angular ebenfalls die Möglichkeit, auf die in d
 Links innerhalb der \acs{UI} werden - vergleichbar mit Vaadin - ebenso mit HTML Anker Tags und einem eigens dafür vorgesehenen Attribut erzeugt, beinhalten im Zuge der entsprechenden Darstellungsoptionen jedoch noch weitere Funktionalitäten. Quellcode \ref{code:angular-route-linking} auf Seite \pageref{code:angular-route-linking} stellt diesen Ansatz dar und beinhaltet zudem in Zeile 19 das benötigte \textit{router-outlet} Element, welches die ausgewählten und geladenen Routen im Browser darstellt. \parencite[][]{google_llc_angular_nodate}
 
 \begin{listing}[ht]
-    \inputminted[fontsize=\footnotesize,linenos]{html}{code/Angular_anker_tags_routing.html}
+    \inputminted[fontsize=\footnotesize,linenos]{html}{code/Angular_Routing-tags.html}
     \caption[Verlinken von Routen innerhalb von Angular]{Verlinken von Routen innerhalb von Angular\newline(Quelle: \cite[][]{google_llc_angular_nodate})}
     \label{code:angular-route-linking}
 \end{listing}
@@ -467,17 +467,56 @@ Bei der Umsetzung und Bewertung wird daher darauf eingegangen, in welchem Ausma�
 
 \subsubsection*{Lokale und serverseitige Datenanbindung/-haltung}
 \label{sub-sec:kriterien-datenanbindung}
-Eine \ac{SPA}, beziehungsweise Anwendungen allgemein, leben von den Daten, die sie verarbeiten und mit denen Nutzer:innen interagieren können. Gerade im Zuge der Umsetzung der Demo-Applikationen als \ac{PWA} stellt sich die Frage, wie Angular und Vaadin eine Datenanbindung sowie Datenhaltung lokal (sprich auf dem jeweiligen Endgerät) sowie auf einem Server ermöglichen.
+Eine \ac{SPA}, beziehungsweise Anwendungen allgemein, leben von den Daten, die sie verarbeiten und mit denen Nutzer:innen interagieren können. Gerade im Zuge der Umsetzung der Demo-Applikationen als \ac{PWA} stellt sich die Frage, wie Angular und Vaadin eine Datenanbindung und Datenhaltung lokal (sprich auf dem jeweiligen Endgerät) sowie auf einem Server ermöglichen.
 
 Bei der Umsetzung und Bewertung wird daher darauf eingegangen, welche Möglichkeiten sich bieten, bei den entwickelten Anwendungen Daten sowohl lokal zu speichern (um beispielsweise eine Offline-Fähigkeit zu ermöglichen) und wie man diese an eine externe Datenbank auf einem Server anbinden kann.
 
 \section{Vorgehensweise}
 \label{sec:vorgehensweise}
-TODO
+Damit die Demo-Applikationen die eben genannten Kriterien beide gleichermaßen beinhalten und umsetzen, und somit bewertet werden können, werden diese in User Stories eingebettet. Die User Stories orientieren sich dabei jedoch an keinem vollständigen Applikations-Konzept, sondern zeigen verschiedene Anwendungsfälle auf, die in einem realen Umfeld ein Bewertungskriterium für die Auswahl eines Frameworks spielen können.
 
 \subsection{User Stories}
 \label{sub-sec:user-stories}
-TODO
+Nachfolgend sind mehrere User Stories aufgelistet, die im Detail erklären, welche Funktionalitäten die Vaadin und Angular Demo-Applikation beinhalten sollen und die genannten Kriterien einfließen lassen.
+
+\subsubsection*{User Story 1: Echtzeit Eingangskontrolle}
+\label{sub-sec:user-story-1}
+
+\paragraph*{Beschreibung:} Als Veranstalter:in einer Organisation möchte ich kommende und gehende Besucher:innen bei allen Ein-/Ausgängen in Echtzeit erfassen, sodass diese den Veranstaltungsort nur in kontrollierter Weise betreten können.
+
+\paragraph*{Akzeptanzkriterien:}
+
+\begin{itemize}
+    \item Besucher:innen können aus einer vorhandenen Teilnehmer:innenliste ausgewählt werden, um festzulegen, ob sie sich innerhalb oder außerhalb vom Veranstaltungsort befinden.
+    \item Wird der Status eine:r Besucher:in aktualisiert, wird diese Änderung automatisch auf allen Instanzen sichtbar, ohne dass man diese manuell neu laden muss. Entspricht Multi-Nutzer:innen-Fähigkeit.
+    \item Die Anwendung wird sowohl auf Computern als auch im mobilen Einsatz auf einem gängigen Smartphone unterstützt.
+    \item Wenn keine Internetverbindung vorhanden ist, ist zumindest der zuletzt verfügbare Stand der Besucher:innenliste aufrufbar.
+\end{itemize}
+
+\subsubsection*{User Story 2: Fotoverwaltung}
+\label{sub-sec:user-story-2}
+
+\paragraph*{Beschreibung:} Als Nutzer:in möchte ich meine Fotos hochladen können, sodass diese an einem zentralen Ort gespeichert sind und man jederzeit darauf zugreifen kann.
+
+\paragraph*{Akzeptanzkriterien:}
+
+\begin{itemize}
+    \item Nutzer:innen können Fotos von ihrem Computer oder Smartphone auswählen und hochladen.
+    \item Wenn Fotos von einem anderen Client hochgeladen wurden, kann man diese mit dem aktuellen Gerät synchronisieren, sodass jederzeit alle Fotos offline zur Verfügung stehen.
+    \item Wenn keine Internetverbindung vorhanden ist, werden Fotos lokal gespeichert und dann hochgeladen, sobald eine Verbindung wieder zur Verfügung steht.
+\end{itemize}
+
+\subsubsection*{User Story 3: TODO}
+\label{sub-sec:user-story-3}
+
+\paragraph*{Beschreibung:} TODO
+
+\paragraph*{Akzeptanzkriterien:}
+
+\begin{itemize}
+    \item TODO
+    \item TODO
+\end{itemize}
 
 % Literaturverzeichnis:
 \clearpage
