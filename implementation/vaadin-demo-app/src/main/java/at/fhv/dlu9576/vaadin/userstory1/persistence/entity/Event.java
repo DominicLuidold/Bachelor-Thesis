@@ -107,6 +107,10 @@ public class Event {
         return attendees;
     }
 
+    public void addAttendee(Attendee attendee) {
+        attendees.add(attendee);
+    }
+
     public List<EntranceControl> getEntranceControlEntries() {
         return entranceControlEntries;
     }

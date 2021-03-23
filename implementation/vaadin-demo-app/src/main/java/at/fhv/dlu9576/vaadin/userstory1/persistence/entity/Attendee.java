@@ -83,6 +83,11 @@ public class Attendee {
         return events;
     }
 
+    public void addAttendedEvent(Event event) {
+        events.add(event);
+        event.addAttendee(this);
+    }
+
     public List<EntranceControl> getEntranceControlEntries() {
         return entranceControlEntries;
     }

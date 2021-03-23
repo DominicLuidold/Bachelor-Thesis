@@ -1,8 +1,13 @@
 package at.fhv.dlu9576.vaadin.userstory1.persistence.service;
 
 import at.fhv.dlu9576.vaadin.userstory1.persistence.entity.Attendee;
+import at.fhv.dlu9576.vaadin.userstory1.persistence.entity.Event;
 import at.fhv.dlu9576.vaadin.userstory1.persistence.repository.AttendeeRepository;
+import at.fhv.dlu9576.vaadin.userstory1.persistence.repository.EventRepository;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Random;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -13,9 +18,11 @@ import org.springframework.stereotype.Service;
 public class AttendeeService {
     private static final Logger LOG = Logger.getLogger(AttendeeService.class.getName());
     private final AttendeeRepository attendeeRepository;
+    private final EventRepository eventRepository;
 
-    public AttendeeService(AttendeeRepository attendeeRepository) {
+    public AttendeeService(AttendeeRepository attendeeRepository, EventRepository eventRepository) {
         this.attendeeRepository = attendeeRepository;
+        this.eventRepository = eventRepository;
     }
 
     public List<Attendee> findAll() {
@@ -28,9 +35,30 @@ public class AttendeeService {
 
     @PostConstruct
     public void populateTestData() {
+        if (eventRepository.count() == 0) {
+            LOG.info("Populating [Event] test data..");
+
+            eventRepository.saveAll(
+                Stream.of("Event #1", "Event #2").map(name -> {
+                    String[] split = name.split(" ");
+
+                    Event event = new Event();
+                    event.setName(name);
+                    event.setLocation(split[0] + "halle " + split[1]);
+                    event.setDescription("Test " + name);
+                    event.setDate(LocalDate.now());
+                    event.setStartTime(LocalDateTime.now());
+                    event.setEndTime(LocalDateTime.now().plusHours(4));
+
+                    return event;
+                }).collect(Collectors.toList())
+            );
+        }
+
         if (attendeeRepository.count() == 0) {
             LOG.info("Populating [Attendee] test data..");
 
+            List<Event> events = eventRepository.findAll();
             attendeeRepository.saveAll(
                 Stream.of(
                     "Reyes Robards", "Robin Roan", "Malinda Millington", "Earnest Everton",
@@ -51,6 +79,7 @@ public class AttendeeService {
                         + attendee.getLastName()
                         + "@example.com"
                     );
+                    attendee.addAttendedEvent(events.get(new Random().nextInt(events.size())));
 
                     return attendee;
                 }).collect(Collectors.toList())
