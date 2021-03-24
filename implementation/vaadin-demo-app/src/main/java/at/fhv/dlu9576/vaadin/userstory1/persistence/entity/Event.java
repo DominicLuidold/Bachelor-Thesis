@@ -2,13 +2,15 @@ package at.fhv.dlu9576.vaadin.userstory1.persistence.entity;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.LinkedHashSet;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
@@ -41,11 +43,11 @@ public class Event {
     @Column
     private String description;
 
-    @ManyToMany
-    private Set<Attendee> attendees = new LinkedHashSet<>();
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Set<Attendee> attendees = new HashSet<>();
 
     @OneToMany(mappedBy = "event")
-    private List<EntranceControl> entranceControlEntries = new LinkedList<>();
+    private List<LogEntry> logEntries = new LinkedList<>();
 
     public UUID getId() {
         return id;
@@ -111,7 +113,7 @@ public class Event {
         attendees.add(attendee);
     }
 
-    public List<EntranceControl> getEntranceControlEntries() {
-        return entranceControlEntries;
+    public List<LogEntry> getLogEntries() {
+        return logEntries;
     }
 }

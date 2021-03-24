@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Random;
+import java.util.UUID;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -27,6 +28,10 @@ public class AttendeeService {
 
     public List<Attendee> findAll() {
         return attendeeRepository.findAll();
+    }
+
+    public List<Attendee> findAllByEvent(UUID eventId) {
+        return attendeeRepository.findAllByEvents_Id(eventId);
     }
 
     public long count() {
@@ -79,7 +84,7 @@ public class AttendeeService {
                         + attendee.getLastName()
                         + "@example.com"
                     );
-                    attendee.addAttendedEvent(events.get(new Random().nextInt(events.size())));
+                    attendee.addEvent(events.get(new Random().nextInt(events.size())));
 
                     return attendee;
                 }).collect(Collectors.toList())

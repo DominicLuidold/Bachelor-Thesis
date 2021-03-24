@@ -1,10 +1,12 @@
 package at.fhv.dlu9576.vaadin.userstory1.persistence.entity;
 
-import java.util.LinkedHashSet;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -34,10 +36,10 @@ public class Attendee {
     private String phone;
 
     @ManyToMany(mappedBy = "attendees")
-    private Set<Event> events = new LinkedHashSet<>();
+    private Set<Event> events = new HashSet<>();
 
     @OneToMany(mappedBy = "attendee")
-    private List<EntranceControl> entranceControlEntries = new LinkedList<>();
+    private List<LogEntry> entranceControlEntries = new LinkedList<>();
 
     public UUID getId() {
         return id;
@@ -83,11 +85,29 @@ public class Attendee {
         return events;
     }
 
-    public void addAttendedEvent(Event event) {
+    public void addEvent(Event event) {
         events.add(event);
+        event.addAttendee(this);
     }
 
-    public List<EntranceControl> getEntranceControlEntries() {
+    public List<LogEntry> getEntranceControlEntries() {
         return entranceControlEntries;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Attendee attendee = (Attendee) o;
+        return id.equals(attendee.id) && email.equals(attendee.email);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, email);
     }
 }

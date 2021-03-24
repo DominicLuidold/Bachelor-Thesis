@@ -1,6 +1,7 @@
 package at.fhv.dlu9576.vaadin.userstory1.persistence.entity;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 import java.util.UUID;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,7 +13,7 @@ import javax.persistence.ManyToOne;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-public class EntranceControl {
+public class LogEntry {
 
     public enum EntranceStatus {
         ENTERED,
@@ -76,5 +77,22 @@ public class EntranceControl {
 
     public void setTimestamp(LocalDateTime timestamp) {
         this.timestamp = timestamp;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        LogEntry logEntry = (LogEntry) o;
+        return id.equals(logEntry.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

@@ -22,21 +22,22 @@ final class AttendeesColumn extends VerticalLayout {
      * @param heading  The heading
      * @param infoText The info text
      * @param grid     The {@link Grid<Attendee>} of {@link Attendee}s
+     * @param gridId   The CSS id (also used for identifying the Grid itself)
      */
-    public AttendeesColumn(String heading, String infoText, Grid<Attendee> grid) {
-        configureGrid(grid);
+    public AttendeesColumn(String heading, String infoText, Grid<Attendee> grid, String gridId) {
+        configureGrid(grid, gridId);
         add(new H3(heading), new Text(infoText), grid);
     }
 
     /**
      * Configures the default behaviour for a grid for the entrance control.
      *
-     * @param grid The grid to configure
+     * @param grid   The grid to configure
+     * @param gridId The CSS id (also used for identifying the Grid itself)
      */
-    private void configureGrid(Grid<Attendee> grid) {
+    private void configureGrid(Grid<Attendee> grid, String gridId) {
+        grid.setId(gridId);
         grid.setSelectionMode(Grid.SelectionMode.MULTI);
-        grid.removeColumnByKey("id");
-        grid.removeColumnByKey("phone");
         grid.setColumns("firstName", "lastName", "email");
         grid.getColumns().forEach(col -> col.setAutoWidth(true));
     }

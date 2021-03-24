@@ -1,6 +1,6 @@
 package at.fhv.dlu9576.vaadin.general.presentation;
 
-import at.fhv.dlu9576.vaadin.userstory1.presentation.EntranceControlView;
+import at.fhv.dlu9576.vaadin.userstory1.presentation.EventSelectionView;
 import at.fhv.dlu9576.vaadin.userstory2.presentation.PhotoManagerView;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.ComponentUtil;
@@ -76,7 +76,7 @@ public class MainView extends AppLayout {
     private Component[] createMenuItems() {
         return new Tab[] {
             createTab("Home", HomeView.class),
-            createTab("Echtzeit Eingangskontrolle", EntranceControlView.class),
+            createTab("Echtzeit Eingangskontrolle", EventSelectionView.class),
             createTab("Fotoverwaltung", PhotoManagerView.class)
         };
     }
