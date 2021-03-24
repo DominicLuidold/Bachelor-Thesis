@@ -258,8 +258,8 @@ Der nachfolgende Abschnitt befasst sich daher im Detail mit der Funktionsweise u
 Vaadin ist ein Framework beziehungsweise eine Plattform, mit der Webapplikationen sowohl komplett in Java, vollständig mit TypeScript und HTML als auch in einer Kombination beider entwickelt und umgesetzt werden können. Die beiden Ansätze sind dabei in zwei verschiedene Frameworks aufgeteilt, um - je nach Einsatzzweck - diese entsprechend einzusetzen:
 
 \begin{itemize}
-    \item \textbf{Vaadin Flow} ist ein Framework, mit dem Webapplikationen in Java umgesetzt werden können. Technologien wie beispielsweise HTML oder JavaScript werden bei der Entwicklung der \acs{UI} nicht benötigt, der gesamte Programmcode basiert auf einer einheitlichen Programmiersprache. Die gesamte Anwendung selbst läuft auf einem Server, während das Framework den Applikationszustand sowie die Client-Server-Kommunikation übernimmt.  \parencite[][]{vaadin_ltd_vaadin_nodate-1}
-    \item \textbf{Vaadin Fusion} ist ein Framework, bei dem TypeScript für das Frontend auf dem Client und Java für das Backend auf dem Server eingesetzt wird. Mit Fusion können clientseitig reaktive Webapplikationen entwickelt werden, die typsichere Java Endpunkte aufrufen. Vorgefertigte Komponenten erleichtern hierbei das Entwickeln der \acs{UI}, während eigene Elemente mittels voller Kontrolle über das \ac{DOM} umgesetzt werden können. \parencite[][]{vaadin_ltd_vaadin_nodate}
+    \item \textbf{Vaadin Flow} ist ein Framework, mit dem Webapplikationen in Java umgesetzt werden können. Technologien wie beispielsweise HTML oder JavaScript werden bei der Entwicklung der \acs{UI} nicht benötigt, der gesamte Programmcode basiert auf einer einheitlichen Programmiersprache. Die gesamte Anwendung selbst läuft auf einem Server, während das Framework den Applikationszustand sowie die Client-Server-Kommunikation übernimmt.  \parencite[][]{vaadin_ltd_vaadin_nodate}
+    \item \textbf{Vaadin Fusion} ist ein Framework, bei dem TypeScript für das Frontend auf dem Client und Java für das Backend auf dem Server eingesetzt wird. Mit Fusion können clientseitig reaktive Webapplikationen entwickelt werden, die typsichere Java Endpunkte aufrufen. Vorgefertigte Komponenten erleichtern hierbei das Entwickeln der \acs{UI}, während eigene Elemente mittels voller Kontrolle über das \ac{DOM} umgesetzt werden können. \parencite[][]{vaadin_ltd_vaadin_nodate-1}
 \end{itemize}
 
 Diese Arbeit befasst sich nachfolgend primär mit \textit{Vaadin Flow}, um eine alternative Herangehensweise aufzuzeigen, wie eine \ac{SPA} komplett auf dem Server und mittels Java entwickelt werden kann. Durch diesen Fokus kann im weiteren Verlauf ein tiefergehenderer Vergleich der Funktionalitäten und Konzepte von Vaadin und Angular bewerkstelligt werden, der bei spezifischen Punkten konkret auf die Unterschiede der beiden Technologien eingeht.
@@ -272,13 +272,13 @@ Vaadin Flow bietet daher die Möglichkeit, mit einer vollständig in Java geschr
 
 \begin{listing}[ht]
     \inputminted[fontsize=\footnotesize,linenos]{java}{code/Vaadin_Java-UI-sample.java}
-    \caption[Beispiel einer einfachen \acs{UI} mittels der \textit{Java API}]{Beispiel einer einfachen \acs{UI} mittels der \textit{Java API}\newline(Quelle: \cite[][Framework - Introduction - Overview]{vaadin_ltd_documentation_nodate})}
+    \caption[Beispiel einer einfachen \acs{UI} mittels der \textit{Java API}]{Beispiel einer einfachen \acs{UI} mittels der \textit{Java API}\newline(Quelle: \cite[][]{vaadin_ltd_overview_2021})}
     \label{code:vaadin-ui-java-sample}
 \end{listing}
 
 Während mit Vaadin Flow hauptsächlich in Java, und somit auf dem Server, entwickelt wird, bietet das Framework dennoch die Möglichkeit, auf Browser \acsp{API}, spezifische Web Components sowie auf das \ac{DOM} zuzugreifen.
 
-Als Vorteil stellt sich zudem heraus, dass die Anbindung des Frontends an ein Backend in den meisten Fällen mit Vaadin Flow bereits komplett vorhanden ist und nicht separat mit auf REST basierender Kommunikation umgesetzt werden muss. Dadurch kann die \acs{UI} und die dafür benötigten Daten direkt über Java verknüpft und auch aktualisiert werden. Hierbei unterstützt das mitgelieferte \textit{Two-way data binding} die Entwicklung und Benutzbarkeit, indem Änderungen auf dem Client automatisch auch auf dem Server - und umgekehrt - abgebildet werden. \parencite[][Framework - Introduction - Overview]{vaadin_ltd_documentation_nodate}
+Als Vorteil stellt sich zudem heraus, dass die Anbindung des Frontends an ein Backend in den meisten Fällen mit Vaadin Flow bereits komplett vorhanden ist und nicht separat mit auf REST basierender Kommunikation umgesetzt werden muss. Dadurch kann die \acs{UI} und die dafür benötigten Daten direkt über Java verknüpft und auch aktualisiert werden. Hierbei unterstützen mitgelieferte \textit{Events} und \textit{Event Listener} die Entwicklung und Benutzbarkeit, indem Änderungen auf dem Client automatisch auch auf dem Server - und umgekehrt - abgebildet werden. \parencite[][]{vaadin_ltd_overview_2021-2}
 
 \subsection{Kommunikation zwischen Client und Server}
 \label{sub-sec:kommunikation-client-server}
@@ -372,7 +372,7 @@ Quellcode \ref{code:vaadin-textfield} auf Seite \pageref{code:vaadin-textfield} 
 
 \begin{listing}[ht]
     \inputminted[fontsize=\footnotesize,linenos]{java}{code/Vaadin_Text-Field_sample.java}
-    \caption[Mögliche Umsetzungen des Vaadin \textit{Text Field}]{Mögliche Umsetzungen des Vaadin \textit{Text Field}\newline(Quelle: \cite[][\enquote{Text Field} - Examples]{vaadin_ltd_mobile_nodate})}
+    \caption[Mögliche Umsetzungen des Vaadin \textit{Text Field}]{Mögliche Umsetzungen des Vaadin \textit{Text Field}\newline(Quelle: \cite[][Basic text field]{vaadin_ltd_java_nodate})}
     \label{code:vaadin-textfield}
 \end{listing}
 
@@ -381,7 +381,7 @@ Abbildung \ref{fig:vaadin-textfield-output} auf Seite \pageref{fig:vaadin-textfi
 \begin{figure}[ht]
     \centering
     \includegraphics[scale=0.7]{images/Vaadin_Text-Field-output.png}
-    \caption[Erzeugter Output von Quellcode \ref{code:vaadin-textfield}]{Erzeugter Output von Quellcode \ref{code:vaadin-textfield}\newline(Quelle: \cite[][\enquote{Text Field} - Examples]{vaadin_ltd_mobile_nodate})}
+    \caption[Erzeugter Output von Quellcode \ref{code:vaadin-textfield}]{Erzeugter Output von Quellcode \ref{code:vaadin-textfield}\newline(Quelle: \cite[][Basic text field]{vaadin_ltd_java_nodate})}
     \label{fig:vaadin-textfield-output}
 \end{figure}
 
@@ -391,19 +391,19 @@ Wilken schreibt, dass die meisten Webapplikationen die Funktionalität benötige
 
 \subsubsection{Routing bei Vaadin}
 \label{sub-sub-sec:routing-herangehensweise-vaadin}
-Vaadin bietet die Möglichkeit, mittels der \texttt{@Route} Annotation alle Components (sowohl Vaadin Components als auch eigene) über eine spezifische URL ansprechbar zu machen und diese somit aufrufen zu können. Quellcode \ref{code:route-annotation-vaadin} auf Seite    \pageref{code:route-annotation-vaadin} stellt beispielhaft dar, wie eine selbst entwickelte Komponente im Browser über die URL \path{http://example.com/some/path} angesteuert werden kann. \parencite[][Framework - Routing and Navigation - Defining Routes with @Route]{vaadin_ltd_documentation_nodate}
+Vaadin bietet die Möglichkeit, mittels der \texttt{@Route} Annotation alle Components (sowohl Vaadin Components als auch eigene) über eine spezifische URL ansprechbar zu machen und diese somit aufrufen zu können. Quellcode \ref{code:route-annotation-vaadin} auf Seite    \pageref{code:route-annotation-vaadin} stellt beispielhaft dar, wie eine selbst entwickelte Komponente im Browser über die URL \path{http://example.com/some/path} angesteuert werden kann. \parencite[][Using the @Route Annotation]{vaadin_ltd_overview_2021-1}
 
 \begin{listing}[ht]
     \inputminted[fontsize=\footnotesize,linenos]{java}{code/Vaadin_Route-annotation.java}
-    \caption[Beispielhafte Nutzung der \texttt{@Route} Annotation]{Beispielhafte Nutzung der \texttt{@Route} Annotation\newline(Quelle: \cite[][Framework - Routing and Navigation - Defining Routes with @Route]{vaadin_ltd_documentation_nodate})}
+    \caption[Beispielhafte Nutzung der \texttt{@Route} Annotation]{Beispielhafte Nutzung der \texttt{@Route} Annotation\newline(Quelle: \cite[][Using the @Route Annotation]{vaadin_ltd_overview_2021-1})}
     \label{code:route-annotation-vaadin}
 \end{listing}
 
-Mittels verschiedener Events, die während der Nutzung der Webapplikation und der darin auftretenden Navigation ausgelöst werden, entsteht ein sogenannter \textit{Navigation Lifecycle}. Dieser kann dafür genutzt werden, um zusätzliche Funktionalitäten anzubieten. UI Komponenten implementieren dafür entsprechende \texttt{Listener}, welche auf zugehörigen \texttt{Observer} Interfaces aufbauen. Mit dem Navigation Lifecycle und einem \texttt{BeforeLeaveEvent} kann beispielsweise eine Abfrage im \acl{UI} erstellt werden, die Nutzer:innen bestätigen lässt, dass das Verlassen der Website womöglich zum Verlust von Daten führt. \parencite[][Framework - Routing and Navigation - Navigation Lifecycle]{vaadin_ltd_documentation_nodate}
+Mittels verschiedener Events, die während der Nutzung der Webapplikation und der darin auftretenden Navigation ausgelöst werden, entsteht ein sogenannter \textit{Navigation Lifecycle}. Dieser kann dafür genutzt werden, um zusätzliche Funktionalitäten anzubieten. UI Komponenten implementieren dafür entsprechende \texttt{Listener}, welche auf zugehörigen \texttt{Observer} Interfaces aufbauen. Mit dem Navigation Lifecycle und einem \texttt{BeforeLeaveEvent} kann beispielsweise eine Abfrage im \acl{UI} erstellt werden, die Nutzer:innen bestätigen lässt, dass das Verlassen der Website womöglich zum Verlust von Daten führt. \parencite[][]{vaadin_ltd_navigation_2021}
 
 \newpage
 
-URL Parameter (sowohl solche, die Teil der URL selbst sind als auch Query Parameter) können mittels dem \texttt{HasUrlParameter} Interface abgefragt und im weiteren Verlauf genutzt werden. Wie Quellcode \ref{code:url-params-vaadin} auf Seite \pageref{code:url-params-vaadin} zeigt, kann über die \texttt{setParameter} Methode auf Teile der URL zugegriffen werden, die mittels Generics direkt in der Methode verankert sind. Query Parameter lassen sich währenddessen mit dem \texttt{BeforeEvent} ebenfalls in der selben Methode abfragen. \parencite[][Framework - Routing and Navigation - Routing and URL Parameters]{vaadin_ltd_documentation_nodate}
+URL Parameter (sowohl solche, die Teil der URL selbst sind als auch Query Parameter) können mittels dem \texttt{HasUrlParameter} Interface abgefragt und im weiteren Verlauf genutzt werden. Wie Quellcode \ref{code:url-params-vaadin} auf Seite \pageref{code:url-params-vaadin} zeigt, kann über die \texttt{setParameter} Methode auf Teile der URL zugegriffen werden, die mittels Generics direkt in der Methode verankert sind. \parencite[][]{vaadin_ltd_typed_2021} Query Parameter lassen sich währenddessen mit dem \texttt{BeforeEvent} ebenfalls in der selben Methode abfragen. \parencite[][]{vaadin_ltd_query_2021}
 
 \begin{listing}[ht]
     \inputminted[fontsize=\footnotesize,linenos]{java}{code/Luidold_Vaadin-URL-params.java}
@@ -416,9 +416,9 @@ URL Parameter (sowohl solche, die Teil der URL selbst sind als auch Query Parame
 Um die Navigation zwischen verschiedenen Routen zu ermöglichen, bietet Vaadin - neben dem händischen Abändern der URL im Browser - verschiedene Ansätze:
 
 \begin{itemize}
-    \item Mittels der \texttt{RouterLink} Komponente können Links erstellt werden, welche die angegebene Route als Ziel haben (\texttt{menu.add(new RouterLink("Home", HomeView.class));}). \parencite[][Framework - Routing and Navigation - Navigating Between Routes]{vaadin_ltd_documentation_nodate}
-    \item Gewöhnliche HTML Anker Tags können genutzt werden, um zwischen verschiedenen Routen zu navigieren (\texttt{<a href="company" [...]}). Diese verursachen jedoch ein Neuladen der gesamten Seite. Wenn der zusätzliche Ladeprozess der Seite verhindert werden soll, kann das Vaadin-eigene \texttt{router-link} Attribut zusätzlich angehängt werden. \parencite[][Framework - Routing and Navigation - Navigating Between Routes]{vaadin_ltd_documentation_nodate}
-    \item Serverseitig kann mittels \texttt{UI.navigate(/* Route name */)} der Wechsel zu einer neuen Route ausgelöst werden. \parencite[][Framework - Routing and Navigation - Navigating Between Routes]{vaadin_ltd_documentation_nodate}
+    \item Mittels der \texttt{RouterLink} Komponente können Links erstellt werden, welche die angegebene Route als Ziel haben (\texttt{menu.add(new RouterLink("Home", HomeView.class));}). \parencite[][Using the RouterLink Component]{vaadin_ltd_navigating_2021}
+    \item Gewöhnliche HTML Anker Tags können genutzt werden, um zwischen verschiedenen Routen zu navigieren (\texttt{<a href="company" [...]}). Diese verursachen jedoch ein Neuladen der gesamten Seite. Wenn der zusätzliche Ladeprozess der Seite verhindert werden soll, kann das Vaadin-eigene \texttt{router-link} Attribut zusätzlich angehängt werden. \parencite[][Using Standard href Links]{vaadin_ltd_navigating_2021}
+    \item Serverseitig kann mittels \texttt{UI.navigate(/* Route name */)} der Wechsel zu einer neuen Route ausgelöst werden. \parencite[][Server-side Navigation]{vaadin_ltd_navigating_2021}
 \end{itemize}
 
 \subsubsection{Routing bei Angular}
