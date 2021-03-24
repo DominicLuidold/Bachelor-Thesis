@@ -55,10 +55,10 @@ public class LogEntryService {
             logEntries.add(entry);
         });
 
-        LOG.log(Level.INFO, "Marking [{}] attendees as {}", new Object[] {
-            logEntries.size(),
-            status.equals(LogEntry.EntranceStatus.ENTERED) ? "[Entered]" : "[Exited]"
-        });
+        LOG.log(
+            Level.INFO, "Marking [" + logEntries.size() + "] attendees as "
+                + (status.equals(LogEntry.EntranceStatus.ENTERED) ? "[Entered]" : "[Exited]")
+        );
         logEntryRepository.saveAll(logEntries);
     }
 

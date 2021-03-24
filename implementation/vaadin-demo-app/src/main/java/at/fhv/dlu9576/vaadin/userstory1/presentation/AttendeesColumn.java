@@ -2,6 +2,7 @@ package at.fhv.dlu9576.vaadin.userstory1.presentation;
 
 import at.fhv.dlu9576.vaadin.userstory1.persistence.entity.Attendee;
 import com.vaadin.flow.component.Text;
+import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -23,10 +24,17 @@ final class AttendeesColumn extends VerticalLayout {
      * @param infoText The info text
      * @param grid     The {@link Grid<Attendee>} of {@link Attendee}s
      * @param gridId   The CSS id (also used for identifying the Grid itself)
+     * @param button   The button used to move selected Attendees
      */
-    public AttendeesColumn(String heading, String infoText, Grid<Attendee> grid, String gridId) {
+    public AttendeesColumn(
+        String heading,
+        String infoText,
+        Grid<Attendee> grid,
+        String gridId,
+        Button button
+    ) {
         configureGrid(grid, gridId);
-        add(new H3(heading), new Text(infoText), grid);
+        add(new H3(heading), new Text(infoText), button, grid);
     }
 
     /**

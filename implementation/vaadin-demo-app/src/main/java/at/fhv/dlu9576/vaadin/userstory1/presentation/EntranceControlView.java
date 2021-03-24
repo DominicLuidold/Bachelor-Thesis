@@ -6,6 +6,7 @@ import at.fhv.dlu9576.vaadin.userstory1.persistence.entity.LogEntry;
 import at.fhv.dlu9576.vaadin.userstory1.persistence.service.AttendeeService;
 import at.fhv.dlu9576.vaadin.userstory1.persistence.service.LogEntryService;
 import com.vaadin.flow.component.ComponentEventListener;
+import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.grid.dnd.GridDragEndEvent;
@@ -15,7 +16,6 @@ import com.vaadin.flow.component.grid.dnd.GridDropLocation;
 import com.vaadin.flow.component.grid.dnd.GridDropMode;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.component.page.Push;
 import com.vaadin.flow.data.provider.ListDataProvider;
 import com.vaadin.flow.router.BeforeEnterEvent;
 import com.vaadin.flow.router.BeforeEnterObserver;
@@ -37,15 +37,29 @@ public class EntranceControlView extends HorizontalLayout implements BeforeEnter
     private final LogEntryService logEntryService;
 
     private UUID eventId;
+
     private final Grid<Attendee> attendeeGrid = new Grid<>(Attendee.class);
     private final Grid<Attendee> enteredAttendeesGrid = new Grid<>(Attendee.class);
     private final Grid<Attendee> exitedAttendeesGrid = new Grid<>(Attendee.class);
+
+    private final List<Attendee> selectedFromAttendeeGrid = new LinkedList<>();
+    private final List<Attendee> selectedFromEnteredGrid = new LinkedList<>();
+    private final List<Attendee> selectedFromExitedGrid = new LinkedList<>();
+
+    private final Button moveToEnteredBtn = new Button("Verschieben zu: Im Veranstaltungsort");
+    private final Button moveToExitedBtn = new Button(
+        "Verschieben zu: Außerhalb des Veranstaltungsorts"
+    );
+    private final Button moveToEnteredFromExitedBtn = new Button(
+        "Verschieben zu: Im Veranstaltungsort"
+    );
 
     public EntranceControlView(AttendeeService attendeeService, LogEntryService logEntryService) {
         this.attendeeService = attendeeService;
         this.logEntryService = logEntryService;
 
         setSizeFull();
+        setClassName("responsiveGrids");
         configureDragAndDrop();
 
         add(
@@ -53,17 +67,20 @@ public class EntranceControlView extends HorizontalLayout implements BeforeEnter
             prepareEnteredAttendeesColumn(),
             prepareExitedAttendeesColumn()
         );
+
+        prepareButtonFunctionality();
     }
 
     private VerticalLayout prepareDefaultAttendeesColumn() {
         return new AttendeesColumn(
             "Allgemeine Teilnehmer:innenliste",
             "Diese List repräsentiert alle Teilnehmer:innen des Events. " +
-                "Diese können ausgewählt, und mittels Drag'n'Drop in die jeweils passende Spalte " +
-                "(\"Im Veranstaltungsort\" und \"Außerhalb des Veranstaltungsorts\") verschoben " +
-                "werden.",
+                "Diese können ausgewählt, und mittels Button & Drag'n'Drop in die jeweils " +
+                "passende Spalte (\"Im Veranstaltungsort\" und \"Außerhalb des " +
+                "Veranstaltungsorts\") verschoben werden.",
             attendeeGrid,
-            "default-attendees-grid"
+            "default-attendees-grid",
+            moveToEnteredBtn
         );
     }
 
@@ -72,10 +89,11 @@ public class EntranceControlView extends HorizontalLayout implements BeforeEnter
             "Im Veranstaltungsort",
             "Diese List repräsentiert alle Teilnehmer:innen des Events, " +
                 "die zum aktuellen Zeitpunkt innerhalb des Veranstaltungsorts sind und mittels " +
-                "Drag'n'Drop in die Spalte \"Außerhalb des Veranstaltungsorts\" verschoben werden" +
-                " können.",
+                "Button & Drag'n'Drop in die Spalte \"Außerhalb des Veranstaltungsorts\" " +
+                "verschoben werden können.",
             enteredAttendeesGrid,
-            "entered-attendees-grid"
+            "entered-attendees-grid",
+            moveToExitedBtn
         );
     }
 
@@ -84,9 +102,11 @@ public class EntranceControlView extends HorizontalLayout implements BeforeEnter
             "Außerhalb des Veranstaltungsorts",
             "Diese List repräsentiert alle Teilnehmer:innen des Events, " +
                 "die zum aktuellen Zeitpunkt außerhalb des Veranstaltungsorts sind und mittels " +
-                "Drag'n'Drop in die Spalte \"Im Veranstaltungsort\" verschoben werden können.",
+                "Button & Drag'n'Drop in die Spalte \"Im Veranstaltungsort\" verschoben werden " +
+                "können.",
             exitedAttendeesGrid,
-            "exited-attendees-grid"
+            "exited-attendees-grid",
+            moveToEnteredFromExitedBtn
         );
     }
 
@@ -174,6 +194,77 @@ public class EntranceControlView extends HorizontalLayout implements BeforeEnter
         exitedAttendeesGrid.addDragStartListener(dragStartListener);
         exitedAttendeesGrid.addDragEndListener(dragEndListener);
         exitedAttendeesGrid.setRowsDraggable(true);
+    }
+
+    private void prepareButtonFunctionality() {
+        attendeeGrid.asMultiSelect().addSelectionListener(
+            event -> selectedFromAttendeeGrid.addAll(event.getAllSelectedItems())
+        );
+
+        enteredAttendeesGrid.asMultiSelect().addSelectionListener(
+            event -> selectedFromEnteredGrid.addAll(event.getAllSelectedItems())
+        );
+
+        exitedAttendeesGrid.asMultiSelect().addSelectionListener(
+            event -> selectedFromExitedGrid.addAll(event.getAllSelectedItems())
+        );
+
+        configureBtnListener(moveToEnteredBtn, attendeeGrid, enteredAttendeesGrid);
+        configureBtnListener(moveToExitedBtn, enteredAttendeesGrid, exitedAttendeesGrid);
+        configureBtnListener(moveToEnteredFromExitedBtn, exitedAttendeesGrid, enteredAttendeesGrid);
+    }
+
+    private void configureBtnListener(Button button, Grid<Attendee> source, Grid<Attendee> target) {
+        List<Attendee> selectedItems = new LinkedList<>();
+        if (source.getId().orElse("").equals("default-attendees-grid")) {
+            selectedItems = selectedFromAttendeeGrid;
+        } else if (source.getId().orElse("").equals("entered-attendees-grid")) {
+            selectedItems = selectedFromEnteredGrid;
+        } else if (source.getId().orElse("").equals("exited-attendees-grid")) {
+            selectedItems = selectedFromExitedGrid;
+        }
+
+        List<Attendee> finalSelectedItems = selectedItems;
+        button.addClickListener(event -> {
+            @SuppressWarnings("unchecked")
+            ListDataProvider<Attendee> sourceDataProvider =
+                (ListDataProvider<Attendee>) source.getDataProvider();
+            List<Attendee> shrunkAttendeeList = new LinkedList<>(sourceDataProvider.getItems());
+            shrunkAttendeeList.removeAll(finalSelectedItems);
+            source.setItems(shrunkAttendeeList);
+
+            target.getId().ifPresent(id -> {
+                if (id.equals("entered-attendees-grid")) {
+                    logEntryService.markAttendeesAs(
+                        LogEntry.EntranceStatus.ENTERED,
+                        eventId,
+                        finalSelectedItems
+                    );
+                } else if (id.equals("exited-attendees-grid")) {
+                    logEntryService.markAttendeesAs(
+                        LogEntry.EntranceStatus.EXITED,
+                        eventId,
+                        finalSelectedItems
+                    );
+                }
+            });
+
+            @SuppressWarnings("unchecked")
+            ListDataProvider<Attendee> targetDataProvider =
+                (ListDataProvider<Attendee>) target.getDataProvider();
+            List<Attendee> enlargedAttendeeList = new LinkedList<>(targetDataProvider.getItems());
+            enlargedAttendeeList.addAll(finalSelectedItems);
+            target.setItems(enlargedAttendeeList);
+
+            // Clean up
+            selectedFromAttendeeGrid.clear();
+            selectedFromEnteredGrid.clear();
+            selectedFromExitedGrid.clear();
+
+            attendeeGrid.asMultiSelect().deselectAll();
+            enteredAttendeesGrid.asMultiSelect().deselectAll();
+            exitedAttendeesGrid.asMultiSelect().deselectAll();
+        });
     }
 
     private void updateGridData() {

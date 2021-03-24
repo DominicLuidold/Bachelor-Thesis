@@ -30,7 +30,7 @@ public class MainView extends AppLayout {
 
     public MainView() {
         setPrimarySection(Section.DRAWER);
-        addToNavbar(true, createHeaderContent());
+        addToNavbar(false, createHeaderContent());
         menu = createMenu();
         addToDrawer(createDrawerContent(menu));
     }
