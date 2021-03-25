@@ -59,7 +59,7 @@ public class MainView extends AppLayout {
         logoLayout.setId("logo");
         logoLayout.setAlignItems(FlexComponent.Alignment.CENTER);
         logoLayout.add(new Image("images/logo.png", "Vaadin Demo App logo"));
-        logoLayout.add(new H1("Vaadin Demo App"));
+        logoLayout.add(new H1(getTranslation("navigation.title")));
         layout.add(logoLayout, menu);
         return layout;
     }
@@ -75,9 +75,9 @@ public class MainView extends AppLayout {
 
     private Component[] createMenuItems() {
         return new Tab[] {
-            createTab("Home", HomeView.class),
-            createTab("Echtzeit Eingangskontrolle", EventSelectionView.class),
-            createTab("Fotoverwaltung", PhotoManagerView.class)
+            createTab(getTranslation("navigation.tab.home"), HomeView.class),
+            createTab(getTranslation("navigation.tab.entrance-control"), EventSelectionView.class),
+            createTab(getTranslation("navigation.tab.photo-manager"), PhotoManagerView.class)
         };
     }
 

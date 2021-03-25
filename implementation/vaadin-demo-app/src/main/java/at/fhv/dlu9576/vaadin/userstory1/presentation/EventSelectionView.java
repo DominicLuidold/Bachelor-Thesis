@@ -30,10 +30,8 @@ public class EventSelectionView extends VerticalLayout {
     }
 
     private void prepareAdditionalInfo() {
-        H3 heading = new H3("Auswählen eines Events");
-        Text infoText = new Text("Um die Echtzeit Eingangskontrolle zu starten, muss ein " +
-            "unstenstehendes Event ausgewählt und darauf geklickt werden."
-        );
+        H3 heading = new H3(getTranslation("event-selection.heading"));
+        Text infoText = new Text(getTranslation("event-selection.explanation"));
         add(heading, infoText);
     }
 
@@ -50,6 +48,4 @@ public class EventSelectionView extends VerticalLayout {
             )
         ));
     }
-
-
 }

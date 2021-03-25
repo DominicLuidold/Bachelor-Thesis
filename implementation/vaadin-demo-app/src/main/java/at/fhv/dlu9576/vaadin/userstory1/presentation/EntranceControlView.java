@@ -46,12 +46,14 @@ public class EntranceControlView extends HorizontalLayout implements BeforeEnter
     private final List<Attendee> selectedFromEnteredGrid = new LinkedList<>();
     private final List<Attendee> selectedFromExitedGrid = new LinkedList<>();
 
-    private final Button moveToEnteredBtn = new Button("Verschieben zu: Im Veranstaltungsort");
+    private final Button moveToEnteredBtn = new Button(
+        getTranslation("entrance-control.default-grid.button")
+    );
     private final Button moveToExitedBtn = new Button(
-        "Verschieben zu: Außerhalb des Veranstaltungsorts"
+        getTranslation("entrance-control.entered-grid.button")
     );
     private final Button moveToEnteredFromExitedBtn = new Button(
-        "Verschieben zu: Im Veranstaltungsort"
+        getTranslation("entrance-control.exited-grid.button")
     );
 
     public EntranceControlView(AttendeeService attendeeService, LogEntryService logEntryService) {
@@ -73,11 +75,8 @@ public class EntranceControlView extends HorizontalLayout implements BeforeEnter
 
     private VerticalLayout prepareDefaultAttendeesColumn() {
         return new AttendeesColumn(
-            "Allgemeine Teilnehmer:innenliste",
-            "Diese List repräsentiert alle Teilnehmer:innen des Events. " +
-                "Diese können ausgewählt, und mittels Button & Drag'n'Drop in die jeweils " +
-                "passende Spalte (\"Im Veranstaltungsort\" und \"Außerhalb des " +
-                "Veranstaltungsorts\") verschoben werden.",
+            getTranslation("entrance-control.default-grid.heading"),
+            getTranslation("entrance-control.default-grid.explanation"),
             attendeeGrid,
             "default-attendees-grid",
             moveToEnteredBtn
@@ -86,11 +85,8 @@ public class EntranceControlView extends HorizontalLayout implements BeforeEnter
 
     private VerticalLayout prepareEnteredAttendeesColumn() {
         return new AttendeesColumn(
-            "Im Veranstaltungsort",
-            "Diese List repräsentiert alle Teilnehmer:innen des Events, " +
-                "die zum aktuellen Zeitpunkt innerhalb des Veranstaltungsorts sind und mittels " +
-                "Button & Drag'n'Drop in die Spalte \"Außerhalb des Veranstaltungsorts\" " +
-                "verschoben werden können.",
+            getTranslation("entrance-control.entered-grid.heading"),
+            getTranslation("entrance-control.entered-grid.explanation"),
             enteredAttendeesGrid,
             "entered-attendees-grid",
             moveToExitedBtn
@@ -99,11 +95,8 @@ public class EntranceControlView extends HorizontalLayout implements BeforeEnter
 
     private VerticalLayout prepareExitedAttendeesColumn() {
         return new AttendeesColumn(
-            "Außerhalb des Veranstaltungsorts",
-            "Diese List repräsentiert alle Teilnehmer:innen des Events, " +
-                "die zum aktuellen Zeitpunkt außerhalb des Veranstaltungsorts sind und mittels " +
-                "Button & Drag'n'Drop in die Spalte \"Im Veranstaltungsort\" verschoben werden " +
-                "können.",
+            getTranslation("entrance-control.exited-grid.heading"),
+            getTranslation("entrance-control.exited-grid.explanation"),
             exitedAttendeesGrid,
             "exited-attendees-grid",
             moveToEnteredFromExitedBtn
