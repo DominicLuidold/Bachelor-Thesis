@@ -9,15 +9,16 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Random;
 import java.util.UUID;
-import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import javax.annotation.PostConstruct;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 @Service
 public class AttendeeService {
-    private static final Logger LOG = Logger.getLogger(AttendeeService.class.getName());
+    private static final Logger LOG = LoggerFactory.getLogger(AttendeeService.class);
     private final AttendeeRepository attendeeRepository;
     private final EventRepository eventRepository;
 
@@ -41,7 +42,7 @@ public class AttendeeService {
     @PostConstruct
     public void populateTestData() {
         if (eventRepository.count() == 0) {
-            LOG.info("Populating [Event] test data..");
+            LOG.debug("Populating [Event] test data..");
 
             eventRepository.saveAll(
                 Stream.of("Event #1", "Event #2").map(name -> {
@@ -61,7 +62,7 @@ public class AttendeeService {
         }
 
         if (attendeeRepository.count() == 0) {
-            LOG.info("Populating [Attendee] test data..");
+            LOG.debug("Populating [Attendee] test data..");
 
             List<Event> events = eventRepository.findAll();
             attendeeRepository.saveAll(

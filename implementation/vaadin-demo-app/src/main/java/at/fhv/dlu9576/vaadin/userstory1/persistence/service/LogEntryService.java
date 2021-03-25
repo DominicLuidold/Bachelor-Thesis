@@ -11,14 +11,14 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.function.Function;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.stream.Collectors;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 @Service
 public class LogEntryService {
-    private static final Logger LOG = Logger.getLogger(LogEntryService.class.getName());
+    private static final Logger LOG = LoggerFactory.getLogger(LogEntryService.class);
 
     private final EventRepository eventRepository;
     private final LogEntryRepository logEntryRepository;
@@ -39,7 +39,7 @@ public class LogEntryService {
     ) {
         Optional<Event> eventOptional = eventRepository.findById(eventId);
         if (eventOptional.isEmpty()) {
-            LOG.log(Level.SEVERE, "Could not find event with id [{}]", eventId);
+            LOG.error("Could not find event with id [{}]", eventId);
             return;
         }
 
@@ -55,9 +55,10 @@ public class LogEntryService {
             logEntries.add(entry);
         });
 
-        LOG.log(
-            Level.INFO, "Marking [" + logEntries.size() + "] attendees as "
-                + (status.equals(LogEntry.EntranceStatus.ENTERED) ? "[Entered]" : "[Exited]")
+        LOG.info(
+            "Marking [{}] attendees as [{}]",
+            logEntries.size(),
+            status.equals(LogEntry.EntranceStatus.ENTERED) ? "Entered" : "Exited"
         );
         logEntryRepository.saveAll(logEntries);
     }
