@@ -6,10 +6,10 @@ import at.fhv.dlu9576.vaadin.userstory1.persistence.service.EventService;
 import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.H3;
+import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
-import com.vaadin.flow.router.RouteConfiguration;
 import com.vaadin.flow.router.RouteParameters;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -57,11 +57,11 @@ public class EventSelectionView extends VerticalLayout {
         eventGrid.asSingleSelect().addValueChangeListener(event -> {
             LOG.debug("Registered click on Event [{}]", event.getValue().getName());
 
-            getUI().get().navigate(
-                RouteConfiguration.forSessionScope().getUrl(
+            getUI().ifPresentOrElse(
+                ui -> ui.navigate(
                     EntranceControlView.class,
                     new RouteParameters("eventId", event.getValue().getId().toString())
-                )
+                ), () -> new Notification(getTranslation("general.error"), 3000).open()
             );
         });
     }
