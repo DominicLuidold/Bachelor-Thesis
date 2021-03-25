@@ -11,11 +11,14 @@ import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouteConfiguration;
 import com.vaadin.flow.router.RouteParameters;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Route(value = "entrance-control", layout = MainView.class)
 @PageTitle("Event-Übersicht | Echtzeit Eingangskontrolle")
 public class EventSelectionView extends VerticalLayout {
     private static final long serialVersionUID = -5647993022096824575L;
+    private static final Logger LOG = LoggerFactory.getLogger(EntranceControlView.class);
 
     private final EventService eventService;
     private final Grid<Event> eventGrid = new Grid<>(Event.class);
@@ -23,29 +26,43 @@ public class EventSelectionView extends VerticalLayout {
     public EventSelectionView(EventService eventService) {
         this.eventService = eventService;
 
+        // Styling
         setSizeFull();
+
+        // Components & component configuration
         configureGrid();
         prepareAdditionalInfo();
         add(eventGrid);
     }
 
+    /**
+     * Sets heading and explanation text.
+     */
     private void prepareAdditionalInfo() {
         H3 heading = new H3(getTranslation("event-selection.heading"));
         Text infoText = new Text(getTranslation("event-selection.explanation"));
         add(heading, infoText);
     }
 
+    /**
+     * Configures {@link Grid<Event>} to allow clicking on an {@link Event} row which subsequently
+     * redirects the user to the {@link EntranceControlView}.
+     */
     private void configureGrid() {
         eventGrid.setItems(eventService.findAll());
         eventGrid.setColumns("id", "name", "location", "startTime", "endTime", "description");
         eventGrid.getColumns().forEach(col -> col.setAutoWidth(true));
 
         // Configure route redirect
-        eventGrid.asSingleSelect().addValueChangeListener(event -> getUI().get().navigate(
-            RouteConfiguration.forSessionScope().getUrl(
-                EntranceControlView.class,
-                new RouteParameters("eventId", event.getValue().getId().toString())
-            )
-        ));
+        eventGrid.asSingleSelect().addValueChangeListener(event -> {
+            LOG.debug("Registered click on Event [{}]", event.getValue().getName());
+
+            getUI().orElseThrow().navigate(
+                RouteConfiguration.forSessionScope().getUrl(
+                    EntranceControlView.class,
+                    new RouteParameters("eventId", event.getValue().getId().toString())
+                )
+            );
+        });
     }
 }

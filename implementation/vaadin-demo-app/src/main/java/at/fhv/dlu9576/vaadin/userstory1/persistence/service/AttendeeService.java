@@ -35,10 +35,7 @@ public class AttendeeService {
         return attendeeRepository.findAllByEvents_Id(eventId);
     }
 
-    public long count() {
-        return attendeeRepository.count();
-    }
-
+    // TODO - fix Many-To-Many table not getting populated with data
     @PostConstruct
     public void populateTestData() {
         if (eventRepository.count() == 0) {

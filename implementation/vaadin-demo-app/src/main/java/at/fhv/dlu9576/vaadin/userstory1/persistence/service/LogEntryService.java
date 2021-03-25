@@ -32,6 +32,14 @@ public class LogEntryService {
         return removeDuplicates(logEntryRepository.findAllByEventId(eventId));
     }
 
+    /**
+     * Marks {@link Attendee}s as either {@link LogEntry.EntranceStatus#ENTERED} or
+     * {@link LogEntry.EntranceStatus#EXITED} by creating a new {@link LogEntry}.
+     *
+     * @param status    The new status of the attendees
+     * @param eventId   The event causing the status change
+     * @param attendees List of attendees that recently changes their status
+     */
     public void markAttendeesAs(
         LogEntry.EntranceStatus status,
         UUID eventId,
@@ -63,6 +71,14 @@ public class LogEntryService {
         logEntryRepository.saveAll(logEntries);
     }
 
+    /**
+     * Removes duplicate {@link LogEntry} entries and only keeps the most recent entry within the
+     * list based on the {@link LogEntry#getAttendee()} and {@link LogEntry#getTimestamp()}.
+     *
+     * @param logEntries List of entries with duplicates
+     *
+     * @return List without any duplicates
+     */
     private static List<LogEntry> removeDuplicates(List<LogEntry> logEntries) {
         return new LinkedList<>(logEntries.stream().collect(Collectors.toMap(
             LogEntry::getAttendee,

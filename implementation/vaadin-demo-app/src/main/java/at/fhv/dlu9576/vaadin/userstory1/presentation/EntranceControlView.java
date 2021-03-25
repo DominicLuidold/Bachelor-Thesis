@@ -26,25 +26,26 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Route(value = "entrance-control/:eventId", layout = MainView.class)
 @PageTitle("Echtzeit Eingangskontrolle")
 @CssImport("./views/entrance-control/entrance-control-view.css")
 public class EntranceControlView extends HorizontalLayout implements BeforeEnterObserver {
     private static final long serialVersionUID = 6414586759012039620L;
+    private static final Logger LOG = LoggerFactory.getLogger(EntranceControlView.class);
 
     private final AttendeeService attendeeService;
     private final LogEntryService logEntryService;
 
-    private UUID eventId;
+    private final Grid<Attendee> defaultGrid = new Grid<>(Attendee.class);
+    private final Grid<Attendee> enteredGrid = new Grid<>(Attendee.class);
+    private final Grid<Attendee> exitedGrid = new Grid<>(Attendee.class);
 
-    private final Grid<Attendee> attendeeGrid = new Grid<>(Attendee.class);
-    private final Grid<Attendee> enteredAttendeesGrid = new Grid<>(Attendee.class);
-    private final Grid<Attendee> exitedAttendeesGrid = new Grid<>(Attendee.class);
-
-    private final List<Attendee> selectedFromAttendeeGrid = new LinkedList<>();
-    private final List<Attendee> selectedFromEnteredGrid = new LinkedList<>();
-    private final List<Attendee> selectedFromExitedGrid = new LinkedList<>();
+    private final List<Attendee> selectedFromDefault = new LinkedList<>();
+    private final List<Attendee> selectedFromEntered = new LinkedList<>();
+    private final List<Attendee> selectedFromExited = new LinkedList<>();
 
     private final Button moveToEnteredBtn = new Button(
         getTranslation("entrance-control.default-grid.button")
@@ -56,57 +57,54 @@ public class EntranceControlView extends HorizontalLayout implements BeforeEnter
         getTranslation("entrance-control.exited-grid.button")
     );
 
+    private UUID eventId;
+
     public EntranceControlView(AttendeeService attendeeService, LogEntryService logEntryService) {
         this.attendeeService = attendeeService;
         this.logEntryService = logEntryService;
 
+        // Styling
         setSizeFull();
         setClassName("responsiveGrids");
+
+        // Components & component configuration
         configureDragAndDrop();
-
-        add(
-            prepareDefaultAttendeesColumn(),
-            prepareEnteredAttendeesColumn(),
-            prepareExitedAttendeesColumn()
-        );
-
+        add(prepareDefaultColumn(), prepareEnteredColumn(), prepareExitedColumn());
         prepareButtonFunctionality();
     }
 
-    private VerticalLayout prepareDefaultAttendeesColumn() {
+    private VerticalLayout prepareDefaultColumn() {
         return new AttendeesColumn(
             getTranslation("entrance-control.default-grid.heading"),
             getTranslation("entrance-control.default-grid.explanation"),
-            attendeeGrid,
+            defaultGrid,
             "default-attendees-grid",
             moveToEnteredBtn
         );
     }
 
-    private VerticalLayout prepareEnteredAttendeesColumn() {
+    private VerticalLayout prepareEnteredColumn() {
         return new AttendeesColumn(
             getTranslation("entrance-control.entered-grid.heading"),
             getTranslation("entrance-control.entered-grid.explanation"),
-            enteredAttendeesGrid,
+            enteredGrid,
             "entered-attendees-grid",
             moveToExitedBtn
         );
     }
 
-    private VerticalLayout prepareExitedAttendeesColumn() {
+    private VerticalLayout prepareExitedColumn() {
         return new AttendeesColumn(
             getTranslation("entrance-control.exited-grid.heading"),
             getTranslation("entrance-control.exited-grid.explanation"),
-            exitedAttendeesGrid,
+            exitedGrid,
             "exited-attendees-grid",
             moveToEnteredFromExitedBtn
         );
     }
 
     /**
-     * Configures/enables drag'n'drop between the {@link Attendee} list, the list of
-     * {@link LogEntry.EntranceStatus#ENTERED} attendees and the list of
-     * {@link LogEntry.EntranceStatus#EXITED} attendees
+     * Configures/enables drag'n'drop between the three {@link Grid<Attendee>s.
      */
     private void configureDragAndDrop() {
         var ref = new Object() {
@@ -117,18 +115,20 @@ public class EntranceControlView extends HorizontalLayout implements BeforeEnter
         ComponentEventListener<GridDragStartEvent<Attendee>> dragStartListener = event -> {
             ref.draggedItems = event.getDraggedItems();
             ref.dragSource = event.getSource();
-            enteredAttendeesGrid.setDropMode(GridDropMode.BETWEEN);
-            exitedAttendeesGrid.setDropMode(GridDropMode.BETWEEN);
+            enteredGrid.setDropMode(GridDropMode.BETWEEN);
+            exitedGrid.setDropMode(GridDropMode.BETWEEN);
         };
 
         ComponentEventListener<GridDragEndEvent<Attendee>> dragEndListener = event -> {
             ref.draggedItems = null;
             ref.dragSource = null;
-            enteredAttendeesGrid.setDropMode(null);
-            exitedAttendeesGrid.setDropMode(null);
+            enteredGrid.setDropMode(null);
+            exitedGrid.setDropMode(null);
         };
 
         ComponentEventListener<GridDropEvent<Attendee>> dropListener = event -> {
+            LOG.debug("Registered drag'n'drop of [{}] attendee items", ref.draggedItems.size());
+
             Optional<Attendee> target = event.getDropTargetItem();
             if (target.isPresent() && ref.draggedItems.contains(target.get())) {
                 return;
@@ -149,6 +149,7 @@ public class EntranceControlView extends HorizontalLayout implements BeforeEnter
                 (ListDataProvider<Attendee>) targetGrid.getDataProvider();
             List<Attendee> targetItems = new ArrayList<>(targetDataProvider.getItems());
 
+            // Notify LogEntryService about recent changes
             targetGrid.getId().ifPresent(id -> {
                 if (id.equals("entered-attendees-grid")) {
                     logEntryService.markAttendeesAs(
@@ -172,98 +173,122 @@ public class EntranceControlView extends HorizontalLayout implements BeforeEnter
         };
 
         // Grid of attendees
-        attendeeGrid.addDragStartListener(dragStartListener);
-        attendeeGrid.addDragEndListener(dragEndListener);
-        attendeeGrid.setRowsDraggable(true);
+        defaultGrid.addDragStartListener(dragStartListener);
+        defaultGrid.addDragEndListener(dragEndListener);
+        defaultGrid.setRowsDraggable(true);
 
         // Grid of entered attendees
-        enteredAttendeesGrid.addDropListener(dropListener);
-        enteredAttendeesGrid.addDragStartListener(dragStartListener);
-        enteredAttendeesGrid.addDragEndListener(dragEndListener);
-        enteredAttendeesGrid.setRowsDraggable(true);
+        enteredGrid.addDropListener(dropListener);
+        enteredGrid.addDragStartListener(dragStartListener);
+        enteredGrid.addDragEndListener(dragEndListener);
+        enteredGrid.setRowsDraggable(true);
 
         // Grid of exited attendees
-        exitedAttendeesGrid.addDropListener(dropListener);
-        exitedAttendeesGrid.addDragStartListener(dragStartListener);
-        exitedAttendeesGrid.addDragEndListener(dragEndListener);
-        exitedAttendeesGrid.setRowsDraggable(true);
+        exitedGrid.addDropListener(dropListener);
+        exitedGrid.addDragStartListener(dragStartListener);
+        exitedGrid.addDragEndListener(dragEndListener);
+        exitedGrid.setRowsDraggable(true);
     }
 
+    /**
+     * Configures all {@link Grid<Attendee>}s to add selected items to a List and subsequently
+     * adds a {@link Button#addClickListener(ComponentEventListener)} the three {@link Button}s.
+     */
     private void prepareButtonFunctionality() {
-        attendeeGrid.asMultiSelect().addSelectionListener(
-            event -> selectedFromAttendeeGrid.addAll(event.getAllSelectedItems())
+        defaultGrid.asMultiSelect().addSelectionListener(
+            event -> selectedFromDefault.addAll(event.getAllSelectedItems())
         );
 
-        enteredAttendeesGrid.asMultiSelect().addSelectionListener(
-            event -> selectedFromEnteredGrid.addAll(event.getAllSelectedItems())
+        enteredGrid.asMultiSelect().addSelectionListener(
+            event -> selectedFromEntered.addAll(event.getAllSelectedItems())
         );
 
-        exitedAttendeesGrid.asMultiSelect().addSelectionListener(
-            event -> selectedFromExitedGrid.addAll(event.getAllSelectedItems())
+        exitedGrid.asMultiSelect().addSelectionListener(
+            event -> selectedFromExited.addAll(event.getAllSelectedItems())
         );
 
-        configureBtnListener(moveToEnteredBtn, attendeeGrid, enteredAttendeesGrid);
-        configureBtnListener(moveToExitedBtn, enteredAttendeesGrid, exitedAttendeesGrid);
-        configureBtnListener(moveToEnteredFromExitedBtn, exitedAttendeesGrid, enteredAttendeesGrid);
+        configureBtnListener(moveToEnteredBtn, defaultGrid, enteredGrid);
+        configureBtnListener(moveToExitedBtn, enteredGrid, exitedGrid);
+        configureBtnListener(moveToEnteredFromExitedBtn, exitedGrid, enteredGrid);
     }
 
+    /**
+     * Configures the {@link Button} to move selected {@link Attendee}s from source
+     * {@link Grid<Attendee>} to target {@link Grid<Attendee>}. Causes a database update.
+     *
+     * @param button The button to configure
+     * @param source Source Grid from which the attendees get removed
+     * @param target Target Grid to which the attendees get added
+     */
     private void configureBtnListener(Button button, Grid<Attendee> source, Grid<Attendee> target) {
-        List<Attendee> selectedItems = new LinkedList<>();
+        final List<Attendee> selectedItems = new LinkedList<>();
         if (source.getId().orElse("").equals("default-attendees-grid")) {
-            selectedItems = selectedFromAttendeeGrid;
+            selectedItems.addAll(selectedFromDefault);
         } else if (source.getId().orElse("").equals("entered-attendees-grid")) {
-            selectedItems = selectedFromEnteredGrid;
+            selectedItems.addAll(selectedFromEntered);
         } else if (source.getId().orElse("").equals("exited-attendees-grid")) {
-            selectedItems = selectedFromExitedGrid;
+            selectedItems.addAll(selectedFromExited);
         }
 
-        List<Attendee> finalSelectedItems = selectedItems;
         button.addClickListener(event -> {
+            LOG.debug(
+                "[{}] button has been pressed, moving [{}] attendees",
+                button.getText(),
+                selectedItems.size()
+            );
+
+            // Remove items from source grid
             @SuppressWarnings("unchecked")
             ListDataProvider<Attendee> sourceDataProvider =
                 (ListDataProvider<Attendee>) source.getDataProvider();
             List<Attendee> shrunkAttendeeList = new LinkedList<>(sourceDataProvider.getItems());
-            shrunkAttendeeList.removeAll(finalSelectedItems);
+            shrunkAttendeeList.removeAll(selectedItems);
             source.setItems(shrunkAttendeeList);
 
+            // Notify LogEntryService about recent changes
             target.getId().ifPresent(id -> {
                 if (id.equals("entered-attendees-grid")) {
                     logEntryService.markAttendeesAs(
                         LogEntry.EntranceStatus.ENTERED,
                         eventId,
-                        finalSelectedItems
+                        selectedItems
                     );
                 } else if (id.equals("exited-attendees-grid")) {
                     logEntryService.markAttendeesAs(
                         LogEntry.EntranceStatus.EXITED,
                         eventId,
-                        finalSelectedItems
+                        selectedItems
                     );
                 }
             });
 
+            // Update items from target grid
             @SuppressWarnings("unchecked")
             ListDataProvider<Attendee> targetDataProvider =
                 (ListDataProvider<Attendee>) target.getDataProvider();
             List<Attendee> enlargedAttendeeList = new LinkedList<>(targetDataProvider.getItems());
-            enlargedAttendeeList.addAll(finalSelectedItems);
+            enlargedAttendeeList.addAll(selectedItems);
             target.setItems(enlargedAttendeeList);
 
             // Clean up
-            selectedFromAttendeeGrid.clear();
-            selectedFromEnteredGrid.clear();
-            selectedFromExitedGrid.clear();
+            selectedFromDefault.clear();
+            selectedFromEntered.clear();
+            selectedFromExited.clear();
 
-            attendeeGrid.asMultiSelect().deselectAll();
-            enteredAttendeesGrid.asMultiSelect().deselectAll();
-            exitedAttendeesGrid.asMultiSelect().deselectAll();
+            defaultGrid.asMultiSelect().deselectAll();
+            enteredGrid.asMultiSelect().deselectAll();
+            exitedGrid.asMultiSelect().deselectAll();
         });
     }
 
+    /**
+     * Updates the {@link Grid<Attendee>}s by fetching the current database state
+     */
     private void updateGridData() {
+        LOG.debug("Updating data of Grids [default, entered, exited]");
+
         List<Attendee> entered = new LinkedList<>();
         List<Attendee> exited = new LinkedList<>();
-
         logEntryService.findAllUniqueForEvent(eventId).forEach(entry -> {
             if (entry.getStatus().equals(LogEntry.EntranceStatus.ENTERED)) {
                 entered.add(entry.getAttendee());
@@ -272,15 +297,21 @@ public class EntranceControlView extends HorizontalLayout implements BeforeEnter
             }
         });
 
+        // TODO - Replace findAll() with find AttendeeService#findAllByEvent()
         List<Attendee> withoutStatus = attendeeService.findAll();
         withoutStatus.removeAll(entered);
         withoutStatus.removeAll(exited);
 
-        attendeeGrid.setItems(withoutStatus);
-        enteredAttendeesGrid.setItems(entered);
-        exitedAttendeesGrid.setItems(exited);
+        defaultGrid.setItems(withoutStatus);
+        enteredGrid.setItems(entered);
+        exitedGrid.setItems(exited);
     }
 
+    /**
+     * {@inheritDoc}
+     * <p>
+     * Additionally updates the {@link Grid<Attendee>}s since {@code eventId} is now available
+     */
     @Override
     public void beforeEnter(BeforeEnterEvent event) {
         event.getRouteParameters().get("eventId").ifPresent(
