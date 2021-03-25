@@ -61,7 +61,7 @@ public class EventSelectionView extends VerticalLayout {
                 ui -> ui.navigate(
                     EntranceControlView.class,
                     new RouteParameters("eventId", event.getValue().getId().toString())
-                ), () -> new Notification(getTranslation("general.error"), 3000).open()
+                ), () -> new Notification(getTranslation("general.error"), 5000).open()
             );
         });
     }

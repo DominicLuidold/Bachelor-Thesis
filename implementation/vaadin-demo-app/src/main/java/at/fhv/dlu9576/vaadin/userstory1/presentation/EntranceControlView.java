@@ -2,12 +2,16 @@ package at.fhv.dlu9576.vaadin.userstory1.presentation;
 
 import at.fhv.dlu9576.vaadin.general.presentation.MainView;
 import at.fhv.dlu9576.vaadin.general.presentation.NotFoundView;
+import at.fhv.dlu9576.vaadin.userstory1.Broadcaster;
 import at.fhv.dlu9576.vaadin.userstory1.persistence.entity.Attendee;
 import at.fhv.dlu9576.vaadin.userstory1.persistence.entity.LogEntry;
 import at.fhv.dlu9576.vaadin.userstory1.persistence.service.AttendeeService;
 import at.fhv.dlu9576.vaadin.userstory1.persistence.service.EventService;
 import at.fhv.dlu9576.vaadin.userstory1.persistence.service.LogEntryService;
+import com.vaadin.flow.component.AttachEvent;
 import com.vaadin.flow.component.ComponentEventListener;
+import com.vaadin.flow.component.DetachEvent;
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.grid.Grid;
@@ -16,6 +20,7 @@ import com.vaadin.flow.component.grid.dnd.GridDragStartEvent;
 import com.vaadin.flow.component.grid.dnd.GridDropEvent;
 import com.vaadin.flow.component.grid.dnd.GridDropLocation;
 import com.vaadin.flow.component.grid.dnd.GridDropMode;
+import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.data.provider.ListDataProvider;
@@ -23,6 +28,7 @@ import com.vaadin.flow.router.BeforeEnterEvent;
 import com.vaadin.flow.router.BeforeEnterObserver;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+import com.vaadin.flow.shared.Registration;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -62,6 +68,8 @@ public class EntranceControlView extends HorizontalLayout implements BeforeEnter
     );
 
     private UUID eventId;
+    private UUID broadcastId;
+    private Registration broadcasterRegistration;
 
     public EntranceControlView(
         AttendeeService attendeeService,
@@ -180,6 +188,9 @@ public class EntranceControlView extends HorizontalLayout implements BeforeEnter
                 + (event.getDropLocation() == GridDropLocation.BELOW ? 1 : 0)).orElse(0);
             targetItems.addAll(index, ref.draggedItems);
             targetGrid.setItems(targetItems);
+
+            // Update other clients to reflect changes
+            Broadcaster.broadcast(broadcastId);
         };
 
         // Grid of attendees
@@ -289,6 +300,9 @@ public class EntranceControlView extends HorizontalLayout implements BeforeEnter
             defaultGrid.asMultiSelect().deselectAll();
             enteredGrid.asMultiSelect().deselectAll();
             exitedGrid.asMultiSelect().deselectAll();
+
+            // Update other clients to reflect changes
+            Broadcaster.broadcast(broadcastId);
         });
     }
 
@@ -336,5 +350,37 @@ public class EntranceControlView extends HorizontalLayout implements BeforeEnter
         }
 
         updateGridData();
+    }
+
+    /**
+     * Registers with the {@link Broadcaster} to handle incoming broadcasts. These broadcasts
+     * are getting pushed when one of the {@link Grid<Attendee>}s is getting updated.
+     *
+     * @param attachEvent {@link AttachEvent}
+     */
+    @Override
+    protected void onAttach(AttachEvent attachEvent) {
+        UI ui = attachEvent.getUI();
+        // Generates a new UUID for each client to prevent receiving notification
+        broadcastId = UUID.randomUUID();
+
+        broadcasterRegistration = Broadcaster.register(broadcastId, Void -> ui.access(() -> {
+            updateGridData();
+            new Notification(
+                getTranslation("entrance-control.remote-update.notification"),
+                5000
+            ).open();
+        }));
+    }
+
+    /**
+     * Removes registration from {@link Broadcaster}.
+     *
+     * @param detachEvent {@link DetachEvent}
+     */
+    @Override
+    protected void onDetach(DetachEvent detachEvent) {
+        broadcasterRegistration.remove();
+        broadcasterRegistration = null;
     }
 }
