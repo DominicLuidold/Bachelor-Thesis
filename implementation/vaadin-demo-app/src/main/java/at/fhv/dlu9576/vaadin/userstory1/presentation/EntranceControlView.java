@@ -1,9 +1,11 @@
 package at.fhv.dlu9576.vaadin.userstory1.presentation;
 
 import at.fhv.dlu9576.vaadin.general.presentation.MainView;
+import at.fhv.dlu9576.vaadin.general.presentation.NotFoundView;
 import at.fhv.dlu9576.vaadin.userstory1.persistence.entity.Attendee;
 import at.fhv.dlu9576.vaadin.userstory1.persistence.entity.LogEntry;
 import at.fhv.dlu9576.vaadin.userstory1.persistence.service.AttendeeService;
+import at.fhv.dlu9576.vaadin.userstory1.persistence.service.EventService;
 import at.fhv.dlu9576.vaadin.userstory1.persistence.service.LogEntryService;
 import com.vaadin.flow.component.ComponentEventListener;
 import com.vaadin.flow.component.button.Button;
@@ -37,6 +39,7 @@ public class EntranceControlView extends HorizontalLayout implements BeforeEnter
     private static final Logger LOG = LoggerFactory.getLogger(EntranceControlView.class);
 
     private final AttendeeService attendeeService;
+    private final EventService eventService;
     private final LogEntryService logEntryService;
 
     private final Grid<Attendee> defaultGrid = new Grid<>(Attendee.class);
@@ -59,8 +62,13 @@ public class EntranceControlView extends HorizontalLayout implements BeforeEnter
 
     private UUID eventId;
 
-    public EntranceControlView(AttendeeService attendeeService, LogEntryService logEntryService) {
+    public EntranceControlView(
+        AttendeeService attendeeService,
+        EventService eventService,
+        LogEntryService logEntryService
+    ) {
         this.attendeeService = attendeeService;
+        this.eventService = eventService;
         this.logEntryService = logEntryService;
 
         // Styling
@@ -311,13 +319,20 @@ public class EntranceControlView extends HorizontalLayout implements BeforeEnter
     /**
      * {@inheritDoc}
      * <p>
-     * Additionally updates the {@link Grid<Attendee>}s since {@code eventId} is now available
+     * Additionally checks if the supplied {@code eventId} is valid and subsequently updates
+     * the {@link Grid<Attendee>}s since {@code eventId} is now available and valid.
      */
     @Override
     public void beforeEnter(BeforeEnterEvent event) {
         event.getRouteParameters().get("eventId").ifPresent(
             value -> eventId = UUID.fromString(value)
         );
+
+        if (!eventService.exists(eventId)) {
+            LOG.warn("Could not find event [{}], redirecting to 404 page", eventId);
+            event.rerouteTo(NotFoundView.class);
+        }
+
         updateGridData();
     }
 }

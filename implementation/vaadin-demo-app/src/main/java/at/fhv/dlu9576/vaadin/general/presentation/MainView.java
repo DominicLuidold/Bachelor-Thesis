@@ -91,7 +91,10 @@ public class MainView extends AppLayout {
     @Override
     protected void afterNavigation() {
         super.afterNavigation();
-        getTabForComponent(getContent()).ifPresent(menu::setSelectedTab);
+        getTabForComponent(getContent()).ifPresentOrElse(
+            menu::setSelectedTab,
+            () ->menu.setSelectedTab(null)
+        );
         viewTitle.setText(getCurrentPageTitle());
     }
 

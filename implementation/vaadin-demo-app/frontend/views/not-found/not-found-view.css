@@ -1,0 +1,7 @@
+.not-found-view {
+    display: block;
+}
+
+.heading-without-margin {
+    margin-top: 0 !important;
+}
