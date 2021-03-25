@@ -24,9 +24,10 @@ import com.vaadin.flow.router.BeforeEnterObserver;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import java.util.ArrayList;
-import java.util.LinkedList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.UUID;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -46,9 +47,9 @@ public class EntranceControlView extends HorizontalLayout implements BeforeEnter
     private final Grid<Attendee> enteredGrid = new Grid<>(Attendee.class);
     private final Grid<Attendee> exitedGrid = new Grid<>(Attendee.class);
 
-    private final List<Attendee> selectedFromDefault = new LinkedList<>();
-    private final List<Attendee> selectedFromEntered = new LinkedList<>();
-    private final List<Attendee> selectedFromExited = new LinkedList<>();
+    private final Set<Attendee> selectedFromDefault = new HashSet<>();
+    private final Set<Attendee> selectedFromEntered = new HashSet<>();
+    private final Set<Attendee> selectedFromExited = new HashSet<>();
 
     private final Button moveToEnteredBtn = new Button(
         getTranslation("entrance-control.default-grid.button")
@@ -163,17 +164,18 @@ public class EntranceControlView extends HorizontalLayout implements BeforeEnter
                     logEntryService.markAttendeesAs(
                         LogEntry.EntranceStatus.ENTERED,
                         eventId,
-                        ref.draggedItems
+                        new HashSet<>(ref.draggedItems)
                     );
                 } else if (id.equals("exited-attendees-grid")) {
                     logEntryService.markAttendeesAs(
                         LogEntry.EntranceStatus.EXITED,
                         eventId,
-                        ref.draggedItems
+                        new HashSet<>(ref.draggedItems)
                     );
                 }
             });
 
+            // Calculate exact drop location
             int index = target.map(attendee -> targetItems.indexOf(attendee)
                 + (event.getDropLocation() == GridDropLocation.BELOW ? 1 : 0)).orElse(0);
             targetItems.addAll(index, ref.draggedItems);
@@ -229,7 +231,7 @@ public class EntranceControlView extends HorizontalLayout implements BeforeEnter
      * @param target Target Grid to which the attendees get added
      */
     private void configureBtnListener(Button button, Grid<Attendee> source, Grid<Attendee> target) {
-        List<Attendee> items = new LinkedList<>();
+        Set<Attendee> items = new HashSet<>();
         if (source.getId().orElse("").equals("default-attendees-grid")) {
             items = selectedFromDefault;
         } else if (source.getId().orElse("").equals("entered-attendees-grid")) {
@@ -238,7 +240,7 @@ public class EntranceControlView extends HorizontalLayout implements BeforeEnter
             items = selectedFromExited;
         }
 
-        final List<Attendee> selectedItems = items;
+        final Set<Attendee> selectedItems = items;
         button.addClickListener(event -> {
             LOG.debug(
                 "[{}] button has been pressed, moving [{}] attendees",
@@ -250,9 +252,17 @@ public class EntranceControlView extends HorizontalLayout implements BeforeEnter
             @SuppressWarnings("unchecked")
             ListDataProvider<Attendee> sourceDataProvider =
                 (ListDataProvider<Attendee>) source.getDataProvider();
-            List<Attendee> shrunkAttendeeList = new LinkedList<>(sourceDataProvider.getItems());
+            Set<Attendee> shrunkAttendeeList = new HashSet<>(sourceDataProvider.getItems());
             shrunkAttendeeList.removeAll(selectedItems);
             source.setItems(shrunkAttendeeList);
+
+            // Update items from target grid
+            @SuppressWarnings("unchecked")
+            ListDataProvider<Attendee> targetDataProvider =
+                (ListDataProvider<Attendee>) target.getDataProvider();
+            Set<Attendee> enlargedAttendeeList = new HashSet<>(targetDataProvider.getItems());
+            enlargedAttendeeList.addAll(selectedItems);
+            target.setItems(enlargedAttendeeList);
 
             // Notify LogEntryService about recent changes
             target.getId().ifPresent(id -> {
@@ -271,14 +281,6 @@ public class EntranceControlView extends HorizontalLayout implements BeforeEnter
                 }
             });
 
-            // Update items from target grid
-            @SuppressWarnings("unchecked")
-            ListDataProvider<Attendee> targetDataProvider =
-                (ListDataProvider<Attendee>) target.getDataProvider();
-            List<Attendee> enlargedAttendeeList = new LinkedList<>(targetDataProvider.getItems());
-            enlargedAttendeeList.addAll(selectedItems);
-            target.setItems(enlargedAttendeeList);
-
             // Clean up
             selectedFromDefault.clear();
             selectedFromEntered.clear();
@@ -296,8 +298,8 @@ public class EntranceControlView extends HorizontalLayout implements BeforeEnter
     private void updateGridData() {
         LOG.debug("Updating data of Grids [default, entered, exited]");
 
-        List<Attendee> entered = new LinkedList<>();
-        List<Attendee> exited = new LinkedList<>();
+        Set<Attendee> entered = new HashSet<>();
+        Set<Attendee> exited = new HashSet<>();
         logEntryService.findAllUniqueForEvent(eventId).forEach(entry -> {
             if (entry.getStatus().equals(LogEntry.EntranceStatus.ENTERED)) {
                 entered.add(entry.getAttendee());

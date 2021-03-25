@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.UUID;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -43,7 +44,7 @@ public class LogEntryService {
     public void markAttendeesAs(
         LogEntry.EntranceStatus status,
         UUID eventId,
-        List<Attendee> attendees
+        Set<Attendee> attendees
     ) {
         Optional<Event> eventOptional = eventRepository.findById(eventId);
         if (eventOptional.isEmpty()) {
