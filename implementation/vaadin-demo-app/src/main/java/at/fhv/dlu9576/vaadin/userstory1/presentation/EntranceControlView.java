@@ -221,15 +221,16 @@ public class EntranceControlView extends HorizontalLayout implements BeforeEnter
      * @param target Target Grid to which the attendees get added
      */
     private void configureBtnListener(Button button, Grid<Attendee> source, Grid<Attendee> target) {
-        final List<Attendee> selectedItems = new LinkedList<>();
+        List<Attendee> items = new LinkedList<>();
         if (source.getId().orElse("").equals("default-attendees-grid")) {
-            selectedItems.addAll(selectedFromDefault);
+            items = selectedFromDefault;
         } else if (source.getId().orElse("").equals("entered-attendees-grid")) {
-            selectedItems.addAll(selectedFromEntered);
+            items = selectedFromEntered;
         } else if (source.getId().orElse("").equals("exited-attendees-grid")) {
-            selectedItems.addAll(selectedFromExited);
+            items = selectedFromExited;
         }
 
+        final List<Attendee> selectedItems = items;
         button.addClickListener(event -> {
             LOG.debug(
                 "[{}] button has been pressed, moving [{}] attendees",

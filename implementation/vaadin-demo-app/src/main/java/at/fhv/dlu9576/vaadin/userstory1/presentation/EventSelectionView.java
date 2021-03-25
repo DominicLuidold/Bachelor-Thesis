@@ -57,7 +57,7 @@ public class EventSelectionView extends VerticalLayout {
         eventGrid.asSingleSelect().addValueChangeListener(event -> {
             LOG.debug("Registered click on Event [{}]", event.getValue().getName());
 
-            getUI().orElseThrow().navigate(
+            getUI().get().navigate(
                 RouteConfiguration.forSessionScope().getUrl(
                     EntranceControlView.class,
                     new RouteParameters("eventId", event.getValue().getId().toString())
