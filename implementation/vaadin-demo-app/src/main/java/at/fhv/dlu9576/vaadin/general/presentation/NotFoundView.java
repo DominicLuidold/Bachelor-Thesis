@@ -7,7 +7,7 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
 
 @Route(value = "not-found", layout = MainView.class)
-@CssImport("./views/not-found/not-found-view.css")
+@CssImport("./styles/views/not-found/not-found-view.css")
 public class NotFoundView extends VerticalLayout {
     private static final long serialVersionUID = 6638890539408794658L;
 

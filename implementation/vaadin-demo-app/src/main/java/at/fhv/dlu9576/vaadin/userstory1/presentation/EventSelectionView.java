@@ -4,6 +4,7 @@ import at.fhv.dlu9576.vaadin.general.presentation.MainView;
 import at.fhv.dlu9576.vaadin.userstory1.persistence.entity.Event;
 import at.fhv.dlu9576.vaadin.userstory1.persistence.service.EventService;
 import com.vaadin.flow.component.Text;
+import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.notification.Notification;
@@ -16,6 +17,7 @@ import org.slf4j.LoggerFactory;
 
 @Route(value = "entrance-control", layout = MainView.class)
 @PageTitle("Event-Übersicht | Echtzeit Eingangskontrolle")
+@CssImport("./styles/views/entrance-control/event-selection-view.css")
 public class EventSelectionView extends VerticalLayout {
     private static final long serialVersionUID = -5647993022096824575L;
     private static final Logger LOG = LoggerFactory.getLogger(EntranceControlView.class);

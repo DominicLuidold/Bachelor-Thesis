@@ -11,7 +11,6 @@ import org.vaadin.artur.helpers.LaunchUtil;
 
 @Push
 @SpringBootApplication
-@Theme(value = "vaadindemoapp")
 @PWA(
     name = "Vaadin Demo App",
     shortName = "Vaadin Demo App",

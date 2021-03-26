@@ -40,7 +40,7 @@ import org.slf4j.LoggerFactory;
 
 @Route(value = "entrance-control/:eventId", layout = MainView.class)
 @PageTitle("Echtzeit Eingangskontrolle")
-@CssImport("./views/entrance-control/entrance-control-view.css")
+@CssImport("./styles/views/entrance-control/entrance-control-view.css")
 public class EntranceControlView extends HorizontalLayout implements BeforeEnterObserver {
     private static final long serialVersionUID = 6414586759012039620L;
     private static final Logger LOG = LoggerFactory.getLogger(EntranceControlView.class);

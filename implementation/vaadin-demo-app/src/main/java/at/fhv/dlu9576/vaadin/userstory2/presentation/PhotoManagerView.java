@@ -8,7 +8,7 @@ import com.vaadin.flow.router.Route;
 
 @Route(value = "photo-manager", layout = MainView.class)
 @PageTitle("Fotoverwaltung")
-@CssImport("./views/photo-manager/photo-manager-view.css")
+@CssImport("./styles/views/photo-manager/photo-manager-view.css")
 public class PhotoManagerView extends Div {
     private static final long serialVersionUID = 5669148573856349726L;
 

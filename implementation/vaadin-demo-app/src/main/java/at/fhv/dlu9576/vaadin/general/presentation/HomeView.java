@@ -12,7 +12,7 @@ import com.vaadin.flow.router.RouteAlias;
 @Route(value = "home", layout = MainView.class)
 @RouteAlias(value = "", layout = MainView.class)
 @PageTitle("Home")
-@CssImport("./views/home/home-view.css")
+@CssImport("./styles/views/home/home-view.css")
 public class HomeView extends Div {
     private static final long serialVersionUID = 4902017337970489705L;
 
