@@ -322,8 +322,7 @@ public class EntranceControlView extends HorizontalLayout implements BeforeEnter
             }
         });
 
-        // TODO - Replace findAll() with find AttendeeService#findAllByEvent()
-        List<Attendee> withoutStatus = attendeeService.findAll();
+        List<Attendee> withoutStatus = attendeeService.findAllByEvent(eventId);
         withoutStatus.removeAll(entered);
         withoutStatus.removeAll(exited);
 

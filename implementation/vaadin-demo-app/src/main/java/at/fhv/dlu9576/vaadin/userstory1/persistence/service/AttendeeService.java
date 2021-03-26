@@ -27,15 +27,10 @@ public class AttendeeService {
         this.eventRepository = eventRepository;
     }
 
-    public List<Attendee> findAll() {
-        return attendeeRepository.findAll();
-    }
-
     public List<Attendee> findAllByEvent(UUID eventId) {
         return attendeeRepository.findAllByEvents_Id(eventId);
     }
 
-    // TODO - fix Many-To-Many table not getting populated with data
     @PostConstruct
     public void populateTestData() {
         if (eventRepository.count() == 0) {

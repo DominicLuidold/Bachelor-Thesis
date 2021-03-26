@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -35,7 +34,7 @@ public class Attendee {
     @Column
     private String phone;
 
-    @ManyToMany(mappedBy = "attendees")
+    @ManyToMany
     private Set<Event> events = new HashSet<>();
 
     @OneToMany(mappedBy = "attendee")
