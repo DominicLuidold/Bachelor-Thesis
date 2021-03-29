@@ -12,6 +12,10 @@ import org.springframework.stereotype.Component;
 
 /**
  * Code based on https://vaadin.com/docs/latest/flow/advanced/i18n-localization/#provider-sample-for-translation
+ *
+ * @see <a href="https://vaadin.com/docs/latest/flow/advanced/i18n-localization/#provider-sample-for-translatio">
+ * Localization | Advanced Topics | Flow | Vaadin Docs
+ * </a>
  */
 @Component
 public class TranslationProvider implements I18NProvider {

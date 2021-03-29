@@ -7,13 +7,6 @@ import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 
-/**
- * The {@code AttendeesColumn} class creates a reusable column consisting of an {@link H3} heading,
- * an information {@link Text} and a pre-configured {@link Grid<Attendee>} of {@link Attendee}s.
- *
- * @author Dominic Luidold
- * @version 1.0.0
- */
 final class AttendeesColumn extends VerticalLayout {
     private static final long serialVersionUID = -5326992900212400476L;
 
