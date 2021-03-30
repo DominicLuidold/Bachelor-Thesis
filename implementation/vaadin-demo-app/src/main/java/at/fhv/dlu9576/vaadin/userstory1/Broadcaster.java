@@ -9,7 +9,11 @@ import java.util.concurrent.Executors;
 import java.util.function.Consumer;
 
 /**
- * Source code inspired by https://vaadin.com/docs/latest/flow/advanced/server-push
+ * Source code inspired by https://vaadin.com/docs/latest/flow/advanced/server-push/#push.broadcaster
+ *
+ * @see <a href="https://vaadin.com/docs/latest/flow/advanced/server-push/#push.broadcaster">
+ * Server Push | Advanced Topics | Flow | Vaadin Docs
+ * </a>
  */
 public class Broadcaster {
     static Executor executor = Executors.newSingleThreadExecutor();
