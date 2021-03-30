@@ -1,0 +1,12 @@
+.image-card {
+    border: 1px solid black;
+    background-color: lightgrey;
+    height: fit-content;
+    width: fit-content !important;
+    margin-top: 0.5em;
+    padding: 0;
+}
+
+.custom-h4 {
+    margin-top: 0.5em !important;
+}
