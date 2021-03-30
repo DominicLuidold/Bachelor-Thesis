@@ -17,19 +17,14 @@ public class HomeView extends Div {
     private static final long serialVersionUID = 4902017337970489705L;
 
     public HomeView() {
-        Text entranceControlTxt = new Text(
-            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.");
-        Text photoManagerTxt = new Text(
-            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.");
-
         Accordion accordion = new Accordion();
         accordion.add(
-            "Informationen zur User Story 1 - \"Echtzeit Eingangskontrolle\"",
-            entranceControlTxt
+            getTranslation("home.entrance-control.heading"),
+            new Text(getTranslation("home.entrance-control.explanation"))
         ).addThemeVariants(DetailsVariant.FILLED);
         accordion.add(
-            "Informationen zur User Story 2 - \"Fotoverwaltung\"",
-            photoManagerTxt
+            getTranslation("home.photo-manager.heading"),
+            new Text(getTranslation("home.photo-manager.explanation"))
         ).addThemeVariants(DetailsVariant.FILLED);
 
         add(accordion);
