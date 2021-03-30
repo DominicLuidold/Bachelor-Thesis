@@ -1,0 +1,12 @@
+.fill-remaining-space {
+  flex: 1 1 auto;
+}
+
+mat-toolbar > span {
+  cursor: pointer;
+  outline: none;
+}
+
+.navbar-item {
+  margin-right: 20px;
+}
