@@ -38,6 +38,16 @@ export function configureServerForUserStory1(app: Express): void {
     response.json(attendeesAtEvent);
   });
 
+  // Get all attendees with unique status for a specific event
+  app.get('/events/:eventId/attendees/status', (request, response) => {
+    const eventId = request.params.eventId;
+
+    const entriesByEvent = filterByEventId(logEntries, eventId);
+    const entriesWithoutDuplicates = removeDuplicates(entriesByEvent);
+
+    response.json(entriesWithoutDuplicates);
+  });
+
   // Mark an attendee as entered/exited
   app.put('/attendees/:attendeeId/event/:eventId', (request, response) => {
     const attendeeId = request.params.attendeeId;
@@ -55,6 +65,52 @@ export function configureServerForUserStory1(app: Express): void {
 
     response.json(newLogEntry);
   });
+}
+
+/**
+ * Removes all log entries that do not hold data for the specified event id;
+ *
+ * @param {LogEntry[]} entries - An Array of log entries
+ * @param {string} eventId - Event to keep entries for
+ * @return {LogEntry[]} Filtered arrray
+ */
+function filterByEventId(entries: LogEntry[], eventId: string): LogEntry[] {
+  return entries.filter(entry => entry.event.id === eventId);
+}
+
+/**
+ * Removes duplicate log entries and only keeps the most recent entry within the
+ * array based on the attendee id and timestamp.
+ *
+ * Code based on https://stackoverflow.com/a/49460534
+ *
+ * @param {LogEntry[]} entries - Array of entries with duplicates
+ * @return {LogEntry[]} Array without any duplicates
+ */
+function removeDuplicates(entries: LogEntry[]): Attendee[] {
+  return Object.values(entries.reduce((attendeeList, { attendee, status, timestamp }) => {
+    if (attendeeList[attendee.id]) {
+      if (attendeeList[attendee.id].timestamp < timestamp) {
+        attendeeList[attendee.id] = {
+          id: attendee.id,
+          firstName: attendee.firstName,
+          lastName: attendee.lastName,
+          email: attendee.email,
+          status: status,
+        }
+      }
+    } else {
+      attendeeList[attendee.id] = {
+        id: attendee.id,
+        firstName: attendee.firstName,
+        lastName: attendee.lastName,
+        email: attendee.email,
+        status: status,
+      };
+    }
+
+    return attendees;
+  }, {}));
 }
 
 /**

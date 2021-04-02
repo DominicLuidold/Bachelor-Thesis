@@ -7,4 +7,5 @@ export interface Attendee {
   email: string;
   phone?: string;
   events: Event[];
+  status?: 'ENTERED' | 'EXITED';
 }
