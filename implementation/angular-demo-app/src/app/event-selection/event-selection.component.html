@@ -1,0 +1,53 @@
+<h2>Auswählen eines Events</h2>
+
+<p>Um die Echtzeit Eingangskontrolle zu starten, muss ein unstenstehendes Event ausgewählt und darauf geklickt werden.</p>
+
+<table mat-table matSort [dataSource]="dataSource" class="mat-elevation-z4">
+  <!-- Event ID -->
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
+    <td mat-cell *matCellDef="let event">{{ event.id || '/' }}</td>
+  </ng-container>
+
+  <!-- Name -->
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+    <td mat-cell *matCellDef="let event">{{ event.name || '/' }}</td>
+  </ng-container>
+
+  <!-- Location -->
+  <ng-container matColumnDef="location">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Location</th>
+    <td mat-cell *matCellDef="let event">{{ event.location || '/' }}</td>
+  </ng-container>
+
+  <!-- Start date & time -->
+  <ng-container matColumnDef="startTime">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Start Time</th>
+    <td mat-cell *matCellDef="let event">{{ (event.startTime | date:'dd.MM.yyyy - HH:mm') || '/' }}</td>
+  </ng-container>
+
+  <!-- End date & time -->
+  <ng-container matColumnDef="endTime">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>End Time</th>
+    <td mat-cell *matCellDef="let event">{{ (event.endTime | date:'dd.MM.yyyy - HH:mm') || '/' }}</td>
+  </ng-container>
+
+  <!-- Description -->
+  <ng-container matColumnDef="description">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Description</th>
+    <td mat-cell *matCellDef="let event">{{ event.description || '/' }}</td>
+  </ng-container>
+
+  <!-- No Data Found -->
+  <ng-container matColumnDef="disclaimer">
+    <td mat-footer-cell *matFooterCellDef colspan="7">
+      No data found
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns; let event" [routerLink]="['/entrance-control/' + event.id]"></tr>
+  <tr mat-footer-row *matFooterRowDef="dataSource.data.length === 0 ? ['disclaimer'] : []"
+      [hidden]="dataSource.data.length > 0" class="no-data-found"></tr>
+</table>

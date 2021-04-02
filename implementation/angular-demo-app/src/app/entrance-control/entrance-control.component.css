@@ -1,0 +1,9 @@
+@media (min-width: 1200px) {
+  .column-view {
+    display: flex;
+  }
+
+  app-attendee-column {
+    margin: 5px;
+  }
+}
