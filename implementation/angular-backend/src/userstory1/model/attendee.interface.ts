@@ -8,4 +8,5 @@ export interface Attendee {
   phone?: string;
   events: Event[];
   status?: 'ENTERED' | 'EXITED';
+  lastStatusChange?: Date; // Backend only
 }

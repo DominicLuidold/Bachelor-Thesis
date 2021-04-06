@@ -1,5 +1,5 @@
-import { v4 as uuidv4 } from 'uuid';
 import { Express } from 'express';
+import { v4 as uuidv4 } from 'uuid';
 import { Attendee } from './model/attendee.interface';
 import { Event } from './model/event.interface';
 import { LogEntry } from './model/logentry.interface';
@@ -16,7 +16,7 @@ attendees.push(...populateAttendeeTestData(events));
 
 /**
  * Configures the server to listen to all specific routes for User Story 1.
- * Also containts the logic subsequently needed to serve those routes.
+ * Also contains the logic subsequently needed to serve those routes.
  */
 export function configureServerForUserStory1(app: Express): void {
   // Get all events
@@ -38,14 +38,24 @@ export function configureServerForUserStory1(app: Express): void {
     response.json(attendeesAtEvent);
   });
 
-  // Get all attendees with unique status for a specific event
-  app.get('/events/:eventId/attendees/status', (request, response) => {
+  // Get all attendees with unique status 'ENTERED' for a specific event
+  app.get('/events/:eventId/attendees/status/entered', (request, response) => {
     const eventId = request.params.eventId;
 
     const entriesByEvent = filterByEventId(logEntries, eventId);
     const entriesWithoutDuplicates = removeDuplicates(entriesByEvent);
 
-    response.json(entriesWithoutDuplicates);
+    response.json(entriesWithoutDuplicates.filter(attendee => attendee.status === 'ENTERED'));
+  });
+
+  // Get all attendees with unique status 'ENTERED' for a specific event
+  app.get('/events/:eventId/attendees/status/exited', (request, response) => {
+    const eventId = request.params.eventId;
+
+    const entriesByEvent = filterByEventId(logEntries, eventId);
+    const entriesWithoutDuplicates = removeDuplicates(entriesByEvent);
+
+    response.json(entriesWithoutDuplicates.filter(attendee => attendee.status === 'EXITED'));
   });
 
   // Mark an attendee as entered/exited
@@ -72,7 +82,7 @@ export function configureServerForUserStory1(app: Express): void {
  *
  * @param {LogEntry[]} entries - An Array of log entries
  * @param {string} eventId - Event to keep entries for
- * @return {LogEntry[]} Filtered arrray
+ * @return {LogEntry[]} Filtered array
  */
 function filterByEventId(entries: LogEntry[], eventId: string): LogEntry[] {
   return entries.filter(entry => entry.event.id === eventId);
@@ -82,34 +92,22 @@ function filterByEventId(entries: LogEntry[], eventId: string): LogEntry[] {
  * Removes duplicate log entries and only keeps the most recent entry within the
  * array based on the attendee id and timestamp.
  *
- * Code based on https://stackoverflow.com/a/49460534
+ * Code based on/inspired by https://stackoverflow.com/a/49460534
  *
  * @param {LogEntry[]} entries - Array of entries with duplicates
  * @return {LogEntry[]} Array without any duplicates
  */
 function removeDuplicates(entries: LogEntry[]): Attendee[] {
-  return Object.values(entries.reduce((attendeeList, { attendee, status, timestamp }) => {
-    if (attendeeList[attendee.id]) {
-      if (attendeeList[attendee.id].timestamp < timestamp) {
-        attendeeList[attendee.id] = {
-          id: attendee.id,
-          firstName: attendee.firstName,
-          lastName: attendee.lastName,
-          email: attendee.email,
-          status: status,
-        }
+  return Object.values(entries.reduce((duplicateFree, { attendee, timestamp, status }) => {
+    if (duplicateFree[attendee.id]) {
+      if (duplicateFree[attendee.id].lastStatusChange < timestamp) {
+        duplicateFree[attendee.id] = { ...attendee, ...{ status, lastStatusChange: timestamp } };
       }
     } else {
-      attendeeList[attendee.id] = {
-        id: attendee.id,
-        firstName: attendee.firstName,
-        lastName: attendee.lastName,
-        email: attendee.email,
-        status: status,
-      };
+      duplicateFree[attendee.id] = { ...attendee, ...{ status, lastStatusChange: timestamp } };
     }
 
-    return attendees;
+    return duplicateFree;
   }, {}));
 }
 
@@ -130,5 +128,5 @@ function findEventById(eventId: string): Event {
  * @return {Attendee} An event
  */
 function findAttendeeById(attendeeId: string): Attendee {
-  return attendees.find(event => event.id === attendeeId);
+  return attendees.find(attendee => attendee.id === attendeeId);
 }
