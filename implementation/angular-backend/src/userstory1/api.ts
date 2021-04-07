@@ -24,13 +24,14 @@ export function configureServerForUserStory1(app: Express): void {
     response.json(events);
   });
 
-  // Get all attendees for a specific event
+  // Get all attendees for a specific event that have no status change yet
   app.get('/events/:eventId/attendees', (request, response) => {
     const eventId = request.params.eventId;
     const attendeesAtEvent: Attendee[] = [];
 
     attendees.forEach((attendee) => {
-      if (attendee.events.some(({ id }) => id === eventId)) {
+      const attendeeHasStatusChange = logEntries.find(logEntry => logEntry.attendee.id === attendee.id) === undefined;
+      if (attendee.events.some(({ id }) => id === eventId) && attendeeHasStatusChange) {
         attendeesAtEvent.push(attendee);
       }
     });
@@ -58,22 +59,23 @@ export function configureServerForUserStory1(app: Express): void {
     response.json(entriesWithoutDuplicates.filter(attendee => attendee.status === 'EXITED'));
   });
 
-  // Mark an attendee as entered/exited
-  app.put('/attendees/:attendeeId/event/:eventId', (request, response) => {
-    const attendeeId = request.params.attendeeId;
+  // Mark attendees as entered/exited
+  app.put('/attendees/event/:eventId', (request, response) => {
     const eventId = request.params.eventId;
-    const updatedAttendee = request.body;
+    const updatedAttendees: Attendee[] = request.body;
 
-    const newLogEntry = {
-      id: uuidv4(),
-      attendee: findAttendeeById(attendeeId),
-      event: findEventById(eventId),
-      status: updatedAttendee.status,
-      timestamp: new Date(),
-    };
-    logEntries.push(newLogEntry);
+    updatedAttendees.forEach(updatedAttendee => {
+      const newLogEntry = {
+        id: uuidv4(),
+        attendee: findAttendeeById(updatedAttendee.id),
+        event: findEventById(eventId),
+        status: updatedAttendee.status,
+        timestamp: new Date(),
+      };
+      logEntries.push(newLogEntry);
+    });
 
-    response.json(newLogEntry);
+    response.status(200).end();
   });
 }
 
