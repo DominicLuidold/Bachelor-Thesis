@@ -11,6 +11,9 @@ export class EventService {
     // Intentionally empty
   }
 
+  /**
+   * Returns all {@link Event}s.
+   */
   getAll(): Observable<Event[]> {
     return this.http.get<Event[]>(`${ environment.apiUrl }/events`);
   }

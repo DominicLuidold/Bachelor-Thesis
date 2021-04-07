@@ -1,22 +1,25 @@
 <div class="column-view">
   <app-attendee-column
+    [tableId]="defaultTableId"
+    [eventId]="eventId"
     [header]="defaultHeader"
     [explanation]="defaultExplanation"
     [buttonText]="defaultButton"
-    [observable]="defaultObservable"
   ></app-attendee-column>
 
   <app-attendee-column
+    [tableId]="enteredTableId"
+    [eventId]="eventId"
     [header]="enteredHeader"
     [explanation]="enteredExplanation"
     [buttonText]="enteredButton"
-    [observable]="enteredObservable"
   ></app-attendee-column>
 
   <app-attendee-column
+    [tableId]="exitedTableId"
+    [eventId]="eventId"
     [header]="exitedHeader"
     [explanation]="exitedExplanation"
     [buttonText]="exitedButton"
-    [observable]="exitedObservable"
   ></app-attendee-column>
 </div>

@@ -1,11 +1,11 @@
 <h2>{{ header }}</h2>
 <p>{{ explanation }}</p>
-<button mat-raised-button color="primary">
+<button mat-raised-button color="primary" (click)="moveAttendees()">
   <mat-icon>arrow_forward</mat-icon>
   {{ buttonText }}
 </button>
 
-<table mat-table matSort [dataSource]="dataSource" class="mat-elevation-z4">
+<table mat-table matSort [dataSource]="dataSource" [id]="tableId" class="mat-elevation-z4">
   <ng-container matColumnDef="select">
     <th mat-header-cell *matHeaderCellDef>
       <mat-checkbox (change)="$event ? masterToggle() : null"
