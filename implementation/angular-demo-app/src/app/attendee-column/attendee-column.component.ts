@@ -1,5 +1,6 @@
 import { SelectionModel } from '@angular/cdk/collections';
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Attendee } from '@app/_models';
@@ -30,7 +31,7 @@ export class AttendeeColumnComponent implements OnInit {
   displayedColumns: string[] = ['select', 'firstName', 'lastName', 'email'];
   dataSource = new MatTableDataSource<Attendee>();
 
-  constructor(private attendeeService: AttendeeService) {
+  constructor(private attendeeService: AttendeeService, private snackBar: MatSnackBar) {
     // Intentionally empty
   }
 
@@ -49,17 +50,17 @@ export class AttendeeColumnComponent implements OnInit {
       this.attendeeService.getAllForEvent(this.eventId).subscribe(attendees => {
         this.dataSource.data = attendees;
         this.dataSource.sort = this.sort;
-      });
+      }, error => this.openSnackBar(error));
     } else if (this.tableId === 'entered') {
       this.attendeeService.getAllForEventByStatus(this.eventId, 'ENTERED').subscribe(attendees => {
         this.dataSource.data = attendees;
         this.dataSource.sort = this.sort;
-      });
+      }, error => this.openSnackBar(error));
     } else if (this.tableId === 'exited') {
       this.attendeeService.getAllForEventByStatus(this.eventId, 'EXITED').subscribe(attendees => {
         this.dataSource.data = attendees;
         this.dataSource.sort = this.sort;
-      });
+      }, error => this.openSnackBar(error));
     }
   }
 
@@ -112,5 +113,17 @@ export class AttendeeColumnComponent implements OnInit {
     this.isAllSelected() ?
       this.selection.clear() :
       this.dataSource.data.forEach(row => this.selection.select(row));
+  }
+
+  /**
+   * Opens a {@link MatSnackBar}.
+   *
+   * @param message Message to display
+   * @param action  Confirmation button text
+   */
+  openSnackBar(message: string, action: string = 'Close'): void {
+    this.snackBar.open(message, action, {
+      duration: 3000,
+    });
   }
 }
