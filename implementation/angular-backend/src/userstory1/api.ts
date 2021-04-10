@@ -1,8 +1,10 @@
 import { Express } from 'express';
+import { Server } from "socket.io";
 import { v4 as uuidv4 } from 'uuid';
 import { Attendee } from './model/attendee.interface';
 import { Event } from './model/event.interface';
 import { LogEntry } from './model/logentry.interface';
+import { RealTimeData } from "./model/realtime-data.interface";
 import { createEventTestData, populateAttendeeTestData } from './test-data';
 
 // In-memory "database"
@@ -16,9 +18,10 @@ attendees.push(...populateAttendeeTestData(events));
 
 /**
  * Configures the server to listen to all specific routes for User Story 1.
- * Also contains the logic subsequently needed to serve those routes.
+ * Also contains the logic subsequently needed to serve those routes as well as the WebSocket configuration
+ * for real-time data updates.
  */
-export function configureServerForUserStory1(app: Express): void {
+export function configureServerForUserStory1(app: Express, io: Server): void {
   // Get all events
   app.get('/events', (request, response) => {
     response.json(events);
@@ -76,6 +79,17 @@ export function configureServerForUserStory1(app: Express): void {
     });
 
     response.status(200).end();
+  });
+
+  // WebSocket configuration
+  io.on('connection', (socket) => {
+    console.log(`New client connection established: socket id [${ socket.id }]`)
+
+    socket.on('clientRealTimeUpdate', (data: RealTimeData) => {
+      socket.broadcast.emit('serverRealTimeUpdate', {
+        eventId: data.eventId
+      });
+    });
   });
 }
 

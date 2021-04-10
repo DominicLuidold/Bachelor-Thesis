@@ -1,3 +1,3 @@
 export interface RealTimeData {
-  senderId: string;
+  eventId: string;
 }

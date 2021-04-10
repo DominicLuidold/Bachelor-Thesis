@@ -33,27 +33,35 @@ export class EntranceControlComponent implements OnInit, AfterViewInit, OnDestro
   exitedExplanation = 'Diese List repräsentiert alle Teilnehmer:innen des Events, die zum aktuellen Zeitpunkt außerhalb des Veranstaltungsorts sind und mittels Button in die Spalte "Im Veranstaltungsort" verschoben werden können.';
   exitedButton = 'Verschieben zu: Im Veranstaltungsort';
 
+  /* Miscellaneous */
+  realTimeUpdateNotification = 'Die Teilnehmer:innenlisten wurde aufgrund externer Änderungen aktualisiert';
+
   constructor(private route: ActivatedRoute, private realTimeService: RealTimeService, private snackBar: MatSnackBar) {
     // Intentionally empty
   }
 
   ngOnInit(): void {
     this.eventId = this.route.snapshot.paramMap.get('eventId');
-    this.webSocketSubscription = this.realTimeService.getRealTimeUpdates().subscribe(realTimeChangeHappened => {
-      if (realTimeChangeHappened) {
-        this.snackBar.open('RealTimeUpdate!!!!!', 'Close', {
-          duration: 5000,
-        });
-        this.attendeeColumns.forEach(columnToUpdate => columnToUpdate.fetchData());
+
+    // Subscribe to real-time updates via WebSockets
+    this.webSocketSubscription = this.realTimeService.getRealTimeUpdates(this.eventId).subscribe(
+      hasRealTimeChangeHappenedForEvent => {
+        if (hasRealTimeChangeHappenedForEvent) {
+          this.snackBar.open(this.realTimeUpdateNotification, 'Close', {
+            duration: 5000,
+          });
+          this.attendeeColumns.forEach(columnToUpdate => columnToUpdate.fetchData());
+        }
       }
-    });
+    );
   }
 
   ngAfterViewInit(): void {
-    // Tell all tables to fetch updated data when change has happened
     this.attendeeColumns.forEach(column => column.dataUpdate.subscribe(() => {
+      // Publish real-time update to notify other clients
       this.realTimeService.publishRealTimeUpdate();
-      column.fetchData();
+      // Tell all tables to fetch updated data when change has happened
+      this.attendeeColumns.forEach(columnToUpdate => columnToUpdate.fetchData());
     }));
   }
 

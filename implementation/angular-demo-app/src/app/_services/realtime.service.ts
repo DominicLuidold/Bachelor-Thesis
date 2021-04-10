@@ -3,31 +3,40 @@ import { RealTimeData } from '@app/_models/realtime-data';
 import { environment } from '@environments/environment';
 import { Observable, Observer } from 'rxjs';
 import { io, Socket } from 'socket.io-client';
-import { v4 as uuidv4 } from 'uuid';
 
 @Injectable({ providedIn: 'root' })
 export class RealTimeService {
-  clientUuid: uuidv4;
+  eventId: string;
   socket: Socket;
   observer: Observer<any>;
 
   constructor() {
-    this.clientUuid = uuidv4();
     this.socket = io(environment.apiUrl);
   }
 
+  /**
+   * Publishes a real-time data update (caused by moving attendees into another column) via WebSockets (socket.io).
+   */
   publishRealTimeUpdate(): void {
-    console.log('blubb');
+    console.log('Publishing client real-time update..');
     this.socket.emit('clientRealTimeUpdate', {
-      senderId: this.clientUuid
+      eventId: this.eventId
     });
   }
 
-  getRealTimeUpdates(): Observable<boolean> {
+  /**
+   * Subscribes to real-time data updates (caused by moving attendees into another column) via WebSockets (socket.io).
+   * The event subsequently causes a data update on a client, if the client itself is not the original sender and only
+   * if the event matches the event on which the change happened.
+   *
+   * @param eventId The event to which the client wants to receive real-time updates
+   */
+  getRealTimeUpdates(eventId: string): Observable<boolean> {
+    this.eventId = eventId;
     this.socket.on('serverRealTimeUpdate', (response: RealTimeData) => {
-      // True if realtime update was caused by other client
-      this.observer.next(response.senderId !== this.clientUuid);
-      console.log(response);
+      console.log('Incoming server real-time update..');
+      // True if real-time update concerns subscribed event
+      this.observer.next(response.eventId === this.eventId);
     });
 
     return new Observable(observer => this.observer = observer);
