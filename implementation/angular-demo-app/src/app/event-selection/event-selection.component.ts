@@ -25,8 +25,8 @@ export class EventSelectionComponent implements OnInit {
       this.dataSource.data = events;
       this.dataSource.sort = this.sort;
     }, error => {
-      this.snackBar.open(error, 'Close', {
-        duration: 3000,
+      this.snackBar.open(`Fehler wärhend dem Laden der Daten: ${ error }`, 'Close', {
+        duration: 5000,
       });
     });
   }

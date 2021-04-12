@@ -2,9 +2,23 @@
 <app-file-upload requiredFileType="image/*"></app-file-upload>
 <mat-divider></mat-divider>
 
+<div class="sync" *ngIf="currentOfflinePhotos.length > 0">
+  <button mat-raised-button color="primary" class="sync-button"
+          (click)="syncOfflinePhotos()"
+          [disabled]="!currentlyOnline">
+    <mat-icon>cloud_upload</mat-icon>
+    {{ currentOfflinePhotos.length }} Foto(s) synchronisieren
+  </button>
+
+  Aktuell sind {{ currentOfflinePhotos.length }} Foto(s) nur lokal gespeichert (werden in der Übersicht unten nicht
+  angezeigt) und können synchronisiert werden.
+</div>
+
+<mat-divider *ngIf="currentOfflinePhotos.length > 0"></mat-divider>
+
 <div class="image-gallery">
   <div class="image-card" *ngFor="let photo of photos">
-    <img class="image" src="{{ photoUrl + photo.id }}"/>
+    <img class="image" src="{{ photoUrl + photo.id }}" alt="{{ photo.fileName }}"/>
     <h4>{{ photo.fileName }}</h4>
     {{ photo.uploadedAt | date:'dd.MM.yyyy - HH:mm' }}
   </div>

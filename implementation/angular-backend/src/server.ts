@@ -20,7 +20,7 @@ const port = 8181;
 // Middleware configuration
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }))
-app.use(bodyParser.json());
+app.use(bodyParser.json({ limit: '50MB' }));
 app.use(fileUpload());
 
 // Tell server to listen to incoming requests

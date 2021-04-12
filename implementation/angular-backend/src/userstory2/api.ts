@@ -16,7 +16,7 @@ photos.push(...populatePhotoTestData());
  * @param app An Express server
  */
 export function configureServerForUserStory2(app: Express): void {
-  // Get all images (only reference)
+  // Get all photos (only reference)
   app.get('/photos', (request, response) => {
     const photoDataForClient: Photo[] = [];
 
@@ -31,7 +31,7 @@ export function configureServerForUserStory2(app: Express): void {
     response.json(photoDataForClient);
   });
 
-  // Get single image (actual file) by id
+  // Get single photo (actual file) by id
   app.get('/photos/:id', (request, response) => {
     const photoId = request.params.id;
 
@@ -40,19 +40,19 @@ export function configureServerForUserStory2(app: Express): void {
       response.status(404).end();
       return;
     }
-    const image = Buffer.from(internalPhoto.imageData, 'base64');
+    const photo = Buffer.from(internalPhoto.imageData, 'base64');
 
     response.writeHead(200, {
       'Content-Type': `image/${ internalPhoto.fileName.split('.')[1].toLowerCase() }`,
-      'Content-Length': image.length
+      'Content-Length': photo.length
     });
-    response.end(image);
+    response.end(photo);
   });
 
-  // Create/upload new image
+  // Create/upload new photo
   app.post('/photos', (request, response) => {
     const file = request['files'].userUpload;
-    console.log(`Image [${ file.name }] has been uploaded..`);
+    console.log(`photo [${ file.name }] has been uploaded..`);
 
     const newPhoto: InternalPhoto = {
       id: uuidv4(),
@@ -61,6 +61,14 @@ export function configureServerForUserStory2(app: Express): void {
       uploadedAt: new Date()
     };
     photos.push(newPhoto);
+
+    response.status(200).end();
+  });
+
+  // Sync offline photos
+  app.post('/photos/sync', (request, response) => {
+    // Directly push photos to "in-memory database" because client uses same interface
+    photos.push(...request.body);
 
     response.status(200).end();
   });

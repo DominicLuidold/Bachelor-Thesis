@@ -16,3 +16,11 @@
 .image {
   max-width: 400px;
 }
+
+.sync {
+  margin: 15px 0 15px 0;
+}
+
+.sync-button {
+  margin-right: 10px;
+}

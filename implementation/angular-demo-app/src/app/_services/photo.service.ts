@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Photo } from '@app/_models/photo';
+import { OfflinePhoto, Photo } from '@app/_models/photo';
 import { environment } from '@environments/environment';
 import { Observable } from 'rxjs';
 
@@ -28,5 +28,14 @@ export class PhotoService {
       reportProgress: true,
       observe: 'events'
     });
+  }
+
+  /**
+   * Syncs {@link OfflinePhoto}s to the backend.
+   *
+   * @param offlinePhotos Array of offline photos
+   */
+  sync(offlinePhotos: OfflinePhoto[]): Observable<any> {
+    return this.http.post(`${ environment.apiUrl }/photos/sync`, offlinePhotos);
   }
 }
