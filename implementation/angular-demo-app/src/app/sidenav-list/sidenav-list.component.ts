@@ -6,13 +6,13 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
  * @see <a href="https://code-maze.com/angular-material-navigation/">Angular Material Navigation Menu - Complete Responsive Navigation</a>
  */
 @Component({
-  selector: 'app-navbar',
-  templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css']
+  selector: 'app-sidenav-list',
+  templateUrl: './sidenav-list.component.html',
+  styleUrls: ['./sidenav-list.component.css']
 })
-export class NavbarComponent implements OnInit {
+export class SidenavListComponent implements OnInit {
   @Output()
-  sidenavToggle: EventEmitter<any> = new EventEmitter<any>();
+  sidenavClose: EventEmitter<any> = new EventEmitter<any>();
 
   constructor() {
     // Intentionally empty
@@ -22,7 +22,7 @@ export class NavbarComponent implements OnInit {
     // Intentionally empty
   }
 
-  onToggleSidenav(): void {
-    this.sidenavToggle.emit();
+  onSidenavClose(): void {
+    this.sidenavClose.emit();
   }
 }

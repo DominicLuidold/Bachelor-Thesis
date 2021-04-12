@@ -16,6 +16,7 @@ import { MaterialModule } from '@app/material-module';
 import { NavbarComponent } from '@app/navbar/navbar.component';
 import { PhotoManagerComponent } from '@app/photo-manager/photo-manager.component';
 import { environment } from '@environments/environment';
+import { SidenavListComponent } from './sidenav-list/sidenav-list.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { environment } from '@environments/environment';
     HomeComponent,
     NavbarComponent,
     PhotoManagerComponent,
+    SidenavListComponent,
   ],
   imports: [
     AppRoutingModule,

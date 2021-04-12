@@ -1,0 +1,14 @@
+<mat-nav-list>
+  <a mat-list-item [routerLink]="['/']" (click)="onSidenavClose()">
+    <mat-icon>home</mat-icon>
+    <span class="nav-caption">Home</span>
+  </a>
+  <a mat-list-item [routerLink]="['/entrance-control']" (click)="onSidenavClose()">
+    <mat-icon>people</mat-icon>
+    <span class="nav-caption">Echtzeit Eingangskontrolle</span>
+  </a>
+  <a mat-list-item [routerLink]="['/photo-manager']" (click)="onSidenavClose()">
+    <mat-icon>photo_library</mat-icon>
+    <span class="nav-caption">Fotoverwaltung</span>
+  </a>
+</mat-nav-list>
