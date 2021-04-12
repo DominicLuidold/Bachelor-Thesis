@@ -1,3 +1,11 @@
 <h2>Foto(s) hochladen</h2>
 <app-file-upload requiredFileType="image/*"></app-file-upload>
 <mat-divider></mat-divider>
+
+<div class="image-gallery">
+  <div class="image-card" *ngFor="let photo of photos">
+    <img class="image" src="{{ photoUrl + photo.id }}"/>
+    <h4>{{ photo.fileName }}</h4>
+    {{ photo.uploadedAt | date:'dd.MM.yyyy - HH:mm' }}
+  </div>
+</div>

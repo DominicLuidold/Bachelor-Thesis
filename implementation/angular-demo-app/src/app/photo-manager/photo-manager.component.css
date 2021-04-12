@@ -1,0 +1,18 @@
+.image-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 15px;
+}
+
+.image-card {
+  border: 1px solid black;
+  background-color: lightgrey;
+  height: fit-content;
+  width: fit-content !important;
+  margin: 0.5em 5px 0 5px;
+  padding: 0;
+}
+
+.image {
+  max-width: 400px;
+}

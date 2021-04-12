@@ -1,3 +1,17 @@
 .file-input {
   display: none;
 }
+
+.progress {
+  display: flex;
+  margin: 15px 0 15px 0;
+}
+
+.progress-bar {
+  width: 50%;
+}
+
+.cancel-upload {
+  cursor: pointer;
+  margin: -10px 0 0 10px;
+}

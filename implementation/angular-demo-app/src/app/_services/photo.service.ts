@@ -12,14 +12,18 @@ export class PhotoService {
   }
 
   /**
-   * Returns all {@link Photo}s.
+   * Returns all references to uploaded {@link Photo}s.
    */
   getAll(): Observable<Photo[]> {
     return this.http.get<Photo[]>(`${ environment.apiUrl }/photos`);
   }
 
-  // TODO
-  uploadPhoto(formData: FormData): Observable<any> { // TODO
+  /**
+   * Uploads a single photo.
+   *
+   * @param formData The {@link FormData} containing the photo
+   */
+  uploadPhoto(formData: FormData): Observable<any> {
     return this.http.post(`${ environment.apiUrl }/photos`, formData, {
       reportProgress: true,
       observe: 'events'
