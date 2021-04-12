@@ -32,7 +32,8 @@
       "name": "angular-backend",
       "urls": [
         "/events",
-        "/attendees"
+        "/attendees",
+        "/photos"
       ],
       "cacheConfig": {
         "strategy": "freshness",

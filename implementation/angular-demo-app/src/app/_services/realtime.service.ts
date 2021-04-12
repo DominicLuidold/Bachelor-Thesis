@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { RealTimeData } from '@app/_models/realtime-data';
+import { RealTimeData } from '@app/_models';
 import { environment } from '@environments/environment';
 import { Observable, Observer } from 'rxjs';
 import { io, Socket } from 'socket.io-client';

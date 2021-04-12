@@ -7,7 +7,7 @@ import { Event } from './model/event.interface';
  *
  * @return {Event[]} Array of events
  */
-export function createEventTestData(): Event[] {
+export function populateEventTestData(): Event[] {
   const today = new Date();
   const todayPlus4Hours = new Date();
   todayPlus4Hours.setHours(today.getHours() + 4);

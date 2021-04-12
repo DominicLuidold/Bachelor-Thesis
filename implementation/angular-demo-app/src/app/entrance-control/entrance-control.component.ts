@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, OnDestroy, OnInit, ViewChildren } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
-import { RealTimeService } from '@app/_services/realtime.service';
+import { RealTimeService } from '@app/_services';
 import { AttendeeColumnComponent } from '@app/attendee-column/attendee-column.component';
 import { Subscription } from 'rxjs';
 

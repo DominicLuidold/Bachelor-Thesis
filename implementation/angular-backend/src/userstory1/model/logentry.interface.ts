@@ -1,5 +1,5 @@
-import { Attendee } from "./attendee.interface";
-import { Event } from "./event.interface";
+import { Attendee } from './attendee.interface';
+import { Event } from './event.interface';
 
 export interface LogEntry {
   id: string;

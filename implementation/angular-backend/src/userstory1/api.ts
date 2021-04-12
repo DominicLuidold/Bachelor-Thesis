@@ -1,11 +1,11 @@
 import { Express } from 'express';
-import { Server } from "socket.io";
+import { Server } from 'socket.io';
 import { v4 as uuidv4 } from 'uuid';
 import { Attendee } from './model/attendee.interface';
 import { Event } from './model/event.interface';
 import { LogEntry } from './model/logentry.interface';
-import { RealTimeData } from "./model/realtime-data.interface";
-import { createEventTestData, populateAttendeeTestData } from './test-data';
+import { RealTimeData } from './model/realtime-data.interface';
+import { populateEventTestData, populateAttendeeTestData } from './test-data';
 
 // In-memory "database"
 const attendees: Attendee[] = [];
@@ -13,13 +13,16 @@ const events: Event[] = [];
 const logEntries: LogEntry[] = [];
 
 // Generate test data
-events.push(...createEventTestData());
+events.push(...populateEventTestData());
 attendees.push(...populateAttendeeTestData(events));
 
 /**
  * Configures the server to listen to all specific routes for User Story 1.
  * Also contains the logic subsequently needed to serve those routes as well as the WebSocket configuration
  * for real-time data updates.
+ *
+ * @param app An Express server
+ * @param io  An Socket.io server
  */
 export function configureServerForUserStory1(app: Express, io: Server): void {
   // Get all events
