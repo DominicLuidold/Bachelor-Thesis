@@ -9,9 +9,11 @@ import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.data.renderer.LocalDateTimeRenderer;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouteParameters;
+import java.time.format.DateTimeFormatter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -52,7 +54,16 @@ public class EventSelectionView extends VerticalLayout {
      */
     private void configureGrid() {
         eventGrid.setItems(eventService.findAll());
-        eventGrid.setColumns("id", "name", "location", "startTime", "endTime", "description");
+        eventGrid.setColumns("id", "name", "location");
+        eventGrid.addColumn(new LocalDateTimeRenderer<>(
+            Event::getStartTime,
+            DateTimeFormatter.ofPattern("dd.MM.yyyy - HH:mm")
+        )).setKey("formattedStartTime").setHeader("Start Time");
+        eventGrid.addColumn(new LocalDateTimeRenderer<>(
+            Event::getEndTime,
+            DateTimeFormatter.ofPattern("dd.MM.yyyy - HH:mm")
+        )).setKey("formattedEndTime").setHeader("End Time");
+        eventGrid.addColumn("description");
         eventGrid.getColumns().forEach(col -> col.setAutoWidth(true));
 
         // Configure route redirect

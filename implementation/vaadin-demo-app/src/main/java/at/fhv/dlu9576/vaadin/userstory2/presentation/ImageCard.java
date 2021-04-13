@@ -6,6 +6,7 @@ import com.vaadin.flow.component.html.H4;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @CssImport("./styles/views/photo-manager/image-card.css")
 public class ImageCard extends VerticalLayout {
@@ -26,6 +27,7 @@ public class ImageCard extends VerticalLayout {
         H4 fileNameHeading = new H4(fileName);
         fileNameHeading.setClassName("custom-h4");
 
-        add(image, fileNameHeading, new Text(uploadedAt.toString()));
+        String formattedDate = uploadedAt.format(DateTimeFormatter.ofPattern("dd.MM.yyyy - HH:mm"));
+        add(image, fileNameHeading, new Text(formattedDate));
     }
 }
