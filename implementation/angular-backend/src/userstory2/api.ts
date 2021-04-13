@@ -52,7 +52,7 @@ export function configureServerForUserStory2(app: Express): void {
   // Create/upload new photo
   app.post('/photos', (request, response) => {
     const file = request['files'].userUpload;
-    console.log(`photo [${ file.name }] has been uploaded..`);
+    console.log(`Photo [${ file.name }] has been uploaded..`);
 
     const newPhoto: InternalPhoto = {
       id: uuidv4(),

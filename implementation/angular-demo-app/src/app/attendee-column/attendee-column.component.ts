@@ -121,7 +121,7 @@ export class AttendeeColumnComponent implements OnInit {
    * @param message Message to display
    * @param action  Confirmation button text
    */
-  openSnackBar(message: string, action: string = 'Close'): void {
+  openSnackBar(message: string, action: string = 'Schließen'): void {
     this.snackBar.open(`Fehler beim Laden der Daten: ${ message }`, action, {
       duration: 3000,
     });

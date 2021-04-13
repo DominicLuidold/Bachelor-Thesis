@@ -61,7 +61,7 @@ export class PhotoManagerComponent implements OnInit, OnDestroy, AfterViewInit {
       localStorage.clear();
       this.currentOfflinePhotos = [];
       this.fetchData();
-    }, error => this.snackBar.open(`Fehler während dem Synchronisieren: ${ error }`, 'Close', {
+    }, error => this.snackBar.open(`Fehler beim Synchronisieren: ${ error }`, 'Schließen', {
       duration: 5000,
     }));
   }
@@ -70,7 +70,12 @@ export class PhotoManagerComponent implements OnInit, OnDestroy, AfterViewInit {
    * Fetches all photos.
    */
   fetchData(): void {
-    this.photoService.getAll().subscribe(photos => this.photos = photos);
+    this.photoService.getAll().subscribe(
+      photos => this.photos = photos,
+      error => this.snackBar.open(`Fehler beim Laden der Fotos: ${ error }`, 'Schließen', {
+        duration: 5000,
+      })
+    );
   }
 
   /**

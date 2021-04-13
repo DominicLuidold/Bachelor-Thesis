@@ -1,6 +1,7 @@
 <h2>Auswählen eines Events</h2>
 
-<p>Um die Echtzeit Eingangskontrolle zu starten, muss ein unstenstehendes Event ausgewählt und darauf geklickt werden.</p>
+<p>Um die Echtzeit Eingangskontrolle zu starten, muss ein unstenstehendes Event ausgewählt und darauf geklickt
+  werden.</p>
 
 <table mat-table matSort [dataSource]="dataSource" class="mat-elevation-z4">
   <!-- Event ID -->
@@ -42,12 +43,13 @@
   <!-- No Data Found -->
   <ng-container matColumnDef="disclaimer">
     <td mat-footer-cell *matFooterCellDef colspan="7">
-      No data found
+      Keine Events gefunden
     </td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns; let event" [routerLink]="['/entrance-control/' + event.id]"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns; let event"
+      [routerLink]="['/entrance-control/' + event.id]"></tr>
   <tr mat-footer-row *matFooterRowDef="dataSource.data.length === 0 ? ['disclaimer'] : []"
       [hidden]="dataSource.data.length > 0" class="no-data-found"></tr>
 </table>

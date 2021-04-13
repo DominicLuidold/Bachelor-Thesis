@@ -51,7 +51,7 @@ export function populateAttendeeTestData(testEvents: Event[]): Attendee[] {
     'Darline Delisle', 'Connie Couturier', 'Lorinda Lumsden', 'Pandora Perrodin',
   ];
 
-  return randomNames.map((name) => {
+  return randomNames.map(name => {
     // Create attendees based on random list of names
     const split: string[] = name.split(' ');
 

@@ -46,7 +46,7 @@ export class FileUploadComponent {
     if (file) {
       // Limit file size to 3MB
       if (file.size > 3145730) {
-        this.snackBar.open('Datei ist zu groß! Maximal 3MB/Foto..', 'Close', {
+        this.snackBar.open('Datei ist zu groß! Maximal 3MB/Foto..', 'Schließen', {
           duration: 5000
         });
         this.inputElement.nativeElement.value = null;
@@ -87,7 +87,9 @@ export class FileUploadComponent {
       if (uploadEvent.type === HttpEventType.UploadProgress) {
         this.uploadProgress = Math.round(100 * (uploadEvent.loaded / uploadEvent.total));
       }
-    });
+    }, error => this.snackBar.open(`Fehler beim Hochladen des Fotos: ${ error }`, 'Schließen', {
+      duration: 5000
+    }));
   }
 
   /**

@@ -47,7 +47,7 @@ export class EntranceControlComponent implements OnInit, AfterViewInit, OnDestro
     this.webSocketSubscription = this.realTimeService.getRealTimeUpdates(this.eventId).subscribe(
       hasRealTimeChangeHappenedForEvent => {
         if (hasRealTimeChangeHappenedForEvent) {
-          this.snackBar.open(this.realTimeUpdateNotification, 'Close', {
+          this.snackBar.open(this.realTimeUpdateNotification, 'Schließen', {
             duration: 5000,
           });
           this.attendeeColumns.forEach(columnToUpdate => columnToUpdate.fetchData());
@@ -61,7 +61,10 @@ export class EntranceControlComponent implements OnInit, AfterViewInit, OnDestro
       // Publish real-time update to notify other clients
       this.realTimeService.publishRealTimeUpdate();
       // Tell all tables to fetch updated data when change has happened
-      this.attendeeColumns.forEach(columnToUpdate => columnToUpdate.fetchData());
+      this.attendeeColumns.forEach(columnToUpdate => {
+        columnToUpdate.selection.clear();
+        columnToUpdate.fetchData();
+      });
     }));
   }
 
