@@ -110,7 +110,7 @@ TODO
 
 Der Verfasser der vorliegenden Arbeit bekennt sich zu einer geschlechtergerechten Sprachverwendung.
 
-Um diese Arbeit sowohl geschlechtergerecht als auch -inklusive zu formulieren, werden explizit auf fix männlich oder weiblich zugeordnete Personengruppen, das sogennante Binnen-I oder andere Schreibweisen verzichtet. Stattdessen wird auf die Schreibweise mit einem Doppelpunkt (beispielsweise \enquote{Anwender:innen}, \enquote{Entwickler:innen} etc.) gesetzt, die alle Personengruppen einschließt und dazu beiträgt, eine Bewusstheit für bestehende, diskriminierende Sprachgewohnheiten gegenüber Frauen sowie queeren Mitmenschen zu wecken beziehungsweise zu stärken.
+Um diese Arbeit sowohl geschlechtergerecht als auch -inklusive zu formulieren, wird explizit auf fix männlich oder weiblich zugeordnete Personengruppen, das sogenannte Binnen-I oder andere Schreibweisen verzichtet. Stattdessen wird auf die Schreibweise mit einem Doppelpunkt (beispielsweise \enquote{Anwender:innen}, \enquote{Entwickler:innen} etc.) gesetzt, die alle Personengruppen einschließt und dazu beiträgt, eine Bewusstheit für bestehende, diskriminierende Sprachgewohnheiten gegenüber Frauen sowie queeren Mitmenschen zu schaffen beziehungsweise zu stärken.
 
 % Inhaltsverzeichnis:
 \cleardoublepage % force output to a right page
@@ -182,11 +182,11 @@ Die in den Abschnitten \ref{sec:motivation} und \ref{sec:problemstellung} angef�
 
 \medskip
 
-Diese Arbeit verfolgt daher das Ziel, das JavaScript Framework \textit{Angular} dem auf Java basierenden Framework \textit{Vaadin} gegenüberzustellen und zu vergleichen. Das Ziel ist es, mittels Literatur belegter Vergleiche einen allgemeinen Überblick über \acp{SPA} zu geben, diese klassischen Ansätzen gegenüberzustellen und zwei Demo-Applikationen zu entwickeln. Diese Webanwendungen werden dann herangezogen, um anhand von vorab definierten Kriterien feststellen zu können, ob und in wie weit Empfehlungen für eines der beiden Frameworks ausgesprochen werden können.
+Diese Arbeit verfolgt daher das Ziel, das JavaScript/TypeScript Framework \textit{Angular} dem auf Java basierenden Framework \textit{Vaadin} gegenüberzustellen und zu vergleichen. Das Ziel ist es, mittels Literatur belegter Vergleiche einen allgemeinen Überblick über \acp{SPA} zu geben, diese klassischen Ansätzen gegenüberzustellen und zwei Demo-Applikationen zu entwickeln. Diese Webanwendungen werden dann herangezogen, um anhand von vorab definierten Kriterien feststellen zu können, ob und in wie weit Empfehlungen für eines der beiden Frameworks ausgesprochen werden können.
 
 \medskip
 
-Um den Fokus dieser Arbeit genauer zu definieren und einzuschränken, wird die Planung, Umsetzung sowie abschließenden Beurteilung der Applikationen anhand der ausgearbeiteten Kriterien auf folgende Punkte beschränkt:
+Um den Fokus dieser Arbeit genauer zu definieren und einzuschränken, wird die Planung, Umsetzung sowie abschließende Beurteilung der Applikationen anhand der ausgearbeiteten Kriterien auf folgende Punkte beschränkt:
 \begin{itemize}
     \item Möglichkeit zur einfachen Umsetzung einer \acf{PWA}
     \item Möglichkeit der Wiederverwendbarkeit von Komponenten, gegebenenfalls mittels \textit{Web Components}
@@ -290,7 +290,7 @@ Da sowohl die Persitenzschicht, die Applikationslogik als auch das \acl{UI} bei 
 
 \medskip
 
-Artur Signell, CTO der Vaadin Ltd., erklärt währenddessen in einem Foren-Beitrag vom Juni 2018, dass genauere Informationen zur tatsächlich Umsetzung der automatisch vorgenommen Kommunikation nicht nach außen kommuniziert wird, da die Umsetzung davon als rein internes Implementierungsdetail gehandhabt wird. \parencite[][]{signell_explanation_2018}
+Artur Signell, CTO der Vaadin Ltd., erklärt währenddessen in einem Foren-Beitrag vom Juni 2018, dass genauere Informationen zur tatsächlich Umsetzung der automatisch vorgenommen Kommunikation nicht nach außen kommuniziert werden, da die Umsetzung davon als rein internes Implementierungsdetail gehandhabt wird. \parencite[][]{signell_explanation_2018}
 
 \medskip
 
@@ -337,7 +337,7 @@ Der Quellcode \ref{code:angular-sample-data-function} auf Seite \pageref{code:an
     \label{code:angular-sample-data-function}
 \end{listing}
 
-Verglichen mit der im Abschnitt \ref{sub-sub-sec:kommunikation-herangehensweise-vaadin} auf Seite \pageref{sub-sub-sec:kommunikation-herangehensweise-vaadin} beschriebenen Herangehensweise von Vaadin unterscheidet sich Angular deutlich. Wilken merkt an, dass die Nutzung des \texttt{HttpClient} der am häufigsten verwendete Ansatz bei Angular darstellt. Um eine Kommunikation mit einem Server herzustellen, können laut ihm jedoch auch beziehungsweise zusätzlich diverse andere Protokolle und Technologien genutzt werden. \parencite[][]{wilken_angular_2018}
+Verglichen mit der im Abschnitt \ref{sub-sub-sec:kommunikation-herangehensweise-vaadin} auf Seite \pageref{sub-sub-sec:kommunikation-herangehensweise-vaadin} beschriebenen Herangehensweise von Vaadin unterscheidet sich Angular deutlich. Wilken merkt an, dass die Nutzung des \texttt{HttpClient} der am häufigsten verwendete Ansatz bei Angular darstellt. Um eine Kommunikation mit einem Server herzustellen, können laut ihm jedoch auch, beziehungsweise zusätzlich, diverse andere Protokolle und Technologien genutzt werden. \parencite[][]{wilken_angular_2018}
 
 \subsection{Vaadin Components und deren Grundlage}
 \label{sub-sec:vaadin-components}
@@ -348,7 +348,7 @@ Die Abbildung \ref{fig:vaadin-components-overview} auf Seite \pageref{fig:vaadin
 \begin{figure}[ht]
     \centering
     \includegraphics[scale=0.38]{images/Vaadin_Components-overview.png}
-    \caption[Auswahl von Open Source Vaadin Compoments]{Auswahl von Open Source Vaadin Compoments\newline(Quelle: \cite[][]{vaadin_ltd_mobile_nodate})}
+    \caption[Auswahl von Open Source Vaadin Components]{Auswahl von Open Source Vaadin Components\newline(Quelle: \cite[][]{vaadin_ltd_mobile_nodate})}
     \label{fig:vaadin-components-overview}
 \end{figure}
 
@@ -376,7 +376,7 @@ Quellcode \ref{code:vaadin-textfield} auf Seite \pageref{code:vaadin-textfield} 
     \label{code:vaadin-textfield}
 \end{listing}
 
-Abbildung \ref{fig:vaadin-textfield-output} auf Seite \pageref{fig:vaadin-textfield-output} bezieht sich maßgeblich auf Quellcode \ref{code:vaadin-textfield}, da die dargestellten Textfelder jene sind, die mittels der aufgezeiten \texttt{TextField} Objekten erzeugt wurden und mittels gesetzter Attribute unterschiedliche Ausgangspunkte liefern.
+Abbildung \ref{fig:vaadin-textfield-output} auf Seite \pageref{fig:vaadin-textfield-output} bezieht sich maßgeblich auf Quellcode \ref{code:vaadin-textfield}, da die dargestellten Textfelder jene sind, die mittels der aufgezeigten \texttt{TextField} Objekte erzeugt wurden und mittels gesetzter Attribute unterschiedliche Ausgangspunkte liefern.
 
 \begin{figure}[ht]
     \centering
@@ -403,7 +403,7 @@ Mittels verschiedener Events, die während der Nutzung der Webapplikation und de
 
 \newpage
 
-URL Parameter (sowohl solche, die Teil der URL selbst sind als auch Query Parameter) können mittels dem \texttt{HasUrlParameter} Interface abgefragt und im weiteren Verlauf genutzt werden. Wie Quellcode \ref{code:url-params-vaadin} auf Seite \pageref{code:url-params-vaadin} zeigt, kann über die \texttt{setParameter} Methode auf Teile der URL zugegriffen werden, die mittels Generics direkt in der Methode verankert sind. \parencite[][]{vaadin_ltd_typed_2021} Query Parameter lassen sich währenddessen mit dem \texttt{BeforeEvent} ebenfalls in der selben Methode abfragen. \parencite[][]{vaadin_ltd_query_2021}
+URL Parameter (sowohl solche, die Teil der URL selbst sind als auch Query Parameter) können mittels dem \texttt{HasUrlParameter} Interface abgefragt und im weiteren Verlauf genutzt werden. Wie Quellcode \ref{code:url-params-vaadin} auf Seite \pageref{code:url-params-vaadin} zeigt, kann über die \texttt{setParameter} Methode auf Teile der URL zugegriffen werden, die mittels Generics direkt in der Methode verankert sind. \parencite[][]{vaadin_ltd_typed_2021} Query Parameter lassen sich währenddessen mit dem \texttt{BeforeEvent} ebenfalls in derselben Methode abfragen. \parencite[][]{vaadin_ltd_query_2021}
 
 \begin{listing}[ht]
     \inputminted[fontsize=\footnotesize,linenos]{java}{code/Luidold_Vaadin-URL-params.java}
@@ -435,7 +435,7 @@ Vom Prinzip her ähnlich bietet Angular ebenfalls die Möglichkeit, auf die in d
 
 \medskip
 
-Links innerhalb der \acs{UI} werden - vergleichbar mit Vaadin - ebenso mit HTML Anker Tags und einem eigens dafür vorgesehenen Attribut erzeugt, beinhalten im Zuge der entsprechenden Darstellungsoptionen jedoch noch weitere Funktionalitäten. Quellcode \ref{code:angular-route-linking} auf Seite \pageref{code:angular-route-linking} stellt diesen Ansatz dar und beinhaltet zudem in Zeile 19 das benötigte \textit{router-outlet} Element, welches die ausgewählten und geladenen Routen im Browser darstellt. \parencite[][]{google_llc_angular_nodate}
+Links innerhalb der \acs{UI} werden - vergleichbar mit Vaadin - ebenso mit HTML Anker Tags und einem eigens dafür vorgesehenen Attribut erzeugt, beinhalten im Zuge der entsprechenden Darstellungsoptionen jedoch noch weitere Funktionalitäten. Quellcode \ref{code:angular-route-linking} auf Seite \pageref{code:angular-route-linking} stellt diesen Ansatz dar und beinhaltet zudem in Zeile 19 das benötigte \texttt{<router-outlet>} Element, welches die ausgewählten und geladenen Routen im Browser darstellt. \parencite[][]{google_llc_angular_nodate}
 
 \begin{listing}[ht]
     \inputminted[fontsize=\footnotesize,linenos]{html}{code/Angular_Routing-tags.html}
@@ -477,7 +477,7 @@ Damit die Demo-Applikationen die eben genannten Kriterien beide gleichermaßen b
 
 \subsection{User Stories}
 \label{sub-sec:user-stories}
-Nachfolgend sind mehrere User Stories aufgelistet, die im Detail erklären, welche Funktionalitäten die Vaadin und Angular Demo-Applikation beinhalten sollen und die genannten Kriterien einfließen lassen.
+Nachfolgend sind zwei User Stories aufgelistet, die im Detail erklären, welche Funktionalitäten die Vaadin und Angular Demo-Applikation beinhalten sollen und die genannten Kriterien einfließen lassen.
 
 \subsubsection*{User Story 1: Echtzeit Eingangskontrolle}
 \label{sub-sec:user-story-1}
@@ -501,21 +501,9 @@ Nachfolgend sind mehrere User Stories aufgelistet, die im Detail erklären, welc
 \paragraph*{Akzeptanzkriterien:}
 
 \begin{itemize}
-    \item Nutzer:innen können Fotos von ihrem Computer oder Smartphone auswählen und hochladen.
-    \item Wenn Fotos von einem anderen Client hochgeladen wurden, kann man diese mit dem aktuellen Gerät synchronisieren, sodass jederzeit alle Fotos offline zur Verfügung stehen.
-    \item Wenn keine Internetverbindung vorhanden ist, werden Fotos lokal gespeichert und dann hochgeladen, sobald eine Verbindung wieder zur Verfügung steht.
-\end{itemize}
-
-\subsubsection*{User Story 3: TODO}
-\label{sub-sec:user-story-3}
-
-\paragraph*{Beschreibung:} TODO
-
-\paragraph*{Akzeptanzkriterien:}
-
-\begin{itemize}
-    \item TODO
-    \item TODO
+    \item Nutzer:innen können Fotos von ihrem Computer oder Smartphone auswählen und hochladen, damit diese in einer zentralen Galerie angesehen werden können.
+    \item Wenn Fotos von einem anderen Client hochgeladen wurden, kann man diese mit dem aktuellen Gerät ebenso ansehen, ohne dieser erneut hochzuladen oder synchronisieren zu müssen.
+    \item Wenn keine Internetverbindung vorhanden ist, werden Fotos lokal gespeichert und können hochgeladen werden, sobald wieder eine Verbindung zur Verfügung steht.
 \end{itemize}
 
 % Literaturverzeichnis:

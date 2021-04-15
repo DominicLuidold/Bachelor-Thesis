@@ -4,8 +4,8 @@
 export class SampleService {
     constructor(private http: HttpClient) {}
 
-    getSampleData() {
-        return this.http.get<Array<Sample>>(/* URL to server or API endpoint */);
+    getSampleData(): Observable<Sample[]> {
+        return this.http.get<Sample[]>(/* URL to server or API endpoint */);
     }
 }
 
