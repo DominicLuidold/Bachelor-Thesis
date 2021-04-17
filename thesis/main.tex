@@ -133,6 +133,7 @@ Um diese Arbeit sowohl geschlechtergerecht als auch -inklusive zu formulieren, w
   \acro{API}{Application Programming Interface}
   \acro{DOM}{Document Object Model}
   \acro{JSON}{JavaScript Object Notation}
+  \acro{LTS}{Long Term Support}
   \acro{MPA}{Multi-page Application}
   \acro{PWA}{Progressive Web App}
   \acro{SSR}{Server-side rendering}
@@ -444,8 +445,8 @@ Links innerhalb der \acs{UI} werden - vergleichbar mit Vaadin - ebenso mit HTML 
 \end{listing}
 
 \chapter{Methodik und Vorgehensweise}
-\label{chap:methodik-Vorgehensweise}
-Die in Kapitel \ref{chap:stand-technik} ab Seite \pageref{chap:stand-technik} behandelten Punkte befassen sich mit den grundlegenden Konzepten einer \ac{SPA} und spezifischen Funktionalitäten sowie Herangehensweisen, auf denen Vaadin basiert. Wo sinnvoll, wurde zudem ein Vergleich zu Angular gezogen.
+\label{chap:methodik-vorgehensweise}
+Die in Kapitel \ref{chap:stand-technik} ab Seite \pageref{chap:stand-technik} behandelten Punkte befassen sich mit den grundlegenden Konzepten einer \ac{SPA} und den spezifischen Funktionalitäten sowie Herangehensweisen, auf denen Vaadin basiert. Wo sinnvoll, wurde zudem ein Vergleich zu Angular gezogen.
 
 In den folgenden Kapiteln fokussiert sich diese Arbeit nun auf die Planung, Umsetzung und Beurteilung von zwei Demo-Applikationen, die auf denselben User Stories basieren, jedoch sowohl mit Vaadin als auch Angular umgesetzt werden. Ziel ist es, diese Webapplikationen entlang vorab definierter Kriterien zu entwickeln, um schlussendlich eine Bewertung durchführen zu können.
 
@@ -480,7 +481,7 @@ Damit die Demo-Applikationen die eben genannten Kriterien beide gleichermaßen b
 Nachfolgend sind zwei User Stories aufgelistet, die im Detail erklären, welche Funktionalitäten die Vaadin und Angular Demo-Applikation beinhalten sollen und die genannten Kriterien einfließen lassen.
 
 \subsubsection*{User Story 1: Echtzeit Eingangskontrolle}
-\label{sub-sec:user-story-1}
+\label{sub-sub-sec:user-story-1}
 
 \paragraph*{Beschreibung:} Als Veranstalter:in einer Organisation möchte ich kommende und gehende Besucher:innen bei allen Ein-/Ausgängen in Echtzeit erfassen, sodass diese den Veranstaltungsort nur in kontrollierter Weise betreten können.
 
@@ -494,7 +495,7 @@ Nachfolgend sind zwei User Stories aufgelistet, die im Detail erklären, welche 
 \end{itemize}
 
 \subsubsection*{User Story 2: Fotoverwaltung}
-\label{sub-sec:user-story-2}
+\label{sub-sub-sec:user-story-2}
 
 \paragraph*{Beschreibung:} Als Nutzer:in möchte ich meine Fotos hochladen können, sodass diese an einem zentralen Ort gespeichert sind und man jederzeit darauf zugreifen kann.
 
@@ -506,7 +507,41 @@ Nachfolgend sind zwei User Stories aufgelistet, die im Detail erklären, welche 
     \item Wenn keine Internetverbindung vorhanden ist, werden Fotos lokal gespeichert und können hochgeladen werden, sobald wieder eine Verbindung zur Verfügung steht.
 \end{itemize}
 
-% Literaturverzeichnis:
+\chapter{Umsetzung}
+\label{chap:umsetzung}
+Damit das Ziel dieser Arbeit - einen Vergleich zwischen den beiden \ac{SPA}-Frameworks Vaadin und Angular herzustellen - erreicht werden kann, wurden zwei Demo-Applikationen nach den in Kapitel \ref{chap:methodik-vorgehensweise} ab Seite \pageref{chap:methodik-vorgehensweise} aufgezeigten Methoden und Herangehensweisen entwickelt.
+
+Bevor auf die erzielten Ergebnisse eingegangen wird, folgt in diesem Kapitel eine kurze Erläuterung dazu, wie die zwei Webanwendungen gestartet beziehungsweise verwendet werden können und wie deren Entwicklung und Umsetzung abgelaufen ist. Zudem wird kurz auf einige technische Hürden eingegangen, die währenddessen aufgetreten sind.
+
+Der Quellcode der beiden Anwendungen ist der physischen Abgabe als Kopie beigelegt und zusätzlich jederzeit auf GitHub abrufbar: \url{https://github.com/DominicLuidold/Bachelor-Thesis-II}
+
+\section{Vaadin Demo-Applikation}
+Als erste der beiden Applikationen wurde die Vaadin Demo umgesetzt und \textit{\nameref{sub-sub-sec:user-story-1}} sowie \textit{\nameref{sub-sub-sec:user-story-2}} dafür abgeschlossen. Die Entwicklung wurde bewusst aufgeteilt, sodass währenddessen ein Fokus auf das jeweilige Framework und die entsprechenden Technologien gelegt werden konnte und kein kontinuierliches Umdenken erforderlich war.
+
+\medskip
+
+Zur Umsetzung der Vaadin Demo-Applikation kommt die Version \texttt{19.0.2} zum Einsatz, die zum Stand des Entwicklungsbeginns Anfang März 2021 die aktuellste Version darstellt. In  Kapitel \ref{chap:stand-technik} ab Seite \pageref{chap:stand-technik} wurden stellenweise Auszüge aus der Dokumentation zu Vaadin \texttt{18.x} verwendet, diese behalten jedoch weiterhin ihre Gültigkeit und haben sich nur marginal verändert.
+
+\subsection{Starten und Verwenden der Vaadin Demo}
+\label{sub-sec:starten-verwenden-vaadin}
+Vaadin Flow unterstützt sowohl für die aktuelle \ac{LTS} Version \texttt{14.x} als auch für Version \texttt{19.x} den Einsatz von Java \texttt{8}, \texttt{11} und \texttt{16}. Im Zuge der Umsetzung der Vaadin Demo wird auf Java \texttt{11} gesetzt, weshalb diese Version auf dem ausführenden System installiert sein muss.
+
+Zusätzlich zu einer vorhandenen Java Umgebung wird \textit{Apache Maven}\footnote{\href{https://maven.apache.org/}{Apache Maven (https://maven.apache.org)}} benötigt, welches standardmäßig alle Abhängigkeiten lädt und verwaltet. Abgesehen von einem gängigen Webbrowser müssen keine zusätzlichen Tools/etc. heruntergeladen werden.
+
+\medskip
+
+Die Vaadin Webanwendung kann verhältnismäßig einfach gestartet werden und unterstützt dabei zwei verschiedene Modi (für beide muss man vorab in das entsprechende Anwendungsverzeichnis navigieren):
+
+\begin{itemize}
+    \item \textbf{Development Mode:} Im Anwendungsverzeichnis muss lediglich der Befehl \underline{\texttt{mvn}} in einem Terminal eingegeben werden. Daraufhin werden alle benötigten Abhängigkeiten automatisch geladen und nach kurzer Zeit ist die Anwendung unter \url{http://localhost:8080} aufrufbar.
+    \item \textbf{Production Mode:} Die Vorgehensweise ist ähnlich zum Development Mode, statt dem direkten Ausführen der Anwendung im jeweiligen Terminal wird nach der Eingabe von \underline{\texttt{mvn clean package -Pproduction}} eine \texttt{.jar} Datei im Ordner \path{target/} erstellt. Diese kann im weiteren Verlauf dafür genutzt werden, die Webanwendung auf einem beliebigen System auszuführen und bereitzustellen.
+\end{itemize}
+
+\subsection{Entwickeln mit Vaadin}
+\label{sub-sec:entwickeln-vaadin}
+Das Entwickeln einer Vaadin Flow Applikation benötigt nur wenige technische Voraussetzungen, die in Abschnitt \ref{sub-sec:starten-verwenden-vaadin} auf Seite \pageref{sub-sec:starten-verwenden-vaadin} bereits aufgezeigt wurden. Vaadin selbst erleichtert den Start zudem mittels einer eigenen Website\footnote{\href{https://vaadin.com/start}{Get Started | Vaadin (https://vaadin.com/start)}}, auf der verschiedene \textit{Hello World}-Beispiele heruntergeladen werden können. Bei Bedarf können zudem erste Konfigurationsschritte im Browser getätigt und das daraus resultierende Projekt als Start für die Entwicklung genutzt werden.
+
++% Literaturverzeichnis:
 \clearpage
 \phantomsection
 \addcontentsline{toc}{chapter}{Literaturverzeichnis}
