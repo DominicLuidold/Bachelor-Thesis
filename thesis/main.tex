@@ -516,6 +516,7 @@ Bevor auf die erzielten Ergebnisse eingegangen wird, folgt in diesem Kapitel ein
 Der Quellcode der beiden Anwendungen ist der physischen Abgabe als Kopie beigelegt und zusätzlich jederzeit auf GitHub abrufbar: \url{https://github.com/DominicLuidold/Bachelor-Thesis-II}
 
 \section{Vaadin Demo-Applikation}
+\label{sec:vaadin-demo}
 Als erste der beiden Applikationen wurde die Vaadin Demo umgesetzt und \textit{\nameref{sub-sub-sec:user-story-1}} sowie \textit{\nameref{sub-sub-sec:user-story-2}} dafür abgeschlossen. Die Entwicklung wurde bewusst aufgeteilt, sodass währenddessen ein Fokus auf das jeweilige Framework und die entsprechenden Technologien gelegt werden konnte und kein kontinuierliches Umdenken erforderlich war.
 
 \medskip
@@ -526,14 +527,14 @@ Zur Umsetzung der Vaadin Demo-Applikation kommt die Version \texttt{19.0.2} zum 
 \label{sub-sec:starten-verwenden-vaadin}
 Vaadin Flow unterstützt sowohl für die aktuelle \ac{LTS} Version \texttt{14.x} als auch für Version \texttt{19.x} den Einsatz von Java \texttt{8}, \texttt{11} und \texttt{16}. Im Zuge der Umsetzung der Vaadin Demo wird auf Java \texttt{11} gesetzt, weshalb diese Version auf dem ausführenden System installiert sein muss.
 
-Zusätzlich zu einer vorhandenen Java Umgebung wird \textit{Apache Maven}\footnote{\href{https://maven.apache.org/}{Apache Maven (https://maven.apache.org)}} benötigt, welches standardmäßig alle Abhängigkeiten lädt und verwaltet. Abgesehen von einem gängigen Webbrowser müssen keine zusätzlichen Tools/etc. heruntergeladen werden.
+Zusätzlich zu einer vorhandenen Java Umgebung wird \textit{Apache Maven}\footnote{\href{https://maven.apache.org/}{Apache Maven (https://maven.apache.org)}} benötigt, welches alle projektspezifischen Abhängigkeiten lädt und verwaltet. Abgesehen von einem gängigen Webbrowser müssen keine zusätzlichen Tools/etc. heruntergeladen werden.
 
 \medskip
 
 Die Vaadin Webanwendung kann verhältnismäßig einfach gestartet werden und unterstützt dabei zwei verschiedene Modi (für beide muss man vorab in das entsprechende Anwendungsverzeichnis navigieren):
 
 \begin{itemize}
-    \item \textbf{Development Mode:} Im Anwendungsverzeichnis muss lediglich der Befehl \underline{\texttt{mvn}} in einem Terminal eingegeben werden. Daraufhin werden alle benötigten Abhängigkeiten automatisch geladen und nach kurzer Zeit ist die Anwendung unter \url{http://localhost:8080} aufrufbar.
+    \item \textbf{Development Mode:} Im Anwendungsverzeichnis \path{vaadin-demo-app/} muss lediglich der Befehl \underline{\texttt{mvn}} in einem Terminal eingegeben werden. Daraufhin werden alle benötigten Abhängigkeiten automatisch geladen und nach kurzer Zeit ist die Anwendung unter \url{http://localhost:8080} aufrufbar.
     \item \textbf{Production Mode:} Die Vorgehensweise ist ähnlich zum Development Mode, statt dem direkten Ausführen der Anwendung im jeweiligen Terminal wird nach der Eingabe von \underline{\texttt{mvn clean package -Pproduction}} eine \texttt{.jar} Datei im Ordner \path{target/} erstellt. Diese kann im weiteren Verlauf dafür genutzt werden, die Webanwendung auf einem beliebigen System auszuführen und bereitzustellen.
 \end{itemize}
 
@@ -541,7 +542,64 @@ Die Vaadin Webanwendung kann verhältnismäßig einfach gestartet werden und unt
 \label{sub-sec:entwickeln-vaadin}
 Das Entwickeln einer Vaadin Flow Applikation benötigt nur wenige technische Voraussetzungen, die in Abschnitt \ref{sub-sec:starten-verwenden-vaadin} auf Seite \pageref{sub-sec:starten-verwenden-vaadin} bereits aufgezeigt wurden. Vaadin selbst erleichtert den Start zudem mittels einer eigenen Website\footnote{\href{https://vaadin.com/start}{Get Started | Vaadin (https://vaadin.com/start)}}, auf der verschiedene \textit{Hello World}-Beispiele heruntergeladen werden können. Bei Bedarf können zudem erste Konfigurationsschritte im Browser getätigt und das daraus resultierende Projekt als Start für die Entwicklung genutzt werden.
 
-+% Literaturverzeichnis:
+\medskip
+
+Die für diese Arbeit entwickelte Vaadin Demo-Applikation setzt neben den bereits genannten Komponenten auch auf Spring Boot, welches beim Erstellen einer neuen Vaadin Flow Anwendung standardmäßig mitgeliefert wird. Spring Boot hat sich während der Umsetzung als wichtiges Hilfsmittel erwiesen, da entsprechend zur Verfügung stehende Annotations und eine einfache Integration mit dem ORM-Framework \textit{Hibernate} die Entwicklung beschleunigt und den benötigten Konfigurationsaufwand deutlich minimiert haben. Die \textit{Live Reload}\footnote{\href{https://vaadin.com/docs/latest/guide/live-reload}{Live Reload (https://vaadin.com/docs/latest/guide/live-reload)}} Funktionalität hat es zudem ermöglicht, Änderungen am Java Quellcode vorzunehmen, während der Applikationsserver gestartet ist. Diese Änderungen werden durch den optimierten \enquote{Restart} deutlich schneller im Browser dargestellt, verglichen mit dem händischen Stoppen und erneutem Starten der Anwendung.
+
+\medskip
+
+Das Arbeiten mit der von Vaadin veröffentlichten Dokumentation selbst hat in den meisten Fällen gut funktioniert. Verglichen mit anderen Frameworks oder Tools hat sich jedoch bereits früh bemerkbar gemacht, dass Vaadin deutlich weniger beziehungsweise eingeschränkter eingesetzt wird. Neben der offiziellen Dokumentation und einigen hilfreichen Foreneinträgen bei Vaadin selbst, finden sich nur wenige Lösungsansätze auf den gängigen Entwickler-Plattformen oder bei der Nutzung einer der gängigen Suchmaschinen. Dieser Umstand hat sich vor allem dann als Nachteil herausgestellt, wenn die verfügbaren Ansätze entweder unvollständig oder nicht sehr detailreich waren und das Verständnis für die entsprechende Herangehensweise von Vaadin noch nicht gänzlich vorhanden ist.
+
+\medskip
+
+Abseits der angebrachten Punkte  stellt sich das Arbeiten mit Vaadin Flow vor allem für Entwickler:innen, die bereits mit Java gearbeitet haben, jedoch als gewohnt dar und funktioniert gut. HTML oder JavaScript Kenntnisse werden keine benötigt und die \textit{Vaadin Components} beziehungsweise eigene Komponenten lassen sich meist mit wenigen Zeilen CSS gut an die jeweiligen Bedürfnisse anpassen.
+
+\section{Angular Demo-Applikation}
+\label{sec:angular-demo}
+Nach der abgeschlossenen Entwicklung der Vaadin Demo wurde der Fokus auf die Entwicklung der Angular Demo und dem dazugehörigen \textit{Node.js}\footnote{\href{https://https://nodejs.org/}{Node.js (https://nodejs.org)}} Backend gelegt, die ebenfalls \textit{\nameref{sub-sub-sec:user-story-1}} sowie \textit{\nameref{sub-sub-sec:user-story-2}} beinhalten.
+
+Um die Angular Webanwendung verwenden zu können, bedarf es - im Vergleich zur Vaadin Umsetzung - zwei verschiedener und weitestgehend unabhängiger Projekte beziehungsweise Applikationen. Auf der einen Seite die Applikation, die im Client dargestellt und angewandt werden kann und auf der anderen Seite jene, die auf einem Server läuft und Daten verarbeitet, bereitstellt sowie zentral persistiert.
+
+\medskip
+
+Zur Umsetzung der Angular Demo-Applikation kommen Angular \texttt{11.2} für die Frontend-Entwicklung und Node.js \texttt{14.16} mit Express \texttt{4.17} im Backend zum Einsatz. Sowohl das Frontend als auch das Backend werden mittels TypeScript (in der Version \texttt{4.x}) entwickelt und für den schlussendlichen Betrieb zu JavaScript kompiliert. Die verwendeten Versionen entsprechen zum Stand des Entwicklungsbeginns Ende März 2021 jeweils den aktuellsten Versionen beziehungsweise bei Node.js der aktuellen \ac{LTS} Version.
+
+\subsection{Starten und Verwenden der Angular Demo}
+\label{sub-sec:starten-verwenden-angular}
+Da die Angular Demo in zwei separate Projekte aufgeteilt ist, müssen diese auch jeweils eigenständig gestartet werden. Als Voraussetzung dafür wird in beiden Fällen lediglich eine vorhandene Node.js Installation benötigt, welche \textit{npm} mitliefert und damit die Verwaltung der projektspezifischen Abhängigkeiten übernimmt.
+
+\medskip
+
+Im Regelfall sollte zuerst das Backend gestartet werden, bevor im Anschluss die Angular Webanwendung selbst in Betrieb genommen wird. Um das Backend zu starten, müssen folgende Schritte durchgeführt werden:
+
+\clearpage
+
+\begin{itemize}
+    \item \textbf{Abhängigkeiten installieren:} Im Anwendungsverzeichnis \path{angular-backend/} müssen die benötigten Abhängigkeiten mittels \underline{\texttt{npm install}} installiert werden.
+    \item \textbf{Backend starten:} Anschließend muss, ebenfalls im Anwendungsverzeichnis, der Node.js Server mit dem Ausführen des Befehls \underline{\texttt{npm start}} gestartet werden. Nach kurzer Zeit steht das Backend unter \url{http://localhost:8181} zur Verfügung.
+\end{itemize}
+
+Die Angular Demo kann mit etwas mehr Aufwand, aber dennoch verhältnismäßig einfach, gestartet werden und unterstützt dabei wieder zwei verschiedenen Modi (hierbei ist zu beachten, dass die \ac{PWA} Funktionalität lediglich im \textit{Production Mode} zur Verfügung steht):
+
+\begin{itemize}
+    \item \textbf{Development Mode:} Im Anwendungsverzeichnis \path{angular-demo-app/} müssen zuerst die Abhängigkeiten mittels \underline{\texttt{npm install}} installiert werden. Anschließend kann die Angular Demo über das Ausführen des Befehls \underline{\texttt{ng serve -o}} gestartet werden und ist nach kurzer Zeit unter \url{http://localhost:4200} aufrufbar.
+    \item \textbf{Production Mode:} Nach dem Laden der Abhängigkeiten (siehe Development Mode) muss die Anwendung mit dem Befehl \underline{\texttt{ng build -{}-prod}} für den Production Mode vorbereitet werden. Sobald der Vorgang abgeschlossen ist, stehen die fertigen Projektdateien im Anwendungsverzeichnis im Ordner \path{dist/angular-demo-app/} zur Verfügung. \newline
+    Diese Dateien können jedoch nicht direkt aufgerufen werden, sondern müssen dem Browser von einem Webserver zur Verfügung gestellt werden. Mit \underline{\texttt{npm install -g http-server}} kann ein kleiner HTTP-Server installiert werden, der anschließend über ein Terminal mit den Befehlen \underline{\texttt{cd dist/angular-demo-app/}} und  \underline{\texttt{http-server -o -p 8282}} gestartet werden kann. Die Anwendung steht nach kurzer Zeit unter \url{http://localhost:8282} zum Aufruf bereit und enthält, im Vergleich zum Development Mode, die \ac{PWA} Funktionalität.
+\end{itemize}
+
+\subsection{Entwickeln mit Angular}
+\label{sub-sec:entwickeln-angular}
+TODO
+
+\chapter{Ergebnisse}
+\label{chap:ergebnisse}
+TODO
+
+\chapter{Zusammenfassung und Ausblick}
+\label{chap:zusammenfassung-ausblick}
+TODO
+
+% Literaturverzeichnis:
 \clearpage
 \phantomsection
 \addcontentsline{toc}{chapter}{Literaturverzeichnis}
