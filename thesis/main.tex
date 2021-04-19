@@ -171,7 +171,7 @@ Die in Abschnitt \ref{sec:motivation} angesprochene Vielzahl an \ac{SPA}-Framewo
     \label{fig:js-frameworks}
 \end{figure}
 
-Um eine geeignete Wahl eines Frameworks treffen zu können, sollten vorab Kriterien und Anforderungen definiert werden, die schlussendlich erfüllt werden müssen. Neben grundlegenden Funktionalitäten, die in den meisten Fällen von einer Vielzahl der Frameworks abgedeckt werden können, stellen die projektspezifischen Eigenheiten und vor allem die Auswahl der zugrundeliegenden Technologien (beispielsweise \textit{TypeScript} oder \textit{Java}) eine der wichtigsten Herausforderungen dar. Diese Entscheidung muss gut überlegt und abgewogen werden, da diese im weiteren Verlauf weitreichende Folgen bei der Umsetzung einer (Web-)Applikation zur Folge hat und sich ein Wechsel nach gestarteter Entwicklung nur unter großem Aufwand umsetzen lässt.
+Um eine geeignete Wahl eines Frameworks treffen zu können, sollten vorab Kriterien und Anforderungen definiert werden, die schlussendlich erfüllt werden müssen. Neben grundlegenden Funktionalitäten, die in den meisten Fällen von einer Vielzahl der Frameworks abgedeckt werden können, stellen die projektspezifischen Eigenheiten und vor allem die Auswahl der zugrundeliegenden Technologien (beispielsweise \textit{JavaScript} oder auch \textit{Java}) eine der wichtigsten Herausforderungen dar. Diese Entscheidung muss gut überlegt und abgewogen werden, da diese im weiteren Verlauf weitreichende Folgen bei der Umsetzung einer (Web-)Applikation zur Folge hat und sich ein Wechsel nach gestarteter Entwicklung nur unter großem Aufwand umsetzen lässt.
 
 Die in Abbildung \ref{fig:js-frameworks} auf Seite \pageref{fig:js-frameworks} dargestellten Frameworks zeigen eine Auswahl an Frameworks auf, die auf \textit{JavaScript} aufbauen beziehungsweise basieren und somit primär auf dem Client, dem Browser, eingesetzt werden können. \acp{SPA} lassen sich jedoch nicht nur Frontend-seitig und vollständig mit JavaScript entwickeln (bei denen ein Großteil der Logik auf einem externen Server abläuft), sondern können auch gänzlich mittels auf Java basierenden Frameworks umgesetzt werden. Bei diesen Frameworks, zu denen Vaadin gehört, lässt sich sowohl die Logik als auch das \ac{UI} in einem einheitlichen Projekt kombinieren und entwickeln.
 
@@ -511,7 +511,7 @@ Nachfolgend sind zwei User Stories aufgelistet, die im Detail erklären, welche 
 \label{chap:umsetzung}
 Damit das Ziel dieser Arbeit - einen Vergleich zwischen den beiden \ac{SPA}-Frameworks Vaadin und Angular herzustellen - erreicht werden kann, wurden zwei Demo-Applikationen nach den in Kapitel \ref{chap:methodik-vorgehensweise} ab Seite \pageref{chap:methodik-vorgehensweise} aufgezeigten Methoden und Herangehensweisen entwickelt.
 
-Bevor auf die erzielten Ergebnisse eingegangen wird, folgt in diesem Kapitel eine kurze Erläuterung dazu, wie die zwei Webanwendungen gestartet beziehungsweise verwendet werden können und wie deren Entwicklung und Umsetzung abgelaufen ist. Zudem wird kurz auf einige technische Hürden eingegangen, die währenddessen aufgetreten sind.
+Bevor auf die erzielten Ergebnisse eingegangen wird, folgt in diesem Kapitel eine kurze Erläuterung dazu, wie die zwei Webanwendungen gestartet beziehungsweise verwendet werden können und wie deren Entwicklung und Umsetzung abgelaufen ist. Zudem wird kurz auf einige (technische) Hürden eingegangen, die währenddessen aufgetreten sind.
 
 Der Quellcode der beiden Anwendungen ist der physischen Abgabe als Kopie beigelegt und zusätzlich jederzeit auf GitHub abrufbar: \url{https://github.com/DominicLuidold/Bachelor-Thesis-II}
 
@@ -552,7 +552,7 @@ Das Arbeiten mit der von Vaadin veröffentlichten Dokumentation selbst hat in de
 
 \medskip
 
-Abseits der angebrachten Punkte  stellt sich das Arbeiten mit Vaadin Flow vor allem für Entwickler:innen, die bereits mit Java gearbeitet haben, jedoch als gewohnt dar und funktioniert gut. HTML oder JavaScript Kenntnisse werden keine benötigt und die \textit{Vaadin Components} beziehungsweise eigene Komponenten lassen sich meist mit wenigen Zeilen CSS gut an die jeweiligen Bedürfnisse anpassen.
+Abseits der angebrachten Punkte  stellt sich das Arbeiten mit Vaadin Flow vor allem für Entwickler:innen, die bereits mit Java gearbeitet haben, jedoch als gewohnt dar und funktioniert gut. HTML oder JavaScript Kenntnisse werden keine benötigt und die \textit{Vaadin Components} beziehungsweise eigene Komponenten lassen sich meist mit wenigen Zeilen CSS an die jeweiligen Bedürfnisse anpassen.
 
 \section{Angular Demo-Applikation}
 \label{sec:angular-demo}
@@ -575,21 +575,35 @@ Im Regelfall sollte zuerst das Backend gestartet werden, bevor im Anschluss die 
 \clearpage
 
 \begin{itemize}
-    \item \textbf{Abhängigkeiten installieren:} Im Anwendungsverzeichnis \path{angular-backend/} müssen die benötigten Abhängigkeiten mittels \underline{\texttt{npm install}} installiert werden.
+    \item \textbf{Abhängigkeiten installieren:} Im Verzeichnis \path{angular-backend/} müssen die benötigten Abhängigkeiten mittels \underline{\texttt{npm install}} installiert werden.
     \item \textbf{Backend starten:} Anschließend muss, ebenfalls im Anwendungsverzeichnis, der Node.js Server mit dem Ausführen des Befehls \underline{\texttt{npm start}} gestartet werden. Nach kurzer Zeit steht das Backend unter \url{http://localhost:8181} zur Verfügung.
 \end{itemize}
 
 Die Angular Demo kann mit etwas mehr Aufwand, aber dennoch verhältnismäßig einfach, gestartet werden und unterstützt dabei wieder zwei verschiedenen Modi (hierbei ist zu beachten, dass die \ac{PWA} Funktionalität lediglich im \textit{Production Mode} zur Verfügung steht):
 
 \begin{itemize}
-    \item \textbf{Development Mode:} Im Anwendungsverzeichnis \path{angular-demo-app/} müssen zuerst die Abhängigkeiten mittels \underline{\texttt{npm install}} installiert werden. Anschließend kann die Angular Demo über das Ausführen des Befehls \underline{\texttt{ng serve -o}} gestartet werden und ist nach kurzer Zeit unter \url{http://localhost:4200} aufrufbar.
+    \item \textbf{Development Mode:} Im Anwendungsverzeichnis \path{angular-demo-app/} müssen zuerst die Abhängigkeiten mittels \underline{\texttt{npm install}} installiert werden. Anschließend kann die Angular Demo über das Ausführen der Befehle \underline{\texttt{npm install -g @angular/cli}} und \underline{\texttt{ng serve -o}} gestartet werden und ist nach kurzer Zeit unter \url{http://localhost:4200} aufrufbar.
     \item \textbf{Production Mode:} Nach dem Laden der Abhängigkeiten (siehe Development Mode) muss die Anwendung mit dem Befehl \underline{\texttt{ng build -{}-prod}} für den Production Mode vorbereitet werden. Sobald der Vorgang abgeschlossen ist, stehen die fertigen Projektdateien im Anwendungsverzeichnis im Ordner \path{dist/angular-demo-app/} zur Verfügung. \newline
     Diese Dateien können jedoch nicht direkt aufgerufen werden, sondern müssen dem Browser von einem Webserver zur Verfügung gestellt werden. Mit \underline{\texttt{npm install -g http-server}} kann ein kleiner HTTP-Server installiert werden, der anschließend über ein Terminal mit den Befehlen \underline{\texttt{cd dist/angular-demo-app/}} und  \underline{\texttt{http-server -o -p 8282}} gestartet werden kann. Die Anwendung steht nach kurzer Zeit unter \url{http://localhost:8282} zum Aufruf bereit und enthält, im Vergleich zum Development Mode, die \ac{PWA} Funktionalität.
 \end{itemize}
 
-\subsection{Entwickeln mit Angular}
+Zu beachten ist, dass die Angular Demo standardmäßig nur auf dem Gerät funktionsfähig ist, auf dem auch das Node.js Backend gestartet wurde. Um das zu ändern, muss im Verzeichnis \path{angular-demo-app/src/environments/} in der Datei \texttt{environment.ts} die IP Adresse individuell angepasst werden. Im \textit{Development Mode} werden die Änderungen automatisch übernommen, im \textit{Production Mode} müssen die oben angeführten Schritte erneut vorgenommen werden.
+
+\subsection{Entwickeln mit Angular und Node.js}
 \label{sub-sec:entwickeln-angular}
-TODO
+Ähnlich wie bei der Entwicklung mit Java und Vaadin, erfordert das Arbeiten mit den (Web-)Technologien - auf denen sowohl die Angular Demo-Applikation und das dazugehörige Backend basieren - nur wenige technische Voraussetzungen (siehe dazu Abschnitt \ref{sub-sec:starten-verwenden-angular} ab Seite \pageref{sub-sec:starten-verwenden-angular}).
+
+Während es für einen Node.js Server unzählige Anleitungen und Beispiele im Internet gibt, unterstützt Angular den Entwicklungsstart und auch die weiterführende Umsetzung mit der \textit{Angular CLI}\footnote{\href{https://angular.io/cli}{Angular CLI (https://angular.io/cli)}}. Sowohl das Erstellen eines \textit{Hello World} Projekts als auch das Generieren von gängigen Komponenten lässt sich damit einfach handhaben und wurde während der Entwicklung aktiv eingesetzt.
+
+\medskip
+
+Im Vergleich zur Vaadin Demo hat sich der Programmieraufwand hierbei leicht erhöht, da neben der eigentlichen Anwendung selbst auch ein dazugehöriges Backend entwickelt werden musste, welches Daten entgegennimmt, speichert und zur Verfügung stellt. Da beide Anwendungen auf TypeScript, und somit JavaScript, basieren und die Herangehensweise ähnlich ist, hat dieser Umstand die Entwicklung jedoch nicht spürbar negativ beeinflusst.
+
+Als wichtiger Punkt kommt hinzu, dass die zur Verfügung stehende Dokumentation ausreichend ist und vor allem der große Vorteil besteht, dass sowohl Angular als auch Node.js mit einem \textit{Express}\footnote{\href{https://expressjs.com/}{Express (https://expressjs.com)}} Server sehr weit verbreitet sind. Entsprechende Suchen in den gängigen Suchmaschinen führen zu unzähligen Tutorials, Antworten auf gängige Fragen und Beispielen, die bei der Entwicklung extrem hilfreich sein können.
+
+\clearpage
+
+Lediglich der Umstieg auf einen Mix zwischen HTML, CSS und JavaScript/ TypeScript hat sich bemerkbar gemacht und ist einer der offensichtlichen Punkte, in denen sich Vaadin und Angular unterscheiden. Sowohl der deutlich größere Projektumfang als auch die veränderten Programmierparadigmen erfordern eine kurze Einarbeitungszeit und haben sich während der Entwicklung an gewissen Stellen als Vorteil, an anderen Stellen aber auch als Nachteil erwiesen. Für Entwickler:innen, die bisher noch wenig mit diesen Technologien gearbeitet haben, ist der Einstig jedoch gut möglich und wahrscheinlich etwas leichter, verglichen mit Vaadin und dem objektorientierten Ansatz von Java.
 
 \chapter{Ergebnisse}
 \label{chap:ergebnisse}
