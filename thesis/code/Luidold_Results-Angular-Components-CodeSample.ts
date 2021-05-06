@@ -9,8 +9,7 @@ export class EntranceControlComponent implements OnInit, AfterViewInit, OnDestro
   @ViewChildren(AttendeeColumnComponent) attendeeColumns;
   
   ngOnInit(): void {
-    // Subscribe to real-time updates via WebSockets
-    this.webSocketSubscription = this.realTimeService.getRealTimeUpdates(/* [...] */);
+    // Component & dependency initialization
   }
   
   [...]
