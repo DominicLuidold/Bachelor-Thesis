@@ -622,7 +622,7 @@ Die Demo-Applikationen wurden so entwickelt, dass sowohl die Vaadin als auch die
 
 \medskip
 
-Bei der Entwicklung der Angular Webanwendung kam die von Angular selbst entwickelte \textit{Material UI component library}\footnote{\href{https://material.angular.io/}{Angular Material (https://material.angular.io)}} zum Einsatz. Diese stellt diverse \textit{Components} - wie beispielsweise Tabellen, Buttons, \enquote{Snackbars} etc. - zur Verfügung, die anschließend in der Anwendung verwendet und beliebig angepasst werden können. Die Abbildung \ref{fig:results-angular-ec-snackbar} auf Seite \pageref{fig:results-angular-ec-snackbar} zeigt die eben genannten Components in der Angular Demo im Einsatz. Der Stil von Angular Material ist dabei am Material Design von Google\footnote{\href{https://material.io/}{Material Design (https://material.io)}} angelehnt und ähnelt dem Aussehen des Betriebssystems Android sowie dafür verfügbaren Apps. Die Verwendung der verschiedenen Komponenten gestaltet sich als relativ einfach, bezogen auf das Anpassen des jeweiligen Aussehens und Verhaltens bei unterschiedlichen Geräte- und Displaygrößen.
+Bei der Entwicklung der Angular Webanwendung kam die von Angular selbst entwickelte \textit{Material UI component library}\footnote{\href{https://material.angular.io/}{Angular Material (https://material.angular.io)}} zum Einsatz. Diese stellt diverse \textit{Components} - wie beispielsweise Tabellen, Buttons, \enquote{Snackbars} etc. - zur Verfügung, die anschließend in der Anwendung verwendet und beliebig angepasst werden können. Die Abbildung \ref{fig:results-angular-ec-snackbar} auf Seite \pageref{fig:results-angular-ec-snackbar} zeigt die eben genannten Components in der Angular Demo im Einsatz. Der Stil von Angular Material ist dabei am Material Design von Google\footnote{\href{https://material.io/}{Material Design (https://material.io)}} angelehnt und ähnelt dem Aussehen des Betriebssystems Android sowie gewissen, dafür verfügbaren Apps. Die Verwendung der verschiedenen Komponenten gestaltet sich als relativ einfach, bezogen auf das Anpassen des jeweiligen Aussehens und Verhaltens bei unterschiedlichen Geräte- und Displaygrößen.
 
 \begin{figure}[ht]
     \centering
@@ -631,7 +631,7 @@ Bei der Entwicklung der Angular Webanwendung kam die von Angular selbst entwicke
     \label{fig:results-angular-ec-snackbar}
 \end{figure}
 
-Die Vaadin Applikation baut währenddessen auf den in Abschnitt \ref{sub-sec:vaadin-components} ab Seite \pageref{sub-sec:vaadin-components} beschriebenen \textit{Vaadin Components} auf, welche beim sogenannten \enquote{Styling} vergleichbar mit den Komponenten von Angular sind. Der von Vaadin standardmäßig zur Verfügung gestellte Stil verfolgt dabei ein deutlich anderes Design-Konzept, wie die Abbildung \ref{fig:results-vaadin-ec-snackbar} auf Seite \pageref{fig:results-vaadin-ec-snackbar} aufzeigt.
+Die Vaadin Applikation baut währenddessen auf den in Abschnitt \ref{sub-sec:vaadin-components} ab Seite \pageref{sub-sec:vaadin-components} beschriebenen \textit{Vaadin Components} auf, welche beim sogenannten \enquote{Styling} vergleichbar mit den Komponenten von Angular sind. Der von Vaadin standardmäßig zur Verfügung gestellte Stil verfolgt dabei ein deutlich anderes Design-Konzept, wie Abbildung \ref{fig:results-vaadin-ec-snackbar} auf Seite \pageref{fig:results-vaadin-ec-snackbar} aufzeigt.
 
 \begin{figure}[ht]
     \centering
@@ -688,7 +688,7 @@ Nach dem Ausführen des Befehls \texttt{ng add @angular-pwa} wird von Angular ei
     \label{fig:results-angular-pwa}
 \end{figure}
 
-Der entscheidende Vorteil des Ansatzes von Angular ist der, dass - neben der Umsetzung als \ac{PWA} selbst - auch mit überschaubarem Aufwand eine Offlinenutzung integriert werden kann. Durch die Installation des \path{@angular-pwa} Package werden verschiedene Konfigurationsdateien für den Service Worker im Projekt hinterlegt. Mit nur wenigen Änderungen an diesen Dateien kann Angular mitgeteilt werden, welche Daten bei einem Aufruf eines API Endpunkts lokal zwischengespeichert beziehungsweise gecached werden sollen. Quellcode \ref{code:results-angular-service-worker} auf Seite \pageref{code:results-angular-service-worker} zeigt die vorgenommen Änderungen an der \path{ngsw-config.json} Datei, welche bewirken, dass die gecacheten Daten der Endpunkte \url{/events}, \url{/attendees} und \url{/photos} verwendet werden sollen, sollte keine aktive Netzwerkverbindung zum Zeitpunkt des Aufrufs der Seite bestehen.
+Der entscheidende Vorteil des Ansatzes von Angular ist der, dass - neben der Umsetzung als \ac{PWA} selbst - auch mit überschaubarem Aufwand eine Offlinenutzung integriert werden kann. Durch die Installation des \path{@angular-pwa} Package werden verschiedene Konfigurationsdateien für den Service Worker im Projekt hinterlegt. Mit nur wenigen Änderungen an diesen Dateien kann Angular mitgeteilt werden, welche Daten bei einem Aufruf eines API Endpunkts lokal zwischengespeichert beziehungsweise gecached werden sollen. Quellcode \ref{code:results-angular-service-worker} auf Seite \pageref{code:results-angular-service-worker} zeigt die vorgenommen Änderungen an der \path{ngsw-config.json} Datei, welche bewirken, dass die gecacheten Daten der Endpunkte \path{/events}, \path{/attendees} und \path{/photos} verwendet werden sollen, sollte keine aktive Netzwerkverbindung zum Zeitpunkt des Aufrufs der Seite bestehen.
 
 \begin{listing}[ht]
     \renewcommand{\fcolorbox}[4][]{#4}
@@ -726,7 +726,7 @@ Aufgrund der von Vaadin vorgegebenen Empfehlungen und Herangehensweisen, enthäl
 
 \medskip
 
-Die \textit{Vaadin Components} selbst sind bereits eigenständige Web Components, wie in Abschnitt \ref{sub-sec:vaadin-components} ab Seite \pageref{sub-sec:vaadin-components} beschrieben wurde. Für die Umsetzung der einzelnen User Stories hat die Verwendung der bestehenden Vaadin Components sowie die gezielte Entwicklung von einigen, wenigen Klassen ausgereicht, um eine adäquate Wiederverwendbarkeit zu gewährleisten. Sofern Komponenten noch weiter abstrahiert werden müssen, bietet Vaadin jedoch die Möglichkeit, eigene Java Komponenten erstellen zu können.
+Die \textit{Vaadin Components} selbst sind bereits eigenständige Web Components, wie in Abschnitt \ref{sub-sec:vaadin-components} ab Seite \pageref{sub-sec:vaadin-components} beschrieben wurde. Für die Umsetzung der einzelnen User Stories hat die Verwendung der bestehenden Vaadin Components sowie die gezielte Entwicklung von einigen, wenigen Klassen ausgereicht, um eine adäquate Wiederverwendbarkeit zu gewährleisten. Sofern Komponenten noch weiter abstrahiert werden müssen, bietet Vaadin jedoch die Möglichkeit\footnote{\href{https://vaadin.com/docs/latest/flow/creating-components/overview}{Creating Components | Vaadin Docs (https://vaadin.com/docs/latest/flow/creating-components/overview)}}, eigene Java Komponenten erstellen zu können.
 
 \subsection{Wiederverwendbare Angular Komponenten}
 \label{sub-sec:results-wiederverwendbarkeit-angular}
@@ -758,21 +758,21 @@ Hervorzuheben ist hierbei jedoch, dass die von Angular Material bereitgestellten
     \label{fig:results-angular-components}
 \end{figure}
 
-Wie bei der Umsetzung der Vaadin Anwendung, wurde auch bei der Entwicklung der Angular Demo auf die Entwicklung von entkoppelten Web Components verzichtet und primär auf Komponenten gesetzt, die im projektspezifische Kontext wiederverwendet werden können. Bei Bedarf bietet jedoch auch Angular die Möglichkeit, abstrahierte Elemente analog zu den Web Component Standards zu entwickeln.
+Wie bei der Umsetzung der Vaadin Anwendung, wurde auch bei der Entwicklung der Angular Demo auf die Entwicklung von entkoppelten Web Components verzichtet und primär auf Komponenten gesetzt, die im projektspezifische Kontext wiederverwendet werden können. Bei Bedarf bietet jedoch auch Angular die Möglichkeit\footnote{\href{https://angular.io/guide/elements/}{Angular Elements (https://angular.io/guide/elements)}}, abstrahierte Elemente analog zu den Web Component Standards zu entwickeln.
 
 \section{Unterschiede bei der Datenanbindung}
 \label{sec:results-datenanbindung}
-Neben den zwei bisher behandelten Kriterien, wurde speziell auch auf die Thematik der lokalen und externen Datenanbindung beziehungsweise Datenhaltung der Anwendungen geachtet (siehe dazu \textit{\nameref{sub-sec:kriterien-datenanbindung}} auf Seite \pageref{sub-sec:kriterien-datenanbindung}).
+Neben den zwei bisher behandelten Kriterien wurde speziell auch auf die Thematik der lokalen und externen Datenanbindung beziehungsweise Datenhaltung der Anwendungen geachtet (siehe dazu \textit{\nameref{sub-sec:kriterien-datenanbindung}} auf Seite \pageref{sub-sec:kriterien-datenanbindung}).
 
 Da sich die Technologie-Stacks von Vaadin und Angular deutlich unterscheiden, eröffnen sich in beiden Fällen unterschiedliche Möglichkeiten und Herangehensweisen, wie die jeweiligen Daten der Applikationen gespeichert und Benutzer:innen wieder zur Verfügung gestellt werden können. Die dabei erzielten Ergebnisse unterscheiden sich bisher am deutlichsten voneinander und hatten unterschiedliche Auswirkungen auf die Planung und Entwicklung der Anwendungen.
 
 \subsection{Serverseitige Datenhaltung mittels Java}
 \label{sub-sec:result-datenanbindung-vaadin}
-Als auf einem Server ausgeführte Programmiersprache, bietet Java diverse Vorteile, wenn es um die Anbindung an Datenbanken und persistente Datenspeicher geht. Diese Vorteile stehen während der Entwicklung einer Vaadin Flow Applikation uneingeschränkt zur Verfügung und werden durch das mitgelieferte Spring Boot zusätzlich erleichtert.
+Als auf einem Server ausgeführte Programmiersprache bietet Java diverse Vorteile, wenn es um die Anbindung an Datenbanken und persistente Datenspeicher geht. Diese Vorteile stehen während der Entwicklung einer Vaadin Flow Applikation uneingeschränkt zur Verfügung und werden durch das mitgelieferte Spring Boot zusätzlich erleichtert.
 
 \medskip
 
-Während der Entwicklung der Vaadin Demo-Anwendung ist das ORM Framework \textit{Hibernate}\footnote{\href{https://hibernate.org/}{Hibernate (https://hibernate.org)}} zum Einsatz gekommen. Dieses hat sich, in Zusammenspiel mit Spring Boot, um den Datenzugriff sowie die Verwaltung der eingesetzten \ac{JPA} Entities gekümmert. Für das Persistieren der Daten wurde eine In-Memory \textit{H2}\footnote{\href{https://h2database.com/}{H2 Database Engine (https://h2database.com)}} Datenbank verwendet, welche jedoch jedoch mit minimalem Aufwand gegen ein beliebiges Datenbankmanagementsystem ausgetauscht werden kann.
+Während der Entwicklung der Vaadin Demo-Anwendung ist das ORM Framework Hibernate zum Einsatz gekommen. Dieses hat sich, in Zusammenspiel mit Spring Boot, um den Datenzugriff sowie die Verwaltung der eingesetzten \ac{JPA} Entities gekümmert. Für das Persistieren der Daten wurde eine In-Memory \textit{H2}\footnote{\href{https://h2database.com/}{H2 Database Engine (https://h2database.com)}} Datenbank verwendet, welche jedoch mit minimalem Aufwand gegen ein beliebiges Datenbankmanagementsystem ausgetauscht werden kann.
 
 \medskip
 
@@ -803,11 +803,37 @@ Quellcode \ref{code:results-angular-datenanbindung} auf Seite \pageref{code:resu
     \label{code:results-angular-datenanbindung}
 \end{listing}
 
-Deutliche Vorteile bietet Angular beim Zugriff auf den lokalen Speicher direkt im Browser selbst. Sowohl \textit{Cookies} als auch der \textit{SessionStorage} und \textit{LocalStorage} können mittels JavaScript/TypeScript in der gesamten Applikation verwendet werden, um Daten auf dem jeweiligen Endgerät (zwischen) zu speichern. Genutzt wurde diese Möglichkeit für die Offlinenutzung der Fotoverwaltung (siehe dazu \textit{\nameref{sub-sub-sec:user-story-2}} auf Seite \ref{sub-sub-sec:user-story-2}), bei der Fotos \texttt{base64} encoded im LocalStorage abgelegt wurden, bis wieder eine aktive Internetverbindung besteht. Etwaige Limitierungen bezüglich der maximalen Speichergröße oder ähnlichem werden von Angular nicht vorgenommen und hängen in der Regel vom jeweiligen Betriebssystem und Webbrowser selbst ab.
+Deutliche Vorteile bietet Angular, beziehungsweise JavaScript und Type-Script selbst, beim Zugriff auf den lokalen Speicher direkt im Browser. Sowohl \textit{Cookies} als auch der \textit{SessionStorage} und \textit{LocalStorage} können in der gesamten Applikation verwendet werden, um Daten auf dem jeweiligen Endgerät (zwischen) zu speichern. Genutzt wurde diese Möglichkeit für die Offlinenutzung der Fotoverwaltung (siehe dazu \textit{\nameref{sub-sub-sec:user-story-2}} auf Seite \ref{sub-sub-sec:user-story-2}), bei der Fotos \texttt{base64} encoded im LocalStorage abgelegt wurden, bis wieder eine aktive Internetverbindung besteht. Etwaige Limitierungen bezüglich der maximalen Speichergröße oder ähnlichem werden von Angular nicht vorgenommen und hängen daher in der Regel vom jeweiligen Betriebssystem und Webbrowser selbst ab.
 
 \section{Anderweitige Ergebnisse der Umsetzung der User Stories}
 \label{sec:results-user-stories}
-TODO
+Neben den bisher behandelten Punkten, die größtenteils auf die vorab definierten Kriterien bezogen sind, haben sich bei der Umsetzung der Demo-Applikationen zusätzlich einige weitere Erkenntnisse ergeben, die im Folgenden kurz aufgezeigt werden.
+
+\subsection{Umsetzung der Echtzeit-Funktionalität}
+\label{sub-sec:results-user-stories-echtzeit}
+Die bei \textit{\nameref{sub-sub-sec:user-story-1}} geforderte Echtzeit-Funktionalität wurde in beiden Anwendungen umgesetzt und funktioniert für Anwender:innen der Applikationen identisch. Die technische Umsetzung und der damit verbundene Aufwand unterscheiden sich hierbei jedoch von einander.
+
+\medskip
+
+Vaadin ermöglicht mit der Konfiguration von \textit{Server Push}\footnote{\href{https://vaadin.com/docs/latest/flow/advanced/server-push}{Server Push | Vaadin Docs (https://vaadin.com/docs/latest/flow/advanced/server-push)}} das Aktualisieren der \ac{UI} vom Server aus, ohne dass Benutzer:innen manuell eine Aktualisierung anfordern müssen. Benötigt wird dafür die \texttt{@Push} Annotation sowie eine Klasse, welche das Verwalten der unterschiedlichen Clients übernimmt und der Ablauflogik erlaubt, Aktualisierungen auszulösen, sobald bestimmte Kriterien erfüllt wurden. Die tatsächlichen Änderungen auf den Clients übernimmt Vaadin dabei wieder automatisch und erfordert keine manuell ausgeführte Kommunikation mit dem jeweiligen Frontend.
+
+\medskip
+
+Um Daten in Echtzeit ändern und aktualisieren zu können, bedarf es einer fortlaufenden Verbindung vom Backend zum Frontend. Da Angular dies von Haus aus nicht selbst unterstützt, wurde die Funktionalität mittels \textit{Socket.IO}\footnote{\href{https://socket.io/}{Socket.IO (https://socket.io)}} in das Node.js Backend integriert und in die Angular Anwendung eingebunden. Die in Quellcode \ref{code:results-angular-echtzeit} auf Seite \pageref{code:results-angular-echtzeit} demonstrierte Verbindung wird mit \textit{WebSockets} aufgebaut und ermöglicht das bidirektionale Senden und Empfangen von Daten, ohne dass die Änderungen auf dem Client von einem:einer Anwender:in angefordert werden müssen.
+
+\begin{listing}[ht]
+    \inputminted[fontsize=\footnotesize,linenos,breaklines]{js}{code/Luidold_Results-Angular-Echtzeit-CodeSample.ts}
+    \caption[Echtzeitkommunikation mittels WebSockets bei Angular]{Echtzeitkommunikation mittels WebSockets bei Angular}
+    \label{code:results-angular-echtzeit}
+\end{listing}
+
+\subsection{Implementierung von \enquote{Drag and Drop}}
+\label{sub-sec:results-user-stories-drag-drop}
+Im Zuge der Umsetzung der \textit{Echtzeit Eingangskontrolle} wurde bei der Vaadin Demo-Applikation die Möglichkeit implementiert, Teilnehmer:innen per \enquote{Drag and Drop} in die passende Spalte verschieben zu können. Die zugrundeliegende Funktionalität wird dabei von Vaadin Flow zur Verfügung gestellt und mittels diverser Listener umgesetzt. Als weiterführende Hilfestellung stellt Vaadin eine ausführliche Dokumentation bereit, wie Drag and Drop bei einer \texttt{Grid} Komponente (entspricht einer Tabelle) umgesetzt werden kann.
+
+\medskip
+
+Bei der Entwicklung der Angular Anwendung wurde ebenfalls versucht, dieselbe Drag and Drop Funktionalität umzusetzen. Zwar bietet Angular mit dem \path{@angular/cdk/drag-drop} Modul eine umfangreiche Möglichkeit, das Verhalten von verschiedenen Elementen dahingehend zu verändern. In Zusammenspiel mit dem HTML \texttt{table} Tag, der verwendeten Datenstruktur und der Anforderung der Echtzeitkommunikation hat die Umsetzung jedoch nicht die gewünschten Resultate erzielt und wurde schlussendlich nicht umgesetzt.
 
 \chapter{Zusammenfassung und Ausblick}
 \label{chap:zusammenfassung-ausblick}
