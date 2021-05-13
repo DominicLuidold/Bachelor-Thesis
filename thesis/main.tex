@@ -17,8 +17,8 @@
 \usepackage[
     linktocpage=true,
     pdfauthor={Dominic Luidold},
-    pdftitle={TODO}
-]{hyperref} % Links -> \href{https://www.wikibooks.org}{Wikibooks home}
+    pdftitle={Vergleich der Single-page Application Frameworks Vaadin und Angular}
+]{hyperref} % Links
 \usepackage[nohyperlinks]{acronym} % Abkürzungsverzeichnis
 
 % Einstellungen:
@@ -44,6 +44,7 @@
     \includegraphics[width=0.4\linewidth]{images/FHV_FHV-Logo.jpg}
     \end{flushright}
     \begin{flushleft}
+    \vspace{0.5cm}
     \section*{Vergleich der Single-page Application Frameworks Vaadin und Angular}
     \vspace{1cm}
 
@@ -102,18 +103,42 @@ Zu guter Letzt möchte ich meine Arbeit all jenen widmen, die für die Gleichbeh
 \section*{Kurzreferat}
 \label{sec:kurzreferat}
 
-\subsection*{TODO}
+\subsection*{Vergleich der Single-page Application Frameworks Vaadin und Angular}
 
-TODO
+Immer mehr Webapplikationen und Apps werden mittels des \acs{SPA}-Ansatzes umgesetzt. Für die Umsetzung solch einer Applikation stehen eine Vielzahl von Frameworks zur Verfügung, die darüber hinaus weitere Funktionalitäten bieten. \acsp{SPA} können jedoch nicht nur mit \textit{JavaScript}, sondern auch mit auf \textit{Java} basierenden Lösungen umgesetzt werden. Die unterschiedlichen Ansätze und Technologie-Stacks bringen jedoch gewisse Vor- und Nachteile sowie Tücken mit sich. Diese Arbeit vergleicht daher das JavaScript/TypeScript Framework \textit{Angular} mit dem auf Java basierenden Framework \textit{Vaadin}.
+
+\smallskip
+
+Zusätzlich zum angestrebten Vergleich und den daraus resultierenden Ergebnissen wird der aktuelle Stand der Technik beleuchtet. Dabei wird der Ansatz von \acsp{SPA} dem von \acsp{MPA} gegenübergestellt und die Funktionsweise von Vaadin Flow genauer beleuchtet. Wo sinnvoll, wird zusätzlich die Herangehensweise von Angular herangezogen und in Zusammenhang mit der Implementierung von Vaadin gebracht.
+
+\smallskip
+
+Um den vorgenommen Vergleich zu beschränken und einen Fokus zu setzen, sind drei Kriterien definiert worden, anhand derer die Planung, Umsetzung sowie abschließende Beurteilung der entwickelten Demo-Applikationen durchgeführt worden ist. Neben der Möglichkeit zur einfachen Umsetzung einer \acs{PWA} wurde auf die Wiederverwendbarkeit von Komponenten sowie auf die lokale und servereitige Datenanbing/-haltung geachtet. Basierend auf zwei unterschiedlichen User Stories, die diese Kriterien vereinen, wurden zwei Anwendungen entwickelt, die für die abschließende Bewertung und die daraus resultierenden Empfehlungen herangezogen worden sind.
+
+\smallskip
+
+Das Ziel dieser Arbeit, einen fundierten Vergleich zwischen Vaadin und Angular zu schaffen, konnte erfüllt werden. Zwar lässt sich keine allgemeine Empfehlung für eines der beiden Frameworks aussprechen, anhand von verschiedenen Szenarien, die auf den oben genannten Kriterien basieren, lassen sich jedoch gezielte Empfehlungen sowohl für Vaadin als auch für Angular aussprechen.
 
 % Abstract:
 \newpage
 \section*{Abstract}
 \label{sec:abstract}
 
-\subsection*{TODO}
+\subsection*{Comparison of the Single-page Application Frameworks Vaadin and Angular}
 
-TODO
+An increasing number of web applications and apps are being implemented using the \acs{SPA} approach. A large number of frameworks are available for the implementation of such an application, which also offer additional functionalities. \acsp{SPA} can be implemented not only with \textit{JavaScript}, but also with \textit{Java}-based solutions. However, the different approaches and technology stacks have certain advantages, disadvantages and pitfalls. This thesis therefore compares the JavaScript/TypeScript framework \textit{Angular} with the Java-based framework \textit{Vaadin}.
+
+\medskip
+
+In addition to the intended comparison and the subsequent results, the current state of the art is highlighted. The approach of \acsp{SPA} is compared to that of \acsp{MPA} and the functioning of Vaadin Flow is examined in more detail. Where appropriate, the approach of Angular is also used and brought into context with the implementation of Vaadin.
+
+\medskip
+
+In order to narrow down the comparison and to set a focus, three criteria were defined on the basis of which the planning, implementation and final evaluation of the developed demo applications were carried out. In addition to the possibility of easily implementing a \acs{PWA}, attention was paid to the reusability of components as well as the local and server-side data handling. Based on two different user stories that combine these criteria, two applications were developed that were used for the final evaluation and the final recommendations.
+
+\medskip
+
+The goal of this thesis, creating a well-founded comparison between Vaadin and Angular, has been fulfilled. Although it is not possible to express a general recommendation for one of the two frameworks, specific recommendations can be made for both Vaadin and Angular on the basis of various scenarios that are based on the criteria mentioned above.
 
 % Geschlechtergerechte Sprache:
 \newpage
@@ -161,7 +186,7 @@ Irritation bei den Lesenden ist gewünscht und soll dazu beitragen, eine Bewusst
 \pagenumbering{arabic}
 \chapter{Einleitung}
 \label{chap:einleitung}
-Diese Bachelorarbeit verfolgt das Ziel, einen Einblick in die \ac{SPA} Frameworks \textit{Angular}\footnote{\href{https://angular.io/}{Angular (https://angular.io)}} und \textit{Vaadin}\footnote{\href{https://vaadin.com/}{Vaadin (https://vaadin.com)}} zu geben und deren Gemeinsamkeiten, Unterschiede sowie Vor- und Nachteile zu beleuchten.
+Diese Bachelorarbeit verfolgt das Ziel, einen Einblick in die \ac{SPA} Frameworks \textit{Vaadin}\footnote{\href{https://vaadin.com/}{Vaadin (https://vaadin.com)}} und \textit{Angular}\footnote{\href{https://angular.io/}{Angular (https://angular.io)}} zu geben und deren Gemeinsamkeiten, Unterschiede sowie Vor- und Nachteile zu beleuchten.
 
 \medskip
 
@@ -169,7 +194,7 @@ Um ein grundlegendes Verständnis über die Thematik von \acp{SPA} zu erlangen, 
 
 \section{Motivation}
 \label{sec:motivation}
-In den letzten Jahren lässt sich beobachten, dass Webapplikationen, Apps und Anwendungen allgemein verstärkt mittels des \ac{SPA}-Ansatzes umgesetzt werden und somit auf eine deutlich unterschiedlichere Herangehensweise - im Gegensatz zu klassischeren \acp{MPA} - setzen. \parencite[][]{ismail_why_2019} Für die Umsetzung einer solchen Applikation stehen eine Vielzahl von Frameworks zur Verfügung, die darüber hinaus weitere Features bieten und Entwickler:innen bei der Umsetzung unterstützen.
+In den letzten Jahren lässt sich beobachten, dass Webapplikationen, Apps und Anwendungen allgemein verstärkt mittels des \ac{SPA}-Ansatzes umgesetzt werden und somit auf eine deutlich unterschiedlichere Herangehensweise - im Gegensatz zu klassischeren \acp{MPA} - setzen. \parencite[][]{ismail_why_2019} Für die Umsetzung einer solchen Applikation stehen eine Vielzahl von Frameworks zur Verfügung, die darüber hinaus weitere Funktionalitäten bieten und Entwickler:innen bei der Umsetzung unterstützen.
 
 \newpage
 
