@@ -849,7 +849,31 @@ Bei der Entwicklung der Angular Anwendung wurde ebenfalls versucht, dieselbe Dra
 
 \chapter{Zusammenfassung und Ausblick}
 \label{chap:zusammenfassung-ausblick}
-TODO
+Das folgende Kapitel befasst sich abschließend noch einmal mit den erzielten Ergebnissen dieser Arbeit, fasst diese zusammen und gibt auf deren Basis Empfehlungen für die Verwendung der beiden \ac{SPA}-Frameworks ab. Des Weiteren wird ein kurzer Ausblick auf den zukünftigen Einsatz von Vaadin und Angular in Zusammenhang mit den Ergebnissen dieser Arbeit gegeben.
+
+\section{Zusammenfassung}
+\label{sec:zusammenfassung}
+Um den Fokus dieser Arbeit einzuschränken, wurden zu Beginn drei Kriterien festgelegt, die anschließend für die Planung und Umsetzung der Demo-Applikationen herangezogen wurden. Die Kriterien wurden so gewählt, dass aktuelle Anforderungen der Webentwicklung behandelt und abgedeckt werden können und gleichzeitig ein Einblick in die Möglichkeiten der beiden Frameworks gegeben wird.
+
+\medskip
+
+Das Kriterium \textit{\nameref{sub-sec:kriterien-pwa}} hat bei der Entwicklung aufgezeigt, dass sowohl mit Vaadin als auch mit Angular \acp{PWA} umgesetzt werden können. Der jeweilige Aufwand ist in beiden Fällen überschaubar, die damit erzielbaren Ergebnisse unterscheiden sich jedoch merklich. Bei Projekten, bei denen eine Anwendung sowohl auf einem Computer als auch im mobilen Einsatz eine Rolle spielt, können beide Frameworks empfohlen werden. Sollte jedoch zusätzlich zur Nutzung als \ac{PWA} selbst auch die Nutzung ohne aktive Internetverbindung eine Anforderung sein, ist Angular dem Einsatz von Vaadin Flow vorzuziehen. Angular bietet mit der Implementierung des \textit{Service Workers} deutlich mehr Möglichkeiten und Flexibilität, während die Ergebnisse bei Vaadin Flow aufgezeigt haben, dass praktisch keine Offline-Fähigkeit erzielt werden kann.
+
+\medskip
+
+Betrachtet man die Ergebnisse, die auf dem Kriterium \textit{\nameref{sub-sec:kriterien-web-components}} aufbauen, kann für beide Frameworks eine gleichermaßen gültige Empfehlung ausgesprochen werden. Vaadin und auch Angular bieten die Möglichkeit, im projektspezifischen Kontext wiederverwendbare Komponenten zu entwickeln und diese entsprechend einzusetzen. Des Weiteren besteht bei beiden Frameworks die Möglichkeit, eigene Komponenten zu erstellen und diese bei Bedarf auf dem Web Components Standard aufzubauen.
+
+\medskip
+
+Die \textit{\nameref{sub-sec:kriterien-datenanbindung}} bildet als letztes der vorab definierten Kriterien noch einmal einen ausschlaggebenden Punkt, welcher bei der Wahl auf eines der \ac{SPA}-Frameworks eine wesentliche Rolle spielen kann. Vaadin bietet mit Java als Grundlage die weitreichenden Möglichkeiten, die zum einen durch die Programmiersprache und den Programmierparadigmen selbst und auf der anderen Seite durch die verschiedenen Tools, Frameworks und Hilfsmitteln zur Verfügung stehen. Bei Angular hingegen ist die serverseitige Datenhaltung komplett offen und hängt stark von den jeweiligen Anforderungen ab. Die lokale Datenspeicherung direkt im Browser unterstützt Angular mit JavaScript/TypeScript zudem wesentlich einfacher, verglichen mit dem eher umständlichen Ansatz von Vaadin. Für Projekte, bei denen eine einheitliche Programmcodebasis eine wichtige Rolle spielt, die Anbindung an eine Datenbank ohne großen Aufwand möglich sein soll und das lokale Speichern nicht das Hauptaugenmerk ist, lässt sich daher eine Empfehlung für Vaadin aussprechen. Für Angular hingegen spricht die Flexibilität, jederzeit das Backend gegen eine beliebige Umsetzung - unabhängig von einer Technologie oder Programmiersprache - austauschen zu können, ohne die Webanwendung selbst stark verändern zu müssen. Des Weiteren empfiehlt sich der Einsatz von Angular, wenn viele Daten lokal gespeichert werden müssen oder, wie bereits angeführt, eine Offline-Fähigkeit benötigt wird.
+
+\clearpage
+
+Abschließend lässt sich zusammenfassen, dass für keines der beiden Frameworks eine eindeutige Empfehlung ausgesprochen werden kann. Sowohl Vaadin als auch Angular bieten in unterschiedlichen Bereich Vor- und Nachteile, die in Zusammenhang mit den jeweiligen Projektanforderungen gebracht werden müssen. Für Entwickler:innen, die den Einsatz von Java gewohnt sind, sind die Ansätze und Herangehensweise von Vaadin leicht verständlich und es kann damit verhältnismäßig einfach eine \ac{SPA} umgesetzt werden. Angular bietet mit seiner weit verbreiteten Nutzung hingegen eine bessere Dokumentation und Verfügbarkeit von Hilfestellungen sowie Erweiterungsmöglichkeiten, die für die Entwicklung der auf JavaScript/TypeScript basierenden Anwendung von Vorteil sind.
+
+\section{Ausblick}
+\label{sec:ausblick}
+Vaadin und Angular sind beides Frameworks, die aktiv entwickelt und genutzt werden (bereits während des Verfassens dieser Arbeit sind in beiden Fällen beispielsweise diverse Updates erschienen). Aus aktueller Sicht werden beide auch in Zukunft sowohl eine Rolle spielen, als auch eine geeignete Möglichkeit bei der Entwicklung und Umsetzung von \acp{SPA} darstellen. Betrachtet man die im vorherigen Abschnitt angeführten Empfehlungen, die in dieser Arbeit aufgezeigten Ergebnisse sowie den aktuellen Stand der Technik, spricht kaum etwas gegen den Einsatz eines der beiden Frameworks für die Umsetzung einer zukunftsfähigen Webanwendung, unabhängig davon ob Java oder JavaScript/TypeScript zum Einsatz kommt.
 
 % Literaturverzeichnis:
 \clearpage
