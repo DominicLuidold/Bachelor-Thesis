@@ -299,7 +299,7 @@ Der nachfolgende Abschnitt befasst sich daher im Detail mit der Funktionsweise u
 Vaadin ist ein Framework beziehungsweise eine Plattform, mit der Webapplikationen sowohl komplett in Java, vollständig mit TypeScript und HTML als auch in einer Kombination beider entwickelt und umgesetzt werden können. Die beiden Ansätze sind dabei in zwei verschiedene Frameworks aufgeteilt, um - je nach Einsatzzweck - diese entsprechend einzusetzen:
 
 \begin{itemize}
-    \item \textbf{Vaadin Flow} ist ein Framework, mit dem Webapplikationen in Java umgesetzt werden können. Technologien wie beispielsweise HTML oder JavaScript werden bei der Entwicklung der \acs{UI} nicht benötigt, der gesamte Programmcode basiert auf einer einheitlichen Programmiersprache. Die gesamte Anwendung selbst läuft auf einem Server, während das Framework den Applikationszustand sowie die Client-Server-Kommunikation übernimmt.  \parencite[][]{vaadin_ltd_vaadin_nodate}
+    \item \textbf{Vaadin Flow} ist ein Framework, mit dem Webapplikationen in Java umgesetzt werden können. Technologien wie beispielsweise HTML oder JavaScript werden bei der Entwicklung der \acs{UI} nicht benötigt, der gesamte Programmcode basiert auf einer einheitlichen Programmiersprache. Die gesamte Anwendung selbst läuft auf einem Server, während das Framework den Applikationszustand sowie die Client-Server-Kommunikation übernimmt. \parencite[][]{vaadin_ltd_vaadin_nodate}
     \item \textbf{Vaadin Fusion} ist ein Framework, bei dem TypeScript für das Frontend auf dem Client und Java für das Backend auf dem Server eingesetzt wird. Mit Fusion können clientseitig reaktive Webapplikationen entwickelt werden, die typsichere Java Endpunkte aufrufen. Vorgefertigte Komponenten erleichtern hierbei das Entwickeln der \acs{UI}, während eigene Elemente mittels voller Kontrolle über das \ac{DOM} umgesetzt werden können. \parencite[][]{vaadin_ltd_vaadin_nodate-1}
 \end{itemize}
 
@@ -432,7 +432,7 @@ Wilken schreibt, dass die meisten Webapplikationen die Funktionalität benötige
 
 \subsubsection{Routing bei Vaadin}
 \label{sub-sub-sec:routing-herangehensweise-vaadin}
-Vaadin bietet die Möglichkeit, mittels der \texttt{@Route} Annotation alle Components (sowohl Vaadin Components als auch eigene) über eine spezifische URL ansprechbar zu machen und diese somit aufrufen zu können. Quellcode \ref{code:route-annotation-vaadin} auf Seite    \pageref{code:route-annotation-vaadin} stellt beispielhaft dar, wie eine selbst entwickelte Komponente im Browser über die URL \path{http://example.com/some/path} angesteuert werden kann. \parencite[][Using the @Route Annotation]{vaadin_ltd_overview_2021-1}
+Vaadin bietet die Möglichkeit, mittels der \texttt{@Route} Annotation alle Components (sowohl Vaadin Components als auch eigene) über eine spezifische URL ansprechbar zu machen und diese somit aufrufen zu können. Quellcode \ref{code:route-annotation-vaadin} auf Seite \pageref{code:route-annotation-vaadin} stellt beispielhaft dar, wie eine selbst entwickelte Komponente im Browser über die URL \path{http://example.com/some/path} angesteuert werden kann. \parencite[][Using the @Route Annotation]{vaadin_ltd_overview_2021-1}
 
 \begin{listing}[ht]
     \inputminted[fontsize=\footnotesize,linenos]{java}{code/Vaadin_Route-annotation.java}
@@ -561,7 +561,7 @@ Als erste der beiden Applikationen wurde die Vaadin Demo umgesetzt und \textit{\
 
 \medskip
 
-Zur Umsetzung der Vaadin Demo-Applikation kommt die Version \texttt{19.0.2} zum Einsatz, die zum Stand des Entwicklungsbeginns Anfang März 2021 die aktuellste Version darstellt. In  Kapitel \ref{chap:stand-technik} ab Seite \pageref{chap:stand-technik} wurden stellenweise Auszüge aus der Dokumentation zu Vaadin \texttt{18.x} verwendet, diese behalten jedoch weiterhin ihre Gültigkeit und haben sich nur marginal verändert.
+Zur Umsetzung der Vaadin Demo-Applikation kommt die Version \texttt{19.0.2} zum Einsatz, die zum Stand des Entwicklungsbeginns Anfang März 2021 die aktuellste Version darstellt. In Kapitel \ref{chap:stand-technik} ab Seite \pageref{chap:stand-technik} wurden stellenweise Auszüge aus der Dokumentation zu Vaadin \texttt{18.x} verwendet, diese behalten jedoch weiterhin ihre Gültigkeit und haben sich nur marginal verändert.
 
 \subsection{Starten und Verwenden der Vaadin Demo}
 \label{sub-sec:starten-verwenden-vaadin}
@@ -592,7 +592,7 @@ Das Arbeiten mit der von Vaadin veröffentlichten Dokumentation selbst hat in de
 
 \medskip
 
-Abseits der angebrachten Punkte  stellt sich das Arbeiten mit Vaadin Flow vor allem für Entwickler:innen, die bereits mit Java gearbeitet haben, jedoch als gewohnt dar und funktioniert gut. HTML oder JavaScript Kenntnisse werden keine benötigt und die \textit{Vaadin Components} beziehungsweise eigene Komponenten lassen sich meist mit wenigen Zeilen \ac{CSS} an die jeweiligen Bedürfnisse anpassen.
+Abseits der angebrachten Punkte stellt sich das Arbeiten mit Vaadin Flow vor allem für Entwickler:innen, die bereits mit Java gearbeitet haben, jedoch als gewohnt dar und funktioniert gut. HTML oder JavaScript Kenntnisse werden keine benötigt und die \textit{Vaadin Components} beziehungsweise eigene Komponenten lassen sich meist mit wenigen Zeilen \ac{CSS} an die jeweiligen Bedürfnisse anpassen.
 
 \section{Angular Demo-Applikation}
 \label{sec:angular-demo}
@@ -624,7 +624,7 @@ Die Angular Demo kann mit etwas mehr Aufwand, aber dennoch verhältnismäßig ei
 \begin{itemize}
     \item \textbf{Development Mode:} Im Anwendungsverzeichnis \path{angular-demo-app/} müssen zuerst die Abhängigkeiten mittels \underline{\texttt{npm install}} installiert werden. Anschließend kann die Angular Demo über das Ausführen der Befehle \underline{\texttt{npm install -g @angular/cli}} und \underline{\texttt{ng serve -o}} gestartet werden und ist nach kurzer Zeit unter \url{http://localhost:4200} aufrufbar.
     \item \textbf{Production Mode:} Nach dem Laden der Abhängigkeiten (siehe Development Mode) muss die Anwendung mit dem Befehl \underline{\texttt{ng build -{}-prod}} für den Production Mode vorbereitet werden. Sobald der Vorgang abgeschlossen ist, stehen die fertigen Projektdateien im Anwendungsverzeichnis im Ordner \path{dist/angular-demo-app/} zur Verfügung. \newline
-    Diese Dateien können jedoch nicht direkt aufgerufen werden, sondern müssen dem Browser von einem Webserver zur Verfügung gestellt werden. Mit \underline{\texttt{npm install -g http-server}} kann ein kleiner HTTP-Server installiert werden, der anschließend über ein Terminal mit den Befehlen \underline{\texttt{cd dist/angular-demo-app/}} und  \underline{\texttt{http-server -o -p 8282}} gestartet werden kann. Die Anwendung steht nach kurzer Zeit unter \url{http://localhost:8282} zum Aufruf bereit und enthält, im Vergleich zum Development Mode, die \ac{PWA} Funktionalität.
+    Diese Dateien können jedoch nicht direkt aufgerufen werden, sondern müssen dem Browser von einem Webserver zur Verfügung gestellt werden. Mit \underline{\texttt{npm install -g http-server}} kann ein kleiner HTTP-Server installiert werden, der anschließend über ein Terminal mit den Befehlen \underline{\texttt{cd dist/angular-demo-app/}} und \underline{\texttt{http-server -o -p 8282}} gestartet werden kann. Die Anwendung steht nach kurzer Zeit unter \url{http://localhost:8282} zum Aufruf bereit und enthält, im Vergleich zum Development Mode, die \ac{PWA} Funktionalität.
 \end{itemize}
 
 Zu beachten ist, dass die Angular Demo standardmäßig nur auf dem Gerät funktionsfähig ist, auf dem auch das Node.js Backend gestartet wurde. Um das zu ändern, muss im Verzeichnis \path{angular-demo-app/src/environments/} in der Datei \texttt{environment.ts} die IP Adresse individuell angepasst werden. Im \textit{Development Mode} werden die Änderungen automatisch übernommen, im \textit{Production Mode} müssen die oben angeführten Schritte erneut vorgenommen werden.
@@ -712,7 +712,7 @@ Weiterführende Funktionalitäten bietet das Vaadin Framework jedoch nur noch ei
 
 \subsection{\acs{PWA} mit Offline-Fähigkeit bei Angular}
 \label{sub-sec:results-pwa-angular}
-Während die Konfiguration der \ac{PWA}-Funktionalität bei Angular etwas mehr Zeit als bei Vaadin in Anspruch nimmt, bietet die zur Verfügung gestellte Integration des sogenannten \textit{Service Workers} deutlich mehr Flexibilität bei der Entwicklung und dadurch mehr  Funktionalitäten bei der tatsächlichen Nutzung der Anwendung.
+Während die Konfiguration der \ac{PWA}-Funktionalität bei Angular etwas mehr Zeit als bei Vaadin in Anspruch nimmt, bietet die zur Verfügung gestellte Integration des sogenannten \textit{Service Workers} deutlich mehr Flexibilität bei der Entwicklung und dadurch mehr Funktionalitäten bei der tatsächlichen Nutzung der Anwendung.
 
 \medskip
 
