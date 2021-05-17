@@ -67,7 +67,7 @@
 
     Vorgelegt von\newline
     Dominic Luidold\newline
-    Dornbirn, 20. Mai 2021
+    Dornbirn, 17. Mai 2021
     \end{flushleft}
 \end{titlepage}
 
@@ -117,7 +117,7 @@ Um den vorgenommenen Vergleich zu beschränken und einen Fokus zu setzen, sind d
 
 \smallskip
 
-Das Ziel dieser Arbeit, einen fundierten Vergleich zwischen Vaadin und Angular zu schaffen, konnte erfüllt werden. Zwar lässt sich keine allgemeine Empfehlung für eines der beiden Frameworks aussprechen, anhand von verschiedenen Szenarien, die auf den oben genannten Kriterien basieren, lassen sich jedoch gezielte Empfehlungen sowohl für Vaadin als auch für Angular aussprechen.
+Das Ziel dieser Arbeit, einen fundierten Vergleich zwischen Vaadin und Angular zu schaffen, konnte erfüllt werden. Zwar lässt sich keine allgemeine Empfehlung für eines der Frameworks aussprechen, jedoch können anhand von verschiedenen Szenarien, welche auf den genannten Kriterien basieren, gezielte Empfehlungen sowohl für Vaadin als auch für Angular ausgesprochen werden.
 
 % Abstract:
 \newpage
@@ -130,11 +130,11 @@ An increasing number of web applications and apps are being implemented using th
 
 \medskip
 
-In addition to the intended comparison and the subsequent results, the current state of the art is highlighted. The approach of \acsp{SPA} is compared to that of \acsp{MPA} and the functioning of Vaadin Flow is examined in more detail. Where appropriate, the approach of Angular is also used and brought into context with the implementation of Vaadin.
+In addition to the intended comparison and the subsequent results, the current state of the art is highlighted. The approach of \acsp{SPA} is compared to that of \acsp{MPA} and the functioning of Vaadin Flow is examined in more detail. Where appropriate, the approach of Angular is also considered and brought into context with the implementation of Vaadin.
 
 \medskip
 
-In order to narrow down the comparison and to set a focus, three criteria were defined on the basis of which the planning, implementation and final evaluation of the developed demo applications were carried out. In addition to the possibility of easily implementing a \acs{PWA}, attention was paid to the reusability of components as well as the local and server-side data handling. Based on two different user stories that combine these criteria, two applications were developed that were used for the final evaluation and the final recommendations.
+In order to narrow down the comparison and to set a focus, three criteria were defined on the basis of which the planning, implementation and final evaluation of the developed demo applications were carried out. In addition to the possibility of easily implementing a \acs{PWA}, attention was paid to the reusability of components as well as the local and server-side data handling. Based on two different user stories that combine these criteria, two applications were developed that were used for the final evaluation and the resulting recommendations.
 
 \medskip
 
@@ -190,7 +190,7 @@ Diese Bachelorarbeit verfolgt das Ziel, einen Einblick in die \ac{SPA} Framework
 
 \medskip
 
-Um ein grundlegendes Verständnis über die Thematik von \acp{SPA} zu erlangen, wird zu Beginn der Arbeit auf das Konzept einer \ac{SPA} eingegangen und die zugrundeliegende Herangehensweise mit der einer klassischen \ac{MPA} verglichen. Im weiteren Verlauf werden die unterschiedlichen Ansätze von Angular und Vaadin genauer betrachtet und eine tatsächliche Umsetzung der zuvor erläuterten Technologien mittels zweier Demo-Applikationen getestet. Am Ende dieser Arbeit wir darauf eingegangen, ob sich - anhand unterschiedlicher Kriterien und Anwendungsfälle - eine Empfehlung für eines der beiden \ac{SPA} Frameworks aussprechen lässt.
+Um ein grundlegendes Verständnis über die Thematik von \acp{SPA} zu erlangen, wird zu Beginn der Arbeit auf das Konzept einer \ac{SPA} eingegangen und die zugrundeliegende Herangehensweise mit der einer klassischen \ac{MPA} verglichen. Im weiteren Verlauf werden die unterschiedlichen Ansätze von Angular und Vaadin genauer betrachtet und eine tatsächliche Umsetzung der zuvor erläuterten Technologien mittels zweier Demo-Applikationen getestet. Am Ende dieser Arbeit wir darauf eingegangen, ob sich - anhand unterschiedlicher Kriterien und Anwendungsfälle - eine Empfehlung für eines der beiden \ac{SPA}-Frameworks aussprechen lässt.
 
 \section{Motivation}
 \label{sec:motivation}
@@ -247,7 +247,7 @@ Die Abbildung \ref{fig:spa-overview} auf Seite \pageref{fig:spa-overview} stellt
 
 \medskip
 
-Diese Herangehensweise führt dazu, dass beim Aufrufen einer (Unter-)Seite mittels clientseitigem Routing keine komplett neue HTML-Seite geladen werden muss, sondern lediglich Teile des \acl{UI} - sogennante \textit{Views} - ausgetauscht werden. Hierfür wird das entsprechende \ac{DOM} mittels JavaScript dynamisch ausgetauscht und die benötigten Daten werden bei Bedarf asynchron mittels \acs{AJAX} und XHR vom Server geladen. \parencite[][Seite 7]{scott_spa_2015}
+Diese Herangehensweise führt dazu, dass beim Aufrufen einer (Unter-)Seite mittels clientseitigem Routing keine komplett neue HTML-Seite geladen werden muss, sondern lediglich Teile des \acl{UI} - sogenannte \textit{Views} - ausgetauscht werden. Hierfür wird das entsprechende \ac{DOM} mittels JavaScript dynamisch ausgetauscht und die benötigten Daten werden bei Bedarf asynchron mittels \acs{AJAX} und XHR vom Server geladen. \parencite[][Seite 7]{scott_spa_2015}
 
 \begin{figure}[ht]
     \centering
@@ -308,7 +308,7 @@ Diese Arbeit befasst sich nachfolgend primär mit \textit{Vaadin Flow}, um eine 
 
 \subsection{Frontend und Backend in Java}
 \label{sub-sec:frontend-backend-java}
-Vaadin selbst schreibt, dass sich das Arbeiten mit HTML, \ac{CSS} und JavaScript für reine Java-Entwickler sowohl als herausfordernd als auch als zeitintensiv darstellt. \parencite[][Framework - Introduction - Overview]{vaadin_ltd_documentation_nodate}
+Vaadin selbst schreibt, dass sich das Arbeiten mit HTML, \ac{CSS} und JavaScript für reine Java-Entwickler:innen sowohl als herausfordernd als auch als zeitintensiv darstellt. \parencite[][Framework - Introduction - Overview]{vaadin_ltd_documentation_nodate}
 
 Vaadin Flow bietet daher die Möglichkeit, mit einer vollständig in Java geschriebenen Applikation - die auf einem Server ausfgeführt wird - jeweils die Anwendungslogik sowie das \acl{UI} umzusetzen. Die Vielzahl von sogenannten \textit{Components}, welche Vaadin von Haus aus mitliefert und einzelnen Bestandteilen - wie beispielsweise einem Button oder ähnlichem - entspricht, unterstützen Entwickler:innen dabei, bei Bedarf ohne HTML oder JavaScript auszukommen. Die Components steuern dabei das zugrundeliegende JavaScript im Hintergrund über die Framework eigene \textit{Java API} beziehungsweise die \textit{Java Component API}. Der Quellcode \ref{code:vaadin-ui-java-sample} auf Seite \pageref{code:vaadin-ui-java-sample} stellt einen stark vereinfachten Ausschnitt von Components dar, die so im Client bereits entsprechend dargestellt werden. \parencite[][Framework - Introduction - Overview]{vaadin_ltd_documentation_nodate}
 
@@ -324,11 +324,11 @@ Als Vorteil stellt sich zudem heraus, dass die Anbindung des Frontends an ein Ba
 
 \subsection{Kommunikation zwischen Client und Server}
 \label{sub-sec:kommunikation-client-server}
-Bei einer \ac{SPA} spielt die Kommunikation des Clients (dem JavaScript/Type-Script Frontend) und dem Server (dem Backend) eine sehr wichtige Rolle. Im Gegensatz zu \acp{MPA}, bei denen die Daten bereits auf dem Server verarbeitet, eingebettet und als Ganzes übertragen werden, werden bei \acsp{SPA} diese erst bei Bedarf und im Nachhinein geladen. Die Art und Weise, wie dieser Vorgang umgesetzt wird, unterscheidet sich bei Vaadin Flow und Angular jedoch deutlich voneinander.
+Bei einer \ac{SPA} spielt die Kommunikation des Clients (dem JavaScript/Type-Script Frontend) und dem Server (dem Backend) eine sehr wichtige Rolle. Im Gegensatz zu \acp{MPA}, bei denen die Daten bereits auf dem Server verarbeitet, eingebettet und als Ganzes übertragen werden, werden diese bei \acsp{SPA} erst bei Bedarf und im Nachhinein geladen. Die Art und Weise, wie dieser Vorgang umgesetzt wird, unterscheidet sich bei Vaadin Flow und Angular jedoch deutlich voneinander.
 
 \subsubsection{Automatische Kommunikation von Vaadin}
 \label{sub-sub-sec:kommunikation-herangehensweise-vaadin}
-Da sowohl die Persitenzschicht, die Applikationslogik als auch das \acl{UI} bei Vaadin Flow mittels Java umgesetzt werden können, ergibt sich der Vorteil, dass die Kommunikation zwischen Client und Server vom Framework selbst übernommen wird und hierbei unter anderem auf das bereits angesprochene \textit{Two-way data binding} setzt. Die Nutzung von Vaadin-eigenen Components bietet des Weiteren die Möglichkeit, das \ac{DOM} im Webbrowser selbst zu steuern, während eine Repräsentation desselben \ac{DOM} serverseitig in Java gehalten wird. Änderungen, die auf dem Client durchgeführt werden, werden automatisch synchronisiert. \parencite[][Framework - Introduction - Core Concepts]{vaadin_ltd_documentation_nodate}
+Da sowohl die Persitenzschicht, die Applikationslogik als auch das \acl{UI} bei Vaadin Flow mittels Java umgesetzt werden können, ergibt sich der Vorteil, dass die Kommunikation zwischen Client und Server vom Framework selbst übernommen wird und hierbei unter anderem auf das bereits angesprochene \textit{Two-way data binding} setzt. Die Nutzung von Vaadin eigenen Components bietet des Weiteren die Möglichkeit, das \ac{DOM} im Webbrowser selbst zu steuern, während eine Repräsentation desselben \ac{DOM} serverseitig in Java gehalten wird. Änderungen, die auf dem Client durchgeführt werden, werden automatisch synchronisiert. \parencite[][Framework - Introduction - Core Concepts]{vaadin_ltd_documentation_nodate}
 
 \medskip
 
@@ -336,7 +336,7 @@ Artur Signell, CTO der Vaadin Ltd., erklärt währenddessen in einem Foren-Beitr
 
 \medskip
 
-Mittels den Entwicklertools, die in gängigen Webbrowsern zur Verfügung stehen, kann sich - abseits der nicht vorhandenen Dokumentation - jedoch ein kurzes Bild davon gemacht werden, wie die Kommunikation grundsätzlich funktioniert. Die Abbildung \ref{fig:vaadin-json-communication} auf Seite \pageref{fig:vaadin-json-communication} zeigt die vom Client an den Server geschickte Anfrage, die durch das Befüllen eines Vaadin \texttt{TextField} (einem HTML - \texttt{INPUT} Element) ausgelöst wird. Für die Kommunikation wird \acs{JSON} eingesetzt, welches die in das \texttt{INPUT} Element eingefüllten Daten mit gängiger HTTP-Kommunikation an den Server schickt, auf die schlussendlich mittels Java-typischer Notation zugegriffen werden kann.
+Mittels den Entwicklertools, die in gängigen Webbrowsern zur Verfügung stehen, kann sich - abseits der nicht vorhandenen Dokumentation - jedoch ein kurzes Bild davon gemacht werden, wie die Kommunikation grundsätzlich funktioniert. Die Abbildung \ref{fig:vaadin-json-communication} auf Seite \pageref{fig:vaadin-json-communication} zeigt die vom Client an den Server geschickte Anfrage, die durch das Befüllen eines Vaadin \texttt{TextField} (einem HTML - \texttt{INPUT} Element) ausgelöst wird. Für die Kommunikation wird \acs{JSON} eingesetzt, welches die in das \texttt{INPUT} Element eingefüllten Daten mit gängiger HTTP-Kommunikation an den Server schickt, auf die schlussendlich mittels Java typischer Notation zugegriffen werden kann.
 
 \begin{figure}[ht]
     \centering
@@ -394,11 +394,11 @@ Die Abbildung \ref{fig:vaadin-components-overview} auf Seite \pageref{fig:vaadin
     \label{fig:vaadin-components-overview}
 \end{figure}
 
-Die Technologien, auf die sich Vaadin bei der Implementierung und Umsetzung der Components stützt, bauen auf diversen Konzepten auf, zu denen unter anderem \textit{Custom elements}, \textit{Shadow \ac{DOM}} sowie \textit{HTML templates} gehören. Diese werden dazu genutzt, um mittels JavaScript spezifische Klassen für die gewünschten neuen Web Components zu erstellen, diese entsprechend zu registrieren und mittels Template-Funktionalität die neu erstellten Objekte schlussendlich zu definieren. \parencite[][]{mozilla_contributors_web_2021}
+Die Technologien, auf die sich Vaadin bei der Implementierung und Umsetzung der Components stützt, bauen auf diversen Konzepten auf, zu denen unter anderem \textit{Custom elements}, \textit{Shadow \ac{DOM}} sowie \textit{HTML templates} gehören. Diese werden dazu genutzt, um mittels JavaScript spezifische Klassen für die gewünschten neuen Web Components zu erstellen, diese entsprechend zu registrieren und die neu erstellten Objekte mittels Template-Funktionalität schlussendlich zu definieren. \parencite[][]{mozilla_contributors_web_2021}
 
 \medskip
 
-Der Quellcode \ref{code:mozilla-sample-web-component} auf Seite \pageref{code:mozilla-sample-web-component} zeigt beispielhaft auf, wie der grundlegende Aufbau eines eigens umgesetzten Web Components aussieht. Vaadin nutzt diesen Aufbau sowie die zugrundeliegende Herangehensweise für die Umsetzung der vorhergehend aufgezeigten \textit{Vaadin Components}. \parencite[vgl.][]{vaadin_ltd_vaadin-text-fieldjs_2021} Aufgrund des Fokus dieser Arbeit wird im weiteren Verlauf jedoch nicht näher auf die zugrundeliegende Struktur von Web Components eingegangen.
+Quellcode \ref{code:mozilla-sample-web-component} auf Seite \pageref{code:mozilla-sample-web-component} zeigt beispielhaft auf, wie der grundlegende Aufbau eines eigens umgesetzten Web Components aussieht. Vaadin nutzt diesen Aufbau sowie die zugrundeliegende Herangehensweise für die Umsetzung der vorhergehend aufgezeigten \textit{Vaadin Components}. \parencite[vgl.][]{vaadin_ltd_vaadin-text-fieldjs_2021} Aufgrund des Fokus dieser Arbeit wird im weiteren Verlauf jedoch nicht näher auf die zugrundeliegende Struktur von Web Components eingegangen.
 
 \begin{listing}[ht]
     \inputminted[fontsize=\footnotesize,linenos]{js}{code/Mozilla_Web-Component-sample.js}
@@ -429,7 +429,7 @@ Abbildung \ref{fig:vaadin-textfield-output} auf Seite \pageref{fig:vaadin-textfi
 
 \subsection{Routing und Navigation}
 \label{sub-sec:routing-navigation}
-Wilken schreibt, dass die meisten Webapplikationen die Funktionalität benötigen, während der Nutzung zwischen verschiedenen Seiten und Unterseiten navigieren zu können. \acp{MPA} laden beim Aufruf einer Seite die hinterlegten HTML, \ac{CSS} und JavaScript Dateien von einem Webserver und nutzen dafür die angegebene URL. \acp{SPA} hingegen laden Daten asynchron und bei Bedarf und wechseln lediglich sogenannte Views und keine kompletten Seiten. Die Navigation innerhalb einer \ac{SPA} muss entsprechend anderweitig vorgenommen werden, wobei hier sowohl JavaScript an sich als auch das verwendete Framework eine wichtige Rolle spielt. \parencite[][Seite 159f.]{wilken_angular_2018}
+Wilken schreibt, dass die meisten Webapplikationen die Funktionalität benötigen, während der Nutzung zwischen verschiedenen Seiten und Unterseiten navigieren zu können. \acp{MPA} laden beim Aufruf einer Seite die hinterlegten HTML, \ac{CSS} und JavaScript Dateien von einem Webserver und nutzen dafür die angegebene URL. \acp{SPA} hingegen laden Daten asynchron sowie bei Bedarf und wechseln lediglich sogenannte Views und keine kompletten Seiten. Die Navigation innerhalb einer \ac{SPA} muss entsprechend anderweitig vorgenommen werden, wobei hier sowohl JavaScript an sich als auch das verwendete Framework eine wichtige Rolle spielt. \parencite[][Seite 159f.]{wilken_angular_2018}
 
 \subsubsection{Routing bei Vaadin}
 \label{sub-sub-sec:routing-herangehensweise-vaadin}
@@ -459,7 +459,7 @@ Um die Navigation zwischen verschiedenen Routen zu ermöglichen, bietet Vaadin -
 
 \begin{itemize}
     \item Mittels der \texttt{RouterLink} Komponente können Links erstellt werden, welche die angegebene Route als Ziel haben (\texttt{menu.add(new RouterLink("Home", HomeView.class));}). \parencite[][Using the RouterLink Component]{vaadin_ltd_navigating_2021}
-    \item Gewöhnliche HTML Anker Tags können genutzt werden, um zwischen verschiedenen Routen zu navigieren (\texttt{<a href="company" [...]}). Diese verursachen jedoch ein Neuladen der gesamten Seite. Wenn der zusätzliche Ladeprozess der Seite verhindert werden soll, kann das Vaadin eigene \texttt{router-link} Attribut zusätzlich angehängt werden. \parencite[][Using Standard href Links]{vaadin_ltd_navigating_2021}
+    \item Gewöhnliche HTML Anker Tags können genutzt werden, um zwischen verschiedenen Routen zu navigieren (\texttt{<a href="company" [...]}). Diese verursachen jedoch ein Neuladen der gesamten Seite. Wenn der zusätzliche Ladeprozess der Seite verhindert werden soll, kann das Vaadin eigene \texttt{router-link} Attribut angehängt werden. \parencite[][Using Standard href Links]{vaadin_ltd_navigating_2021}
     \item Serverseitig kann mittels \texttt{UI.navigate(/* Route name */)} der Wechsel zu einer neuen Route ausgelöst werden. \parencite[][Server-side Navigation]{vaadin_ltd_navigating_2021}
 \end{itemize}
 
@@ -497,7 +497,7 @@ Die Kriterien, anhand derer sich die Umsetzung und Beurteilung richten werden, w
 
 \subsubsection*{Umsetzung als \acl{PWA}}
 \label{sub-sec:kriterien-pwa}
-Die Demo-Applikationen sollen in mehrerer Hinsicht als moderne Webapplikation genutzt werden können. Dazu gehört, neben der standardmäßigen Nutzung mittels gängiger Webbrowser auf dem Desktop, die Nutzung als \ac{PWA}, die vor allem für Smartphones optimiert und ausgelegt ist und sich ähnlich wie eine App verhält.
+Die Demo-Applikationen sollen in mehrerer Hinsicht als moderne Webapplikationen genutzt werden können. Dazu gehört, neben der standardmäßigen Nutzung mittels gängiger Webbrowser auf dem Desktop, die Nutzung als \ac{PWA}, die vor allem für Smartphones optimiert und ausgelegt ist und sich ähnlich wie eine App verhält.
 
 \clearpage
 
@@ -517,11 +517,11 @@ Bei der Umsetzung und Bewertung wird daher darauf eingegangen, welche Möglichke
 
 \section{Vorgehensweise}
 \label{sec:vorgehensweise}
-Damit die Demo-Applikationen die eben genannten Kriterien beide gleichermaßen beinhalten, umsetzen und somit bewertet werden können, werden diese in User Stories eingebettet. Die User Stories orientieren sich dabei jedoch an keinem vollständigen Applikations-Konzept, sondern zeigen verschiedene Anwendungsfälle auf, die in einem realen Umfeld ein Bewertungskriterium für die Auswahl eines Frameworks spielen können.
+Damit die Demo-Applikationen die eben genannten Kriterien beide gleichermaßen beinhalten, umsetzen und somit bewertet werden können, werden diese in User Stories eingebettet. Die User Stories orientieren sich dabei jedoch an keinem vollständigen Konzept, sondern zeigen verschiedene Anwendungsfälle auf, die in einem realen Umfeld ein Bewertungskriterium für die Auswahl eines Frameworks spielen können.
 
 \subsection{User Stories}
 \label{sub-sec:user-stories}
-Nachfolgend sind zwei User Stories aufgelistet, die im Detail erklären, welche Funktionalitäten die Vaadin und Angular Demo-Applikation beinhalten sollen und die genannten Kriterien einfließen lassen.
+Nachfolgend sind zwei User Stories aufgelistet, die im Detail erklären, welche Funktionalitäten die Vaadin und Angular Demo-Applikationen beinhalten sollen und die genannten Kriterien einfließen lassen.
 
 \subsubsection*{User Story 1: Echtzeit Eingangskontrolle}
 \label{sub-sub-sec:user-story-1}
@@ -605,7 +605,7 @@ Um die Angular Webanwendung verwenden zu können, bedarf es - im Vergleich zur V
 
 \medskip
 
-Zur Umsetzung der Angular Demo-Applikation kommen Angular \texttt{11.2} für die Frontend-Entwicklung und Node.js \texttt{14.16} mit Express \texttt{4.17} im Backend zum Einsatz. Sowohl das Frontend als auch das Backend werden mittels TypeScript (in der Version \texttt{4.x}) entwickelt und für den schlussendlichen Betrieb zu JavaScript kompiliert. Die verwendeten Versionen entsprechen zum Stand des Entwicklungsbeginns Ende März 2021 jeweils den aktuellsten Versionen beziehungsweise bei Node.js der aktuellen \ac{LTS} Version.
+Zur Umsetzung der Angular Demo kommen Angular \texttt{11.2} für die Frontend-Entwicklung und Node.js \texttt{14.16} mit Express \texttt{4.17} im Backend zum Einsatz. Sowohl das Frontend als auch das Backend werden mittels TypeScript (in der Version \texttt{4.x}) entwickelt und für den schlussendlichen Betrieb zu JavaScript kompiliert. Die verwendeten Versionen entsprechen zum Stand des Entwicklungsbeginns Ende März 2021 jeweils den aktuellsten Versionen beziehungsweise bei Node.js der aktuellen \ac{LTS} Version.
 
 \subsection{Starten und Verwenden der Angular Demo}
 \label{sub-sec:starten-verwenden-angular}
@@ -745,7 +745,7 @@ Das zweite Kriterium, welches bei der Umsetzung der Demo-Applikationen maßgebli
 
 \subsection{Objektorientierte Komponenten von Vaadin}
 \label{sub-sec:results-wiederverwendbarkeit-vaadin}
-Vaadin Flow baut auf Java und somit einer objektorientierten Programmiersprache auf. Das bedeutet, dass sowohl die von Vaadin entwickelten Vaadin Components als auch eigene Bestandteile der Anwendung in Java-typischer Weise verwendet und erweitert werden können.
+Vaadin Flow baut auf Java und somit einer objektorientierten Programmiersprache auf. Das bedeutet, dass sowohl die von Vaadin entwickelten Vaadin Components als auch eigene Bestandteile der Anwendung in für Java typische Weise verwendet und erweitert werden können.
 
 \begin{figure}[ht]
     \centering
@@ -824,7 +824,7 @@ Da Vaadin Flow sowohl die \ac{UI} als auch die Anwendungslogik in einem Programm
     \label{code:results-vaadin-datenanbindung}
 \end{listing}
 
-Ähnlich einfach gestaltet sich der Zugriff auf gespeicherte Daten, die nach einem Zugriff auf die Datenbank ebenfalls im normalen Ablauf des Java Programmcodes genutzt und schlussendlich den Anwender:innen direkt angezeigt werden können. Wo sich Vaadin Flow hingegen weniger flexibel zeigt, ist beim lokalen Speichern von Daten direkt im Browser. Zwar gibt es die Möglichkeit, den Komponenten JavaScript in Textform zu übergeben und dieses dann im Browser ausführen zu lassen, ein direkter Zugriff ohne JavaScript Kenntnisse ist jedoch, zumindest zum aktuellen Stand dieser Arbeit, nicht möglich.
+Ähnlich einfach gestaltet sich der Zugriff auf gespeicherte Daten, die nach einem Zugriff auf die Datenbank ebenfalls im normalen Ablauf des Java Programmcodes genutzt und schlussendlich den Anwender:innen direkt angezeigt werden können. Wo sich Vaadin Flow hingegen weniger flexibel zeigt, ist beim lokalen Speichern von Daten direkt im Browser. Zwar gibt es die Möglichkeit, den Komponenten JavaScript in Textform zu übergeben und dieses dann im Browser ausführen zu lassen, ein direkter Zugriff ohne JavaScript Kenntnisse ist jedoch nicht möglich.
 
 \subsection{Externes Backend zur Datenspeicherung für Angular}
 \label{sub-sec:result-datenanbindung-angular}
@@ -843,7 +843,7 @@ Quellcode \ref{code:results-angular-datenanbindung} auf Seite \pageref{code:resu
     \label{code:results-angular-datenanbindung}
 \end{listing}
 
-Deutliche Vorteile bietet Angular, beziehungsweise JavaScript und Type-Script selbst, beim Zugriff auf den lokalen Speicher direkt im Browser. Sowohl \textit{Cookies} als auch der \textit{SessionStorage} und \textit{LocalStorage} können in der gesamten Applikation verwendet werden, um Daten auf dem jeweiligen Endgerät (zwischen) zu speichern. Genutzt wurde diese Möglichkeit für die Offlinenutzung der Fotoverwaltung (siehe dazu \textit{\nameref{sub-sub-sec:user-story-2}} auf Seite \ref{sub-sub-sec:user-story-2}), bei der Fotos \texttt{base64} encoded im LocalStorage abgelegt wurden, bis wieder eine aktive Internetverbindung besteht. Etwaige Limitierungen bezüglich der maximalen Speichergröße oder ähnlichem werden von Angular nicht vorgenommen und hängen daher in der Regel vom jeweiligen Betriebssystem und Webbrowser selbst ab.
+Deutliche Vorteile bietet Angular, beziehungsweise JavaScript und Type-Script selbst, beim Zugriff auf den lokalen Speicher direkt im Browser. Sowohl \textit{Cookies} als auch der \textit{SessionStorage} und \textit{LocalStorage} können in der gesamten Applikation verwendet werden, um Daten auf dem jeweiligen Endgerät (zwischen) zu speichern. Genutzt wurde diese Möglichkeit für die Offlinenutzung der Fotoverwaltung (siehe dazu \textit{\nameref{sub-sub-sec:user-story-2}} auf Seite \pageref{sub-sub-sec:user-story-2}), bei der Fotos \texttt{base64} encoded im LocalStorage abgelegt wurden, bis wieder eine aktive Internetverbindung besteht. Etwaige Limitierungen bezüglich der maximalen Speichergröße oder ähnlichem werden von Angular nicht vorgenommen und hängen daher in der Regel vom jeweiligen Betriebssystem und Webbrowser selbst ab.
 
 \section{Anderweitige Ergebnisse der Umsetzung der User Stories}
 \label{sec:results-user-stories}
@@ -897,7 +897,7 @@ Die \textit{\nameref{sub-sec:kriterien-datenanbindung}} bildet als letztes der v
 
 \clearpage
 
-Abschließend lässt sich zusammenfassen, dass für keines der beiden Frameworks eine eindeutige Empfehlung ausgesprochen werden kann. Sowohl Vaadin als auch Angular bieten in unterschiedlichen Bereichen Vor- und Nachteile, die in Zusammenhang mit den jeweiligen Projektanforderungen gebracht werden müssen. Für Entwickler:innen, die den Einsatz von Java gewohnt sind, sind die Ansätze und Herangehensweise von Vaadin leicht verständlich und es kann damit verhältnismäßig einfach eine \ac{SPA} umgesetzt werden. Angular bietet mit seiner weit verbreiteten Nutzung hingegen eine bessere Dokumentation und Verfügbarkeit von Hilfestellungen sowie Erweiterungsmöglichkeiten, die für die Entwicklung der auf JavaScript/TypeScript basierenden Anwendung von Vorteil sind.
+Abschließend lässt sich zusammenfassen, dass für keines der beiden Frameworks eine eindeutige Empfehlung ausgesprochen werden kann. Sowohl Vaadin als auch Angular bieten in unterschiedlichen Bereichen Vor- und Nachteile, die in Zusammenhang mit den jeweiligen Projektanforderungen gebracht werden müssen. Für Entwickler:innen, die den Einsatz von Java gewohnt sind, sind die Ansätze und Herangehensweisen von Vaadin leicht verständlich und es kann damit verhältnismäßig einfach eine \ac{SPA} umgesetzt werden. Angular bietet mit seiner weit verbreiteten Nutzung hingegen eine bessere Dokumentation und Verfügbarkeit von Hilfestellungen sowie Erweiterungsmöglichkeiten, die für die Entwicklung der auf JavaScript/TypeScript basierenden Anwendung von Vorteil sind.
 
 \section{Ausblick}
 \label{sec:ausblick}
@@ -925,6 +925,6 @@ Ich erkläre hiermit an Eides statt, dass ich die vorliegende Bachelorarbeit II 
 
 \vspace{5cm}
 \noindent
-Dornbirn, am 20. Mai 2021\hfill Dominic Luidold
+Dornbirn, am 17. Mai 2021\hfill Dominic Luidold
 
 \end{document}
